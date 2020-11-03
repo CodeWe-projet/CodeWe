@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify, abort
-from flask import json
 import db.db as db
 
 api = Blueprint("api", __name__)
