@@ -6,7 +6,7 @@ app.register_blueprint(api, url_prefix='/api')
 
 @app.route('/')
 def home():
-    return render_template("main.html")
+    return render_template("index.html")
 
 @app.route('/editor')
 def editor():
