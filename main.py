@@ -8,8 +8,9 @@ app.register_blueprint(api, url_prefix='/api')
 def home():
     return render_template("index.html")
 
-@app.route('/editor')
-def editor():
+@app.route('/<doc_id>')
+@app.route('/editor/<doc_id>')
+def editor(doc_id):
     return render_template('editor.html')
 
 
