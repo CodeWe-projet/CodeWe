@@ -14,23 +14,22 @@ def home():
 
 @app.route("/create_document", methods=['POST'])
 def create_document():
-    try:
-        doc_id = db.create_document()
-        return redirect(f"/editor/{doc_id}")
-    except Exception:
-        return abort(500)
+    doc_id = db.create_document()
+    return redirect(f"/editor/{doc_id}")
 
 
 @app.route('/<doc_id>')
 @app.route('/editor/<doc_id>')
 def editor(doc_id):
-    try:
-        doc_id = db.get_document(doc_id)
-        if doc_id is not None:
-            return render_template('editor.html', document=doc_id)
-        return abort(404)
-    except Exception:
-        return abort(500)
+    doc_id = db.get_document(doc_id)
+    if doc_id is not None:
+        return render_template('editor.html', document=doc_id)
+    return abort(404)
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 
 app.run(debug=DEBUG)
