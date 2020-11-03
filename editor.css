@@ -29,9 +29,23 @@ section#line-numbers{
 
 section#editor{
     padding: 10px;
-    white-space: pre;
+    counter-reset: thecodenumbering;
 }
 
-section#editor pre.current{
+
+section#editor div{
+    font-family: "Courier New", monospace;
+    white-space: pre;
+    counter-increment: thecodenumbering;
+}
+section#editor div:before{
+    padding-right:10px;
+    content: counter(thecodenumbering);
+    display:inline-block;
+    width:3em;
+    text-align: right;
+}
+
+section#editor div:focus{
     background-color: #333333;
 }
