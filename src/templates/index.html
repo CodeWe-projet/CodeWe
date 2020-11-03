@@ -10,7 +10,9 @@
         <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span></h1>
     </header>
 	<section>
-        <button>Nouveau document</button>
+        <form action="/api/create_document" method="post">
+            <button type="submit" class="btn-link">Create Document</button>
+        </form>
     </section>
 </body>
 <script src="{{ url_for('static', filename = 'js/index.js') }}"></script>
