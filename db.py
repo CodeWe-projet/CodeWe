@@ -1,8 +1,6 @@
 import sqlite3
 
-
-conn = sqlite3.connect('documents.db')
-c = conn.cursor()
+conn = sqlite3.connect('documents.db', check_same_thread=False)
 
 
 def get_document(doc_id):
@@ -15,8 +13,10 @@ def get_document(doc_id):
         tuple: all values with the document
     """
     query = "SELECT * FROM documents WHERE id = ?"
+    c = conn.cursor()
     c.execute(query, (doc_id,))
     return c.fetchone()
+
 
 
 def update_document(doc_id, text_content):
@@ -27,6 +27,7 @@ def update_document(doc_id, text_content):
         text_content (str): the text to change
     """
     query = "UPDATE documents SET text = ? WHERE id = ?"
+    c = conn.cursor()
     c.execute(query, (text_content, doc_id))
     conn.commit()
 
@@ -38,6 +39,5 @@ def create_document(doc_id):
         doc_id (str): doc with id specifed
     """
     query = 'INSERT INTO documents (id) VALUES (?)'
+    c = conn.cursor()
     c.execute(query, (doc_id,))
-
-

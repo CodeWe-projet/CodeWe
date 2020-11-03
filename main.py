@@ -14,14 +14,15 @@ def document(document_id):
 
 @app.route('/create_document')
 def create_document():
-    doc_id = uuid.uuid4()
+    doc_id = str(uuid.uuid4())
     db.create_document(doc_id)
-    return jsonify({"message": "document created"})
+    return jsonify({"message": doc_id})
 
 @app.route('/upload', methods=['POST'])
 def upload():
-    doc_id, doc_content = request.form['document_id'], request.form['doc_content']
+    doc_id, doc_content = request.form['doc_id'], request.form['doc_content']
     db.update_document(doc_id, doc_content)
+    print(db.get_document(doc_id))
     return jsonify({"message":"file_uploaded"})
 
 
@@ -29,6 +30,7 @@ def upload():
 def download():
     doc_id = request.form['doc_id']
     content = db.get_document(doc_id)
+    print(content)
     return jsonify({"content": content})
 
 app.run(debug=True)
