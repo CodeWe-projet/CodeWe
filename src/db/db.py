@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, time
 
 conn = sqlite3.connect('documents.db', check_same_thread=False)
 
@@ -7,7 +7,7 @@ def get_document(doc_id):
     """Get doc in the databse with id specified
 
     Args:
-        doc_id (str): id of the doc to modify
+        doc_id (int): id of the doc to modify
 
     Returns:
         tuple: all values with the document
@@ -23,7 +23,7 @@ def update_document(doc_id, text_content):
     """Update the document in the db with the id specified
 
     Args:
-        doc_id (str): id of the document to change
+        doc_id (int): id of the document to change
         text_content (str): the text to change
     """
     query = "UPDATE documents SET text = ? WHERE id = ?"
@@ -32,12 +32,18 @@ def update_document(doc_id, text_content):
     conn.commit()
 
 
-def create_document(doc_id):
+def create_document():
     """Create the document with id specified
 
     Args:
-        doc_id (str): doc with id specifed
+        doc_id (int): doc with id specifed
+    Returns:
+        int: return the id generated
     """
-    query = 'INSERT INTO documents (id) VALUES (?)'
+    query = 'INSERT INTO documents(creation_date, last_seen) VALUES (?, ?)'
+    timestamp = time.time()
     c = conn.cursor()
-    c.execute(query, (doc_id,))
+    c.execute(query, (timestamp, timestamp))
+    conn.commit()
+    return c.lastrowid
+
