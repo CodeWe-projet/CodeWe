@@ -7,7 +7,11 @@
 </head>
 <body>
     <header id="header">
-        <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span></h1>
+        <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span> - {{ document['doc_id'] }}</h1>
+        <div id="update_buttons">
+            <button id="pull_button">Pull</button>
+            <button id="push_button">Push</button>
+        </div>
     </header>
     <div id="welcome">
         <div id="welcome-text">
@@ -34,10 +38,10 @@
         </div>
     </div>
     <section id="editor" contenteditable="true" spellcheck="false">
-        <div class="code">import numpy as np</div>
-        <div class="code">for i in range(10):</div>
-        <div class="code">    print(i)</div>
-        <div class="code"> </div>
+        {% for line in document['text'].split('\n') %}
+            <div>{{ line }}</div>
+        {% endfor %}
+        <div>une phrase vraiment trèèèèèèèèèèèèèèèèèès longue une phrase vraiment trèèèèèèèèèèèèèèèèèès longue une phrase vraiment trèèèèèèèèèèèèèèèèèès longue une phrase vraiment trèèèèèèèèèèèèèèèèèès longue </div>
     </section>
 </body>
 <script src="{{ url_for('static', filename = 'js/editor.js') }}"></script>

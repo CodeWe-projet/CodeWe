@@ -16,12 +16,30 @@ body{
 }
 
 header{
+    position: fixed;
+    top: 0;
+    left: 0;
     background-color: rgba(127,255,0, 0.4);
     padding: 10px;
+    height: 50px;
+    width: 100vw;
+}
+
+header h1{
+    float: left;
 }
 
 header .title-1{
     font-size: 40px;
+}
+
+header #update_buttons{
+    float: right;
+}
+
+header button{
+    padding: 0 20px;
+    height: 40px;
 }
 
 div#welcome{
@@ -77,16 +95,8 @@ div#welcome button:hover{
     cursor: pointer;
 }
 
-section{
-    /*border: 1px solid red;*/
-}
-
-section#line-numbers{
-    padding: 10px;
-    float: left;
-}
-
 section#editor{
+    margin-top: 70px;
     padding: 10px;
     counter-reset: thecodenumbering;
 }
@@ -96,13 +106,15 @@ section#editor div{
     font-family: "Courier New", monospace;
     white-space: pre;
     counter-increment: thecodenumbering;
+    width: 100%;
+    white-space: pre-wrap;
 }
 section#editor div:before{
     padding-right:10px;
     content: counter(thecodenumbering);
     display:inline-block;
     width:3em;
-    text-align: right;
+    text-align: center;
 }
 
 section#editor div:focus{
