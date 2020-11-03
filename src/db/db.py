@@ -4,12 +4,16 @@ import time
 import utils
 
 
+base_code = "def main(text: str) -> None:\n    print(text)\n\nif __name__ == '__main__':\n    main('Hello World !')"
+
+
 def dict_factory(cursor, row):
     # FROM PYTHON docs
     d = {}
     for idx, col in enumerate(cursor.description):
         d[col[0]] = row[idx]
     return d
+
 
 conn = sqlite3.connect('documents.db', check_same_thread=False)
 conn.row_factory = dict_factory
@@ -28,7 +32,6 @@ def get_document(doc_id):
     c = conn.cursor()
     c.execute(query, (doc_id,))
     return c.fetchone()
-
 
 
 def update_document(doc_id, text_content):
@@ -52,12 +55,12 @@ def create_document():
     Returns:
         int: return the id generated
     """
-    query = 'INSERT INTO documents(creation_date, last_seen) VALUES (?, ?)'
+    query = 'INSERT INTO documents(creation_date, last_seen, text) VALUES (?, ?, ?)'
     query_update = 'UPDATE documents SET doc_id = ? where id = ?'
     timestamp = time.time()
     c = conn.cursor()
 
-    c.execute(query, (timestamp, timestamp))
+    c.execute(query, (timestamp, timestamp, base_code))
     doc_id = utils.uuid(c.lastrowid)
     c.execute(query_update, (doc_id, c.lastrowid))
     conn.commit()

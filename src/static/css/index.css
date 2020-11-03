@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #222222;
+    color: white;
+    font-family: sans-serif;
+}
+
+header{
+    background-color: rgba(127,255,0, 0.4);
+    padding: 10px;
+}
+
+header .title-1{
+    font-size: 40px;
+}
