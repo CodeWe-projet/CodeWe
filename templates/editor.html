@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CodeWe</title>
+    <link rel="stylesheet" href="css/editor.css">
+</head>
+<body>
+    <header id="header">
+        <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span></h1>
+    </header>
+    <div id="welcome">
+        <div id="welcome-text">
+            <h2>Welcome on CodeWe !</h2>
+            <p class="welcome-content">
+                CodeWe is a free and open source <a href="https://github.com/allEyezOnCode/CodeWe">open source</a>,
+                and we are committed to keeping it that way. That's why no advertising and no advertising cookies are
+                present on the site.
+            </p>
+            <p class="welcome-content">
+                We are students of the UCLouvain University who realize this project on our free time, due to a lack
+                we had. Thus, we do our best to maintain a certain quality, but we have limited resources. So, in
+                case of problem, don't hesitate to try again a little later. With the same objective, we ask you for
+                the good of all to avoid unnecessary overloading of the tool. Of course, we encourage the use of our
+                platform if it can help you in one way or another, but avoid abuse. It is for this reason that
+                <span class="bold">
+                    code that have not been viewed for more than 48 hours will be automatically deleted
+                </span>.
+            </p>
+            <p class="welcome-content welcome-enjoy">
+                Enjoy with our tools !
+            </p>
+            <button onclick="get_it()">I GET IT !</button>
+        </div>
+    </div>
+    <section id="editor" contenteditable="true" spellcheck="false">
+        <div class="code">import numpy as np</div>
+        <div class="code">for i in range(10):</div>
+        <div class="code">    print(i)</div>
+        <div class="code"> </div>
+    </section>
+</body>
+<script src="js/editor.js"></script>
+</html>
+
+<!--
+ * Syntax coloration ?
+ * tab align, not just add 4 spaces
+-->
