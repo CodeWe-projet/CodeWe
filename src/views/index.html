@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>CodeWe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/index.css') }}">
 </head>
 <body>
-	INDEX
+    <header id="header">
+        <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span></h1>
+    </header>
+	<section>
+        <button>Nouveau document</button>
+    </section>
 </body>
+<script src="{{ url_for('static', filename = 'js/index.js') }}"></script>
 </html>
