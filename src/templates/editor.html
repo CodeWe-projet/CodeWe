@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CodeWe</title>
-    <link rel="stylesheet" href="css/editor.css">
+    <title>CodeWe - DK5FP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/editor.css') }}">
 </head>
 <body>
     <header id="header">
@@ -40,7 +40,7 @@
         <div class="code"> </div>
     </section>
 </body>
-<script src="js/editor.js"></script>
+<script src="{{ url_for('static', filename = 'js/editor.js') }}"></script>
 </html>
 
 <!--

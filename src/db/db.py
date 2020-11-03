@@ -1,4 +1,7 @@
-import sqlite3, time
+import sqlite3
+import time
+
+import utils
 
 
 def dict_factory(cursor, row):
@@ -55,8 +58,7 @@ def create_document():
     c = conn.cursor()
 
     c.execute(query, (timestamp, timestamp))
-    #FIXME Generate a string id
-    doc_id = c.lastrowid
+    doc_id = utils.uuid(c.lastrowid)
     c.execute(query_update, (doc_id, c.lastrowid))
     conn.commit()
     return doc_id
