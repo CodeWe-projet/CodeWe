@@ -101,7 +101,6 @@ section#editor{
     counter-reset: thecodenumbering;
 }
 
-
 section#editor div{
     font-family: "Courier New", monospace;
     white-space: pre;
