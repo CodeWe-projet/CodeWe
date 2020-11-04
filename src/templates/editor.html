@@ -38,7 +38,7 @@
     </div>
     <section id="editor" contenteditable="true" spellcheck="false">
         {% for line in document['text'].split('\n') %}
-            <div>{{ line }}</div>
+            <div>{{ line }}<br></div>
         {% endfor %}
     </section>
 </body>
