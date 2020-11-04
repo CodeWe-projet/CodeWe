@@ -1,23 +1,12 @@
 const socket = io();
 
-function push(doc_id) {
-    let a = document.getElementById("editor").innerText;
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", '/api/upload', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({
-        'doc_id': doc_id,
-        'doc_content': a,
-    }));
-}
-
 function joinRoom(doc_id) {
     let text = document.getElementById("editor").innerText;
     socket.emit("join", {room: doc_id, text: text});
 }
 
 function updateDocument(doc_id) {
-    let text = document.getElementById("editor").innerText;
+    let text = get_code();
     socket.emit("update text", {room: doc_id, text: text});
 }
 
@@ -98,5 +87,34 @@ if(getCookie('welcome') === ""){
 joinRoom(doc_id);
 
 socket.on("text updated", function (data) {
-    document.getElementById("editor").innerText = data['text'];
+    update_code(data['text']);
 })
+
+function update_code(str){
+    let code = '';
+
+    str.split('\n').forEach(el => {
+        code += '<div>' + el + '<br></div>';
+    });
+
+    document.getElementById('editor').innerHTML = code;
+}
+
+function get_code(){
+    let str = '';
+
+    let editor = document.getElementById('editor');
+
+    let children = editor.children;
+    for (let i = 0; i < children.length; i++) {
+        let content = children[i].innerText;
+        if(content.endsWith('\n') && i !== children.length-1){
+            str += content;
+        }else if(i !== children.length-1){
+            str += content + '\n';
+        }else{
+            str += content.slice(0, -1);
+        }
+    }
+    return str;
+}
