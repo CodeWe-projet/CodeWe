@@ -41,9 +41,9 @@ def update_document(doc_id, text_content):
         doc_id (int): id of the document to change
         text_content (str): the text to change
     """
-    query = "UPDATE documents SET text = ? WHERE doc_id = ?"
+    query = "UPDATE documents SET text = ?, last_seen = ? WHERE doc_id = ?"
     c = conn.cursor()
-    c.execute(query, (text_content, doc_id))
+    c.execute(query, (text_content, time.time(), doc_id))
     conn.commit()
 
 
