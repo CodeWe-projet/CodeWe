@@ -1,3 +1,5 @@
+const socket = io();
+
 function push(doc_id) {
     let a = document.getElementById("editor").innerText;
     let xhr = new XMLHttpRequest();
@@ -7,6 +9,16 @@ function push(doc_id) {
         'doc_id': doc_id,
         'doc_content': a,
     }));
+}
+
+function joinRoom(doc_id) {
+    let text = document.getElementById("editor").innerText;
+    socket.emit("join", {room: doc_id, text: text});
+}
+
+function updateDocument(doc_id) {
+    let text = document.getElementById("editor").innerText;
+    socket.emit("update text", {room: doc_id, text: text});
 }
 
 function setCookie(cname, cvalue, exdays) {
@@ -82,3 +94,9 @@ if(getCookie('welcome') === ""){
     }
     document.getElementById("welcome").style.display = "block";
 }
+
+joinRoom(doc_id);
+
+socket.on("text updated", function (data) {
+    document.getElementById("editor").innerText = data['text'];
+})
