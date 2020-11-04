@@ -9,8 +9,8 @@
     <header id="header">
         <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span> - {{ document['doc_id'] }}</h1>
         <div id="update_buttons">
-            <button id="pull_button">Pull</button>
-            <button id="push_button">Push</button>
+            <button id="pull_button" onclick="document.location.reload(true)">Pull</button>
+            <button id="push_button" onclick="push('{{ document["doc_id"] }}')">Push</button>
         </div>
     </header>
     <div id="welcome">
@@ -40,7 +40,6 @@
         {% for line in document['text'].split('\n') %}
             <div>{{ line }}</div>
         {% endfor %}
-        <div>une phrase vraiment trèèèèèèèèèèèèèèèèèès longue une phrase vraiment trèèèèèèèèèèèèèèèèèès longue une phrase vraiment trèèèèèèèèèèèèèèèèèès longue une phrase vraiment trèèèèèèèèèèèèèèèèèès longue </div>
     </section>
 </body>
 <script src="{{ url_for('static', filename = 'js/editor.js') }}"></script>

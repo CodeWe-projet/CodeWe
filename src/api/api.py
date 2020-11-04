@@ -34,11 +34,12 @@ def create_document():
 @api.route('/upload', methods=['POST'])
 def upload():
     try:
-        doc_id, doc_content = request.form['doc_id'], request.form['doc_content']
+        print(request.json)
+        doc_id, doc_content = request.json['doc_id'], request.json['doc_content']
         db.update_document(doc_id, doc_content)
         return jsonify({"succes": True, "uploaded": True})
     except Exception as e:
         if DEBUG:
-            return jsonify({"success": False, "message": str(e)})
+            return jsonify({"success": False, "message": f"{e.__class__.__name__}: {e!s}"})
         else:
             return jsonify({"success": False})
