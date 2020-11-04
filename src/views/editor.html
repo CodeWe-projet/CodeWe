@@ -10,7 +10,7 @@
         <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span> - {{ document['doc_id'] }}</h1>
         <div id="update_buttons">
             <button id="pull_button" onclick="document.location.reload(true)">Pull</button>
-            <button id="push_button" onclick="push('{{ document["doc_id"] }}')">Push</button>
+            <button id="push_button" onclick="updateDocument('{{ document["doc_id"] }}')">Push</button>
         </div>
     </header>
     <div id="welcome">
@@ -42,6 +42,10 @@
         {% endfor %}
     </section>
 </body>
+<script>
+  let doc_id = "{{ document['doc_id'] }}" ;
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 <script src="{{ url_for('static', filename = 'js/editor.js') }}"></script>
 </html>
 
