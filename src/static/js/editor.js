@@ -1,3 +1,14 @@
+function push(doc_id) {
+    let a = document.getElementById("editor").innerText;
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", '/api/upload', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        'doc_id': doc_id,
+        'doc_content': a,
+    }));
+}
+
 function setCookie(cname, cvalue, exdays) {
     let d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -44,7 +55,7 @@ editor.addEventListener('keydown', e => {
             selection.collapseToEnd();
             break;
         case 13: // enter
-            console.log('New line');
+            //console.log('New line');
             //console.log(e);
             //e.preventDefault();
             break;
