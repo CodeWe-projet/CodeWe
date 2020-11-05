@@ -16,6 +16,7 @@ conn = mysql.connector.connect(
 )
 
 
+
 def get_document(doc_id):
     """Get doc in the databse with id specified
 
@@ -26,7 +27,7 @@ def get_document(doc_id):
         tuple: all values with the document
     """
     query = "SELECT * FROM documents WHERE document_id = %s"
-    c = conn.cursor()
+    c = conn.cursor(dictionary=True)
     c.execute(query, (doc_id,))
     return c.fetchone()
 
