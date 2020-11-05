@@ -16,8 +16,8 @@ pip install -r requirements.txt
 ## Usage
 To run the server, open a terminal in the folder and run :
 ```bash
-python main.py
+python main.py [ip [port]]
 ```
 
-## License 
-This projects is under MIT licence 
+## Licence 
+This projects is under MIT licence. The full licence can be read [here](https://github.com/allEyezOnCode/CodeWe).
