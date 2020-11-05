@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block header %}
-    <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span> - {{ document['doc_id'] }}</h1>
+    <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span> - {{ document['document_id'] }}</h1>
     <div id="auto_update">
         <div class="swipes">
             <div><input id="auto_pull" type="checkbox" checked /></div>
@@ -22,7 +22,7 @@
 
 {% block corps %}
     <section id="editor" contenteditable="true" spellcheck="false">
-        {% for line in document['text'].split('\n') %}
+        {% for line in document['content'].split('\n') %}
             <div>{{ line }}<br></div>
         {% endfor %}
     </section>
@@ -30,7 +30,7 @@
 
 {% block scripts %}
     <script>
-      let doc_id = "{{ document['doc_id'] }}" ;
+      let doc_id = "{{ document['document_id'] }}" ;
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="{{ url_for('static', filename = 'js/editor.js') }}"></script>
