@@ -12,7 +12,8 @@ base_code = "def main(text: str) -> None:\n    print(text)\n\nif __name__ == '__
 conn = mysql.connector.connect(
   host=DB_HOST,
   user=DB_USERNAME,
-  password=DB_PASSWORD
+  password=DB_PASSWORD,
+  database='codewe'
 )
 
 
@@ -39,9 +40,9 @@ def update_document(doc_id, text_content):
         doc_id (int): id of the document to change
         text_content (str): the text to change
     """
-    query = "UPDATE documents SET text = %s, last_seen = %s WHERE document_id = %s"
+    query = "UPDATE documents SET content = %s, last_viewed_date = %s WHERE document_id = %s"
     c = conn.cursor()
-    c.execute(query, (text_content, time.time(), doc_id))
+    c.execute(query, (text_content, time.strftime('%Y-%m-%d %H:%M:%S'), doc_id))
     conn.commit()
 
 
@@ -53,12 +54,12 @@ def create_document():
     Returns:
         int: return the id generated
     """
-    query = 'INSERT INTO documents(creation_date, last_seen, text) VALUES (%s, %s, %s)'
+    query = 'INSERT INTO documents(document_id, creation_date, last_viewed_date, content) VALUES (%s, %s, %s, %s)'
     query_update = 'UPDATE documents SET document_id = %s where id = %s'
-    timestamp = time.time()
+    datetime = time.strftime('%Y-%m-%d %H:%M:%S')
     c = conn.cursor()
 
-    c.execute(query, (timestamp, timestamp, base_code))
+    c.execute(query, ("wait", datetime, datetime, base_code))
     doc_id = utils.uuid(c.lastrowid)
     c.execute(query_update, (doc_id, c.lastrowid))
     conn.commit()
