@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}CodeWe{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div id="main">
+        <header id="header">
+            {% block header %}{% include 'header.html' %}{% endblock %}
+        </header>
+
+        <div id="body">
+            {% block welcome %}{% include 'welcome.html' %}{% endblock %}
+            {% block corps %}{% endblock %}
+        </div>
+
+        <footer id="footer">
+            {% block footer %}{% include 'footer.html' %}{% endblock %}
+        </footer>
+    </div>
+</body>
+    {% block scripts %}{% endblock %}
+</html>
