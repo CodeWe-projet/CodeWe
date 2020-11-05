@@ -4,7 +4,7 @@
 -- Ext: sql
 -- Licensed under MIT
 -- Copyright (c) 2020 Alexandre Dewilde, Brieuc Dubois and Theo Technicguy.
--- Version 0.1.1
+-- Version 0.1.2
 -- -----------------------
 
 DROP DATABASE IF EXISTS `codewe`;
@@ -16,7 +16,7 @@ SET character_set_client = utf8mb4;
 
 CREATE TABLE `documents` (
   `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `document_id` VARCHAR(5) NOT NULL,
+  `document_id` CHAR(5) NOT NULL,
   `creation_date` DATETIME NOT NULL DEFAULT NOW(),
   `last_viewed_date` DATETIME NOT NULL DEFAULT NOW(),
   `content` LONGTEXT,
