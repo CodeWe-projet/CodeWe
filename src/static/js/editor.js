@@ -63,6 +63,11 @@ editor.addEventListener('keydown', e => {
     }
 });
 
+editor.addEventListener('keyup', e => {
+    updateDocument(doc_id);
+});
+
+
 function get_it(){
     if(document.getElementById("header").classList.contains("blur")){
         document.getElementById("header").classList.remove("blur");
