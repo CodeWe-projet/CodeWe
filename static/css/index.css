@@ -1,19 +1,26 @@
-*{
-    margin: 0;
-    padding: 0;
+#section{
+    display: grid;
+    height: 60vh;
+    place-items: center;
 }
 
-body{
-    background-color: #222222;
-    color: white;
-    font-family: sans-serif;
+#new_document_button{
+    display: block;
+    margin: auto;
+    height: 150px;
+    width: 500px;
+    background-color: forestgreen;
+    border: none;
+    border-radius: 25px;
+    color: inherit;
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    transition: 0.2s ease-in-out;
 }
 
-header{
-    background-color: rgba(127,255,0, 0.4);
-    padding: 10px;
-}
-
-header .title-1{
-    font-size: 40px;
+#new_document_button:hover{
+    cursor: pointer;
+    background-color: green;
+    transition: 0.2s ease-in-out;
 }

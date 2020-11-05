@@ -64,7 +64,11 @@ editor.addEventListener('keydown', e => {
 });
 
 editor.addEventListener('keyup', e => {
-    updateDocument(doc_id);
+    if(document.getElementById('auto_push').checked) updateDocument(doc_id);
+});
+
+document.getElementById('auto_push').addEventListener('change', e => {
+    if(document.getElementById('auto_push').checked) updateDocument(doc_id);
 });
 
 
@@ -91,9 +95,16 @@ if(getCookie('welcome') === ""){
 
 joinRoom(doc_id);
 
+let _last_data;
+
 socket.on("text updated", function (data) {
-    update_code(data['text']);
+    _last_data = data;
+    if(document.getElementById('auto_pull').checked) update_code(data['text']);
 })
+
+document.getElementById('auto_pull').addEventListener('change', e => {
+    if(_last_data && document.getElementById('auto_pull').checked) update_code(_last_data['text']);
+});
 
 function update_code(str){
     let code = '';

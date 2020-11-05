@@ -1,0 +1,135 @@
+/*******************\
+|      Generic      |
+\*******************/
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.blur{
+    -webkit-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+
+body{
+    background-color: #222222;
+    color: white;
+    font-family: sans-serif;
+    height:100vh;
+}
+
+#body{
+    padding: 70px 10px 10px 10px;
+}
+
+/******************\
+|      Header      |
+\******************/
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(127,255,0, 0.4);
+    padding: 5px 10px;
+    height: 60px;
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+header h1{
+    float: left;
+}
+
+header .title-1{
+    font-size: 40px;
+}
+
+/*******************\
+|      Welcome      |
+\*******************/
+
+div#welcome{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 10, 10, 0.5);
+    display: none;
+}
+
+div#welcome div#welcome-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 350px;
+    max-width: 500px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: #111111;
+    background-color: #d5e6ed;
+    margin: 0 auto;
+    padding: 1em;
+    border-radius: 20px;
+    border: 1px solid forestgreen;
+    box-shadow: forestgreen 0 0 10px;
+}
+
+div#welcome .welcome-content{
+    text-align: justify;
+    padding: 10px 0;
+    letter-spacing: 0.9px;
+    line-height: 25px;
+}
+
+div#welcome .welcome-enjoy{
+    float: left;
+}
+
+div#welcome button{
+    float: right;
+    width: 150px;
+    height: 45px;
+    background-color: forestgreen;
+    border: none;
+    border-radius: 10px;
+    letter-spacing: 2px;
+    color: white;
+}
+
+div#welcome button:hover{
+    cursor: pointer;
+}
+
+/******************\
+|      Footer      |
+\******************/
+
+#main{
+    min-height:100%;
+    position:relative;
+}
+
+#body{
+    padding-bottom: 50px;
+}
+
+#footer{
+    position:absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 25px;
+    width: 80%;
+    padding: 15px 0 5px 0;
+    border-top: 1px solid rgb(53, 58, 60);
+    text-align: center;
+}
