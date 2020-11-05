@@ -1,109 +1,58 @@
-*{
-    margin: 0;
-    padding: 0;
+header #auto_update{
+    float: right;
 }
 
-.blur{
-    -webkit-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
+header #auto_update .swipes{
+    font-size: 10px;
+    display: inline-block;
+    padding: 5px 20px;
 }
 
-body{
+header #auto_update input{
+    position: relative;
+    width: 50px;
+    height: 27px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     background-color: #222222;
-    color: white;
-    font-family: sans-serif;
-}
-
-header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(127,255,0, 0.4);
-    padding: 10px;
-    height: 50px;
-    width: 100vw;
-}
-
-header h1{
-    float: left;
-}
-
-header .title-1{
-    font-size: 40px;
-}
-
-header #update_buttons{
-    float: right;
-}
-
-header button{
-    padding: 0 20px;
-    height: 40px;
-}
-
-div#welcome{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(10, 10, 10, 0.5);
-    display: none;
-}
-
-div#welcome div#welcome-text{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 350px;
-    max-width: 500px;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    color: #111111;
-    background-color: #d5e6ed;
-    margin: 0 auto;
-    padding: 1em;
     border-radius: 20px;
-    border: 1px solid forestgreen;
-    box-shadow: forestgreen 0 0 10px;
+    box-shadow: inset 0 0 5px rgba(127, 255, 0, 0.5);
 }
 
-div#welcome .welcome-content{
-    text-align: justify;
-    padding: 10px 0;
-    letter-spacing: 0.9px;
-    line-height: 25px;
+header #auto_update label{
+    text-align: center;
+    display: block;
 }
 
-div#welcome .welcome-enjoy{
-    float: left;
+header #auto_update input:checked{
+    background: green;
+    box-shadow: inset 0 0 5px rgba(50, 50, 50, 0.5);
 }
 
-div#welcome button{
-    float: right;
-    width: 150px;
-    height: 45px;
-    background-color: forestgreen;
-    border: none;
-    border-radius: 10px;
-    letter-spacing: 2px;
-    color: white;
+header #auto_update input:before{
+    height: 100%;
+    width: 27px;
+    position: absolute;
+    content: "";
+    left: 0;
+    background: #555555;
+    border-radius: 20px;
+    transform: scale(.85);
+    transition: .2s ease-in;
 }
 
-div#welcome button:hover{
-    cursor: pointer;
+header #auto_update input:checked:before{
+    left: 23px;
 }
 
 section#editor{
-    margin-top: 70px;
-    padding: 10px;
     counter-reset: thecodenumbering;
+    line-height: 22px;
 }
 
 section#editor div{
     font-family: "Courier New", monospace;
-    white-space: pre;
     counter-increment: thecodenumbering;
     width: 100%;
     white-space: pre-wrap;

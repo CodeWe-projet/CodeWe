@@ -1,55 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CodeWe - {{ document['doc_id'] }}</title>
+{% extends 'base.html' %}
+
+{% block title %}CodeWe - {{ document['doc_id'] }}{% endblock %}
+
+{% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/editor.css') }}">
-</head>
-<body>
-    <header id="header">
-        <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span> - {{ document['doc_id'] }}</h1>
-        <div id="update_buttons">
-            <button id="pull_button" onclick="document.location.reload(true)">Pull</button>
-            <button id="push_button" onclick="updateDocument('{{ document["doc_id"] }}')">Push</button>
+{% endblock %}
+
+{% block header %}
+    <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span> - {{ document['doc_id'] }}</h1>
+    <div id="auto_update">
+        <div class="swipes">
+            <div><input id="auto_pull" type="checkbox" checked /></div>
+            <div><label for="auto_pull">Auto-pull</label></div>
         </div>
-    </header>
-    <div id="welcome">
-        <div id="welcome-text">
-            <h2>Welcome on CodeWe !</h2>
-              <p class="welcome-content">
-                CodeWe is a free and <a href="https://github.com/allEyezOnCode/CodeWe">open source</a> project, and
-                we commit ourselves keeping it that way. That's why no advertising and no advertising cookies are present on the site.
-              </p>
-              <p class="welcome-content">
-                We are students of the UCLouvain University. We decided to create this project because we lacked such a tool during our classes.
-                We maintain this project during our free time and do our best to maintain a certain quality, but we have limited resources.
-                So, should any problem arise, don't hesitate to try again later and report it. Keeping this objective in mind, we kindly ask,
-                for the good of all, to avoid unnecessarily overloading this tool. Of course, we encourage the use of our platform if it can help
-                you in any way, but do not abuse it.
-                <span class="bold">
-                  Please note that a code not having been viewed for more than 48 hours will be automatically deleted.
-                </span>
-              </p>
-              <p class="welcome-content welcome-enjoy">
-                Enjoy our tools !
-              </p>
-            <button onclick="get_it()">Got it!</button>
+        <div class="swipes">
+            <div><input id="auto_push" type="checkbox" checked /></div>
+            <div><label for="auto_push">Auto-push</label></div>
         </div>
     </div>
+{% endblock %}
+
+{% block corps %}
     <section id="editor" contenteditable="true" spellcheck="false">
         {% for line in document['text'].split('\n') %}
             <div>{{ line }}<br></div>
         {% endfor %}
     </section>
-</body>
-<script>
-  let doc_id = "{{ document['doc_id'] }}" ;
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-<script src="{{ url_for('static', filename = 'js/editor.js') }}"></script>
-</html>
+{% endblock %}
 
-<!--
- * Syntax coloration ?
- * tab align, not just add 4 spaces
--->
+{% block scripts %}
+    <script>
+      let doc_id = "{{ document['doc_id'] }}" ;
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="{{ url_for('static', filename = 'js/editor.js') }}"></script>
+{% endblock %}

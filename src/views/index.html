@@ -1,19 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CodeWe</title>
+{% extends 'base.html' %}
+
+{% block title %}CodeWe{% endblock %}
+
+{% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/index.css') }}">
-</head>
-<body>
-    <header id="header">
-        <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span></h1>
-    </header>
-	<section>
-        <form action="/create_document" method="post">
-            <button type="submit" class="btn-link">Create Document</button>
-        </form>
-    </section>
-</body>
-<script src="{{ url_for('static', filename = 'js/index.js') }}"></script>
-</html>
+{% endblock %}
+
+{% block corps %}
+<div id="section">
+    <form action="/create_document" method="post">
+        <button type="submit" id="new_document_button">Create Document</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="{{ url_for('static', filename = 'js/index.js') }}"></script>
+{% endblock %}
