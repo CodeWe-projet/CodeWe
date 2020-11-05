@@ -4,7 +4,7 @@
 -- Ext: sql
 -- Licensed under MIT
 -- Copyright (c) 2020 Alexandre Dewilde, Brieuc Dubois and Theo Technicguy.
--- Version 0.1.0
+-- Version 0.1.1
 -- -----------------------
 
 DROP DATABASE IF EXISTS `codewe`;
@@ -19,6 +19,6 @@ CREATE TABLE `documents` (
   `document_id` VARCHAR(5) NOT NULL,
   `creation_date` DATETIME NOT NULL DEFAULT NOW(),
   `last_viewed_date` DATETIME NOT NULL DEFAULT NOW(),
-  `content` LONGTEXT DEFAULT "",
+  `content` LONGTEXT,
   PRIMARY KEY (`id`, `document_id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
