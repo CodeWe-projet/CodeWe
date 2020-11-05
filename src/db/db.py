@@ -1,4 +1,5 @@
 import time
+import datetime
 
 import utils
 from db.auth import DB_HOST, DB_USERNAME, DB_PASSWORD
@@ -56,13 +57,22 @@ def create_document():
     """
     query = 'INSERT INTO documents(document_id, creation_date, last_viewed_date, content) VALUES (%s, %s, %s, %s)'
     query_update = 'UPDATE documents SET document_id = %s where id = %s'
-    datetime = time.strftime('%Y-%m-%d %H:%M:%S')
+    date_time = time.strftime('%Y-%m-%d %H:%M:%S')
     c = conn.cursor()
 
-    c.execute(query, ("wait", datetime, datetime, base_code))
+    c.execute(query, ("wait", date_time, date_time, base_code))
     doc_id = utils.uuid(c.lastrowid)
     c.execute(query_update, (doc_id, c.lastrowid))
     conn.commit()
     return doc_id
 
+
+def delete_old_document(days):
+    """Delete document according to days and their last_viewed_date
+    """
+    limit_date = (datetime.datetime.today() - datetime.timedelta(days=days)).strftime('%Y-%m-%d %H:%M:%S')
+    query = 'DELETE FROM documents WHERE last_viewed_date < %s'
+    c = conn.cursor()
+    c.execute(query, (limit_date,))
+    conn.commit()
 
