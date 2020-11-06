@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 import db.db as db
 from api.data import DEBUG
+import json
 
 
 api = Blueprint("api", __name__)
@@ -11,7 +12,7 @@ def download():
     try:
         doc_id = request.form['doc_id']
         content = db.get_document(doc_id)
-        return jsonify({"success": (content is not None), "content": content})
+        return jsonify({"success": True, "content": json.loads(content)})
     except Exception as e:
         if DEBUG:
             return jsonify({"success": False, "message": str(e)})
