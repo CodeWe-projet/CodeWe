@@ -38,8 +38,12 @@ def on_join(data):
 
 @socketio.on('update text')
 def update_text(data):
-    db.update_document(data['room'], data['text'])
     emit('text updated', data, room=data['room'], include_self=False)
+
+
+@socketio.on('save')
+def update_text(data):
+    db.update_document(data['request']['data'])
 
 
 @app.errorhandler(404)
