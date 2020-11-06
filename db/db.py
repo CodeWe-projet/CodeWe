@@ -1,13 +1,21 @@
 import time
 import datetime
+import json
+import random
+import mysql.connector
 
 import utils
 from db.auth import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_PORT
 
-import mysql.connector
+random.seed()
 
-
-base_code = "def main(text: str) -> None:\n    print(text)\n\nif __name__ == '__main__':\n    main('Hello World !')"
+base_code = json.dumps([
+    [f"{utils.uuid(random.random(), 10)}", "def main(text: str) -> None:"],
+    [f"{utils.uuid(random.random(), 10)}", "    print(text)"],
+    [f"{utils.uuid(random.random(), 10)}", ""],
+    [f"{utils.uuid(random.random(), 10)}", "if __name__ == \'__main__\':"],
+    [f"{utils.uuid(random.random(), 10)}", "    main(\'Hello World !\')"]
+])
 
 
 conn = mysql.connector.connect(

@@ -1,58 +1,81 @@
-const socket = io();
+class Editor{
+    constructor(id='editor', tabSize=4, keyup= e => {}, keydown= e => {}) {
+        this.id = id;
+        this.editor = document.getElementById(id);
+        this.tab = this.setTabSize(tabSize);
+        this.editor.addEventListener('keydown', keydown);
+        this.editor.addEventListener('keyup', keyup);
+    }
 
-function joinRoom(doc_id) {
-    let text = document.getElementById("editor").innerText;
-    socket.emit("join", {room: doc_id, text: text});
-}
+    update(uuid, content) {
+        let elements = this.editor.querySelectorAll('div[uuid="' + uuid + '"]');
+        elements.forEach(element => element.innerText = content);
+    }
 
-function updateDocument(doc_id) {
-    let text = get_code();
-    socket.emit("update text", {room: doc_id, text: text});
-}
-
-function setCookie(cname, cvalue, exdays) {
-    let d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    let expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) === 0) {
-            return c.substring(name.length, c.length);
+    get(element) {
+        if(element.innerText.endsWith('\n')){
+            return element.innerText.slice(0, -1);
+        }else{
+            return element.innerText;
         }
     }
-    return "";
-}
 
-let editor = document.getElementById('editor');
-
-let spaces = '';
-function initSpaces(tab_size){
-    spaces = '';
-    for (let i = 0; i < tab_size; i++) {
-        spaces += ' ';
+    setTabSize(tabSize){
+        let tab = '';
+        for (let i = 0; i < tabSize; i++) {
+            tab += ' ';
+        }
+        return tab;
     }
 }
 
-initSpaces(4);
+class Socket{
+    constructor(doc_id, receive) {
+        this.doc_id = doc_id;
+        this.socket = io();
+        this.join();
+        this.socket.on("text updated", receive);
+    }
 
-editor.addEventListener('keydown', e => {
+    send(name, content) {
+        this.socket.emit(name, content);
+    }
+
+    join() {
+        this.send("join", {room: this.doc_id})
+    }
+}
+
+receive = data => {
+    if(data['request']['type'] === 'set-line'){
+        editor.update(data['request']['data']['id'], data['request']['data']['content']);
+    }else{
+        console.log(data);
+    }
+};
+
+function updateDocument(element) {
+    socket.send("update text", {
+        room: doc_id,
+        request: {
+            type: 'set-line',
+            data: {
+                id: element.getAttribute('uuid'),
+                content: editor.get(element)
+            }
+        }
+    });
+}
+
+keydown = (e => {
     switch (e.keyCode) {
         case 9: // tab
             e.preventDefault();
             let selection = window.getSelection();
             selection.collapseToStart();
             let range = selection.getRangeAt(0);
-            range.insertNode(document.createTextNode(spaces));
+            //TODO Spaces
+            range.insertNode(document.createTextNode('    '));
             selection.collapseToEnd();
             break;
         case 13: // enter
@@ -63,74 +86,10 @@ editor.addEventListener('keydown', e => {
     }
 });
 
-editor.addEventListener('keyup', e => {
-    if(document.getElementById('auto_push').checked) updateDocument(doc_id);
+keyup = (e => {
+    let el = window.getSelection().focusNode.parentElement;
+    updateDocument(el);
 });
 
-document.getElementById('auto_push').addEventListener('change', e => {
-    if(document.getElementById('auto_push').checked) updateDocument(doc_id);
-});
-
-
-function get_it(){
-    if(document.getElementById("header").classList.contains("blur")){
-        document.getElementById("header").classList.remove("blur");
-    }
-    if(document.getElementById("editor").classList.contains("blur")){
-        document.getElementById("editor").classList.remove("blur");
-    }
-    document.getElementById("welcome").style.display = "None";
-    setCookie("welcome", "true", 30);
-}
-
-if(getCookie('welcome') === ""){
-    if(!document.getElementById("header").classList.contains("blur")){
-        document.getElementById("header").classList.add("blur");
-    }
-    if(!document.getElementById("editor").classList.contains("blur")){
-        document.getElementById("editor").classList.add("blur");
-    }
-    document.getElementById("welcome").style.display = "block";
-}
-
-joinRoom(doc_id);
-
-let _last_data;
-
-socket.on("text updated", function (data) {
-    _last_data = data;
-    if(document.getElementById('auto_pull').checked) update_code(data['text']);
-})
-
-document.getElementById('auto_pull').addEventListener('change', e => {
-    if(_last_data && document.getElementById('auto_pull').checked) update_code(_last_data['text']);
-});
-
-function update_code(str){
-    let code = '';
-
-    str.split('\n').forEach(el => {
-        code += '<div>' + el + '<br></div>';
-    });
-
-    document.getElementById('editor').innerHTML = code;
-}
-
-function get_code(){
-    let str = '';
-
-    let editor = document.getElementById('editor');
-
-    let children = editor.children;
-    for (let i = 0; i < children.length; i++) {
-        let content = children[i].innerText;
-        if(content.endsWith('\n') && i !== children.length-1){
-            str += content;
-        }else if(i !== children.length-1){
-            str += content + '\n';
-        }else{
-            str += content.slice(0, -1);
-        }
-    }
-    return str;
-}
+socket = new Socket(doc_id, receive);
+editor = new Editor('editor', 4, keyup, keydown);
