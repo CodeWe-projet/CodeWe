@@ -4,6 +4,7 @@ from api.api import api
 from db import db
 from api.data import DEBUG
 import sys
+import json
 
 app = Flask(__name__, template_folder='templates')
 app.register_blueprint(api, url_prefix='/api')
@@ -43,7 +44,7 @@ def update_text(data):
 
 @socketio.on('save')
 def update_text(data):
-    db.update_document(data['request']['data'])
+    db.update_document(json.dumps(data['request']['data']))
 
 
 @app.errorhandler(404)
