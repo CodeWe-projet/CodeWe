@@ -22,8 +22,8 @@
 
 {% block corps %}
     <section id="editor" contenteditable="true" spellcheck="false">
-        {% for line in document['content'].split('\n') %}
-            <div>{{ line }}<br></div>
+        {% for line in document['content'] %}
+            <div uuid="{{ line[0] }}">{{ line[1] }}<br></div>
         {% endfor %}
     </section>
 {% endblock %}
