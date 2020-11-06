@@ -1,4 +1,7 @@
+from db.auth import DB_DATABASE
+
+
 DB_HOST = ""
 DB_USERNAME = ""
 DB_PASSWORD = ""
-DB_NAME = "codewe"
+DB_DATABASE = "codewe"
