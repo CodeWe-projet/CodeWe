@@ -25,9 +25,10 @@ def create_document():
 @app.route('/<doc_id>')
 @app.route('/editor/<doc_id>')
 def editor(doc_id):
-    doc_id = db.get_document(doc_id)
+    content = db.get_document(doc_id)
+    content['content'] = json.loads(content['content']) 
     if doc_id is not None:
-        return render_template('editor.html', document=doc_id)
+        return render_template('editor.html', document=content)
     return abort(404)
 
 
