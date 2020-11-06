@@ -2,7 +2,7 @@ import time
 import datetime
 
 import utils
-from db.auth import DB_HOST, DB_USERNAME, DB_PASSWORD
+from db.auth import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_PORT
 
 import mysql.connector
 
@@ -14,7 +14,8 @@ conn = mysql.connector.connect(
   host=DB_HOST,
   user=DB_USERNAME,
   password=DB_PASSWORD,
-  database='codewe'
+  database=DB_DATABASE,
+  port=DB_PORT,
 )
 
 
