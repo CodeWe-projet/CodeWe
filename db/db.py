@@ -5,7 +5,6 @@ import random
 import mysql.connector
 
 import utils
-from db.auth import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_PORT
 
 random.seed()
 
@@ -19,12 +18,13 @@ base_code = json.dumps([
 
 
 class DB:
-    def __init__(self):
+    def __init__(self, host, username, password, database, port):
         self.conn = mysql.connector.connect(
-            host=DB_HOST,
-            user=DB_USERNAME,
-            password=DB_PASSWORD,
-            database=DB_DATABASE
+            host=host,
+            user=username,
+            password=password,
+            database=database,
+            port=port
         )
         self.cursor = self.conn.cursor()
     
