@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from db import db
-from api.data import DEBUG
+from config import DEBUG
 import json
 
 
