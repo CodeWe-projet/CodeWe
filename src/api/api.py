@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-import db.db as db
+from db import db
 from api.data import DEBUG
 import json
 
