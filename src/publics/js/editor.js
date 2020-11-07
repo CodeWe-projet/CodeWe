@@ -65,8 +65,11 @@ class Socket{
         this.socket.on("text updated", receive);
     }
 
-    send(name, content) {
-        this.socket.emit(name, content);
+    send(name, requests, room=this.doc_id) {
+        this.socket.emit(name, {
+            room: room,
+            requests: requests
+        });
     }
 
     join() {
@@ -75,63 +78,59 @@ class Socket{
 }
 
 receive = data => {
-    if(data['request']['type'] === 'set-line'){
-        editor.update(data['request']['data']['id'], data['request']['data']['content']);
-    }else if(data['request']['type'] === 'new-line'){
-        editor.new_line(data['request']['data']['id'], data['request']['data']['previous'])
-    }else if(data['request']['type'] === 'delete-line'){
-        editor.remove_line(data['request']['data']['id'])
-    }else{
-        console.error(data);
+    for(let request of data['requests']){
+        switch(request['type']){
+            case 'set-line':
+                editor.update(request['data']['id'], request['data']['content']);
+                break;
+            case 'new-line':
+                editor.new_line(request['data']['id'], request['data']['previous']);
+                break;
+            case 'delete-line':
+                editor.remove_line(request['data']['id']);
+                break;
+            default:
+                console.error(data);
+        }
     }
 };
 
-function updateElement(element) {
-    socket.send("update text", {
-        room: doc_id,
-        request: {
-            type: 'set-line',
-            data: {
-                id: element.getAttribute('uuid'),
-                content: editor.get(element)
-            }
+function updateElementRequest(element) {
+    return {
+        type: 'set-line',
+        data: {
+            id: element.getAttribute('uuid'),
+            content: editor.get(element)
         }
-    });
+    };
 }
 
 function newElementRequest(uuid, previous_uuid){
-    socket.send("update text", {
-        room: doc_id,
-        request: {
-            type: 'new-line',
-            data: {
-                id: uuid,
-                previous: previous_uuid
-            }
+    return {
+        type: 'new-line',
+        data: {
+            id: uuid,
+            previous: previous_uuid
         }
-    });
+    };
 }
 
 function deleteElementRequest(uuid){
-    socket.send("update text", {
-        room: doc_id,
-        request: {
-            type: 'delete-line',
-            data: {
-                id: uuid
-            }
+    return {
+        type: 'delete-line',
+        data: {
+            id: uuid
         }
-    });
+    };
 }
 
 function save(){
-    socket.send("save", {
-        room: doc_id,
-        request: {
+    socket.send("save", [
+        {
             type: 'save',
             data: editor.getAll()
         }
-    })
+    ]);
 }
 
 function get_uuid_element(child=getCurrentElement()){
@@ -158,7 +157,12 @@ keydown = (e => {
         case 8:
             if(window.getSelection().getRangeAt(0).startOffset === 0){
                 let current = get_uuid_element();
-                deleteElementRequest(current.getAttribute('uuid'))
+
+                requests = [
+                    deleteElementRequest(current.getAttribute('uuid'))
+                ]
+
+                socket.send('update text', requests);
             }
             break
     }
@@ -173,13 +177,21 @@ keyup = (e => {
             let uuid = getRandomString(10);
             new_element.setAttribute('uuid', uuid);
 
-            newElementRequest(uuid, previous_uuid);
-            updateElement(previous_element);
-            updateElement(new_element);
+            requests = [
+                newElementRequest(uuid, previous_uuid),
+                updateElementRequest(previous_element),
+                updateElementRequest(new_element)
+            ]
+
+            socket.send('update text', requests);
+
             break
         default:
             let el = get_uuid_element();
-            updateElement(el);
+            requests = [
+                updateElementRequest(el)
+            ]
+            socket.send('update text', requests)
     }
 });
 
