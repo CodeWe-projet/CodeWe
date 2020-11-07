@@ -45,13 +45,12 @@ def update_text(data):
 
 @socketio.on('save')
 def update_text(data):
-    db.update_document(json.dumps(data['request']['data']))
+    db.update_document(data['room'], json.dumps(data['request']['data']))
 
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
-
 
 
 if __name__ == '__main__':
