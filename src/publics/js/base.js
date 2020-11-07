@@ -27,6 +27,19 @@ class Cookie{
     }
 }
 
+function getRandomString(length) {
+    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+    var result = '';
+    for ( var i = 0; i < length; i++ ) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+    return result;
+}
+
+function getCurrentElement(){
+    return window.getSelection().getRangeAt(0).startContainer;
+}
+
 class Welcome{
     constructor() {
         if(new Cookie('welcome').getCookie() === ""){
