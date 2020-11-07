@@ -45,7 +45,7 @@ def update_text(data):
 
 @socketio.on('save')
 def update_text(data):
-    db.update_document(data['room'], json.dumps(data['request']['data']))
+    db.update_document(data['room'], json.dumps(data['requests'][0]['data']))
 
 
 @app.errorhandler(404)
