@@ -2,6 +2,7 @@ import time
 import datetime
 import json
 import random
+import sqlite3
 import mysql.connector
 
 import utils
@@ -88,3 +89,10 @@ class DB:
         limit_date = (datetime.datetime.today() - datetime.timedelta(days=days)).strftime('%Y-%m-%d %H:%M:%S')
         query = 'DELETE FROM documents WHERE last_viewed_date < %s'
         self.execute(query, (limit_date,))
+
+
+class DBSqlite(DB):
+    def __init__(self, name):
+        self.conn = sqlite3.connect(f'{name}.db')
+        self.conn.row_factory = utils.dict_factory
+        self.cursor = self.conn.cursor()

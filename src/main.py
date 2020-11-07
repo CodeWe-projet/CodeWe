@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, abort
 from flask_socketio import SocketIO, emit, join_room
-from api.data import DEBUG
+from config import DEBUG
 from api import api
 from db import db
 import sys
