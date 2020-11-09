@@ -155,7 +155,7 @@ keydown = (e => {
             range.insertNode(document.createTextNode('    '));
             selection.collapseToEnd();
             break;
-        case 8:
+        case 8: // backspace / delete
             if(window.getSelection().getRangeAt(0).startOffset === 0){
                 let current = get_uuid_element();
 
@@ -171,7 +171,7 @@ keydown = (e => {
 
 keyup = (e => {
     switch (e.keyCode) {
-        case 13:
+        case 13: // enter
             let new_element = get_uuid_element();
             let previous_element = new_element.previousElementSibling;
             let previous_uuid = previous_element.getAttribute('uuid');
