@@ -6,6 +6,8 @@ import sqlite3
 import mysql.connector
 
 import utils
+from db.sql_query import queries
+
 
 random.seed()
 
@@ -16,9 +18,13 @@ base_code = json.dumps([
     [f"{utils.uuid(random.random(), 10)}", "if __name__ == \'__main__\':"],
     [f"{utils.uuid(random.random(), 10)}", "    main(\'Hello World !\')"]
 ])
+datetime_format = '%Y-%m-%d %H:%M:%S'
 
 
 class DB:
+
+    DB_MODE = 'mysql'
+
     def __init__(self, host, username, password, database, port):
         self.conn = mysql.connector.connect(
             host=host,
@@ -48,7 +54,7 @@ class DB:
         Returns:
             tuple: all values with the document
         """
-        query = "SELECT * FROM documents WHERE document_id = %s"
+        query = queries['get_document'][self.get_db_mode()]
         return self.fetch_as_dict(query, (doc_id,))
 
 
@@ -59,8 +65,8 @@ class DB:
             doc_id (int): id of the document to change
             text_content (str): the text to change
         """
-        query = "UPDATE documents SET content = %s, last_viewed_date = %s WHERE document_id = %s"
-        self.execute(query, (text_content, time.strftime('%Y-%m-%d %H:%M:%S'), doc_id))
+        query = queries['update_document'][self.get_db_mode()]
+        self.execute(query, (text_content, time.strftime(datetime_format), doc_id))
         self.conn.commit()
 
 
@@ -72,9 +78,9 @@ class DB:
         Returns:
             int: return the id generated
         """
-        query = 'INSERT INTO documents(document_id, creation_date, last_viewed_date, content) VALUES (%s, %s, %s, %s)'
-        query_update = 'UPDATE documents SET document_id = %s where id = %s'
-        date_time = time.strftime('%Y-%m-%d %H:%M:%S')
+        query = queries['create_document'][self.get_db_mode()]
+        query_update = queries['create_document_update'][self.get_db_mode()]
+        date_time = time.strftime(datetime_format)
         c = self.conn.cursor()
         c.execute(query, ("wait", date_time, date_time, base_code))
         doc_id = utils.uuid(c.lastrowid)
@@ -86,13 +92,24 @@ class DB:
     def delete_old_document(self, days):
         """Delete document according to days and their last_viewed_date
         """
-        limit_date = (datetime.datetime.today() - datetime.timedelta(days=days)).strftime('%Y-%m-%d %H:%M:%S')
-        query = 'DELETE FROM documents WHERE last_viewed_date < %s'
+        limit_date = (datetime.datetime.today() - datetime.timedelta(days=days)).strftime(datetime_format)
+        query = queries['delete_old_document'][self.get_db_mode()]
         self.execute(query, (limit_date,))
 
 
+    @classmethod
+    def get_db_mode(cls):
+        return cls.DB_MODE
+
+
 class DBSqlite(DB):
+
+    DB_MODE = 'sqlite'
+
     def __init__(self, name):
-        self.conn = sqlite3.connect(f'{name}.db')
-        self.conn.row_factory = utils.dict_factory
+        self.conn = sqlite3.connect(f'{name}.db', check_same_thread=False)
         self.cursor = self.conn.cursor()
+    
+    def fetch_as_dict(self, query, args):
+        self.cursor.execute(query, args)
+        return dict(zip([c[0] for c in self.cursor.description], self.cursor.fetchone()))
