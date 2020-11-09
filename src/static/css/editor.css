@@ -65,6 +65,6 @@ section#editor div:before{
     text-align: center;
 }
 
-section#editor div:focus{
-    background-color: #333333;
+section#colorful{
+    font-weight: normal !important;
 }
