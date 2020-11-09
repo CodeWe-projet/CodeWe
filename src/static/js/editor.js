@@ -9,6 +9,7 @@ class Editor{
     constructor(id='editor', tabSize=4, keyup= e => {}, keydown= e => {}) {
         this.id = id;
         this.editor = document.getElementById(id);
+        this.tabSize = tabSize;
         this.tab = this.setTabSize(tabSize);
         this.editor.addEventListener('keydown', keydown);
         this.editor.addEventListener('keyup', keyup);
@@ -177,6 +178,12 @@ keyup = (e => {
             let uuid = getRandomString(10);
             new_element.setAttribute('uuid', uuid);
 
+            let n_spaces = previous_element.innerText.search(/\S/);
+            if(previous_element.innerText.endsWith(':')) n_spaces += editor.tabSize;
+            if(n_spaces < 0) n_spaces = 0;
+
+            new_element.insertBefore(document.createTextNode(' '.repeat(n_spaces)), new_element.firstChild);
+
             socket.send('update text', [
                 newElementRequest(uuid, previous_uuid),
                 updateElementRequest(previous_element),
@@ -276,22 +283,6 @@ function getCaretCharacterOffsetWithin(element) {
 }
 
 editor.editor.addEventListener('keyup', e => {
-
-    /*const sub_el = window.getSelection().getRangeAt(0);
-
-    let container = sub_el.startContainer;
-    let n = sub_el.startOffset;
-
-    console.log(container);
-    console.log(n);
-
-    while(container.nodeType === Node.TEXT_NODE || !container.hasAttribute('uuid')){
-        container = container.parentElement;
-        n += container.getBoundingClientRect().left || 0;
-        console.log(container);
-        console.log(n);
-    }*/
-
     let offset = getCaretCharacterOffsetWithin(get_uuid_element());
 
     rainbow(get_uuid_element(), 'python');
