@@ -43,13 +43,13 @@ function getCurrentElement(){
 class Welcome{
     constructor() {
         if(new Cookie('welcome').getCookie() === ""){
-            //TODO Blur all others elements
+            document.getElementById('main').classList.add('blur-background')
             document.getElementById("welcome").style.display = "block";
         }
     }
 
     get_it(){
-        //TODO un-blur all others elements
+        document.getElementById('main').classList.remove('blur-background')
         document.getElementById("welcome").style.display = "None";
 
         let cookie = new Cookie("welcome")
