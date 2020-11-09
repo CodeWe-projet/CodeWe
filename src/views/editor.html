@@ -4,6 +4,7 @@
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/editor.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/rainbow.css') }}">
 {% endblock %}
 
 {% block header %}
@@ -33,5 +34,8 @@
       let doc_id = "{{ document['document_id'] }}" ;
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/highlight.min.js"></script>-->
+    <script src="{{ url_for('static', filename = 'js/prism.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/patterns.js') }}"></script>
     <script src="{{ url_for('static', filename = 'js/editor.js') }}"></script>
 {% endblock %}
