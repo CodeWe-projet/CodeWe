@@ -4,8 +4,10 @@
 -- Ext: sql
 -- Licensed under MIT
 -- Copyright (c) 2020 Alexandre Dewilde, Brieuc Dubois and Theo Technicguy.
--- Version 0.1.0
+-- Version 0.1.1
 -- -----------------------
+
+USE codewe;
 
 DROP PROCEDURE IF EXISTS `update_document`;
 
