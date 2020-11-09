@@ -60,7 +60,7 @@ class DB:
             text_content (str): the text to change
         """
         query = "UPDATE documents SET content = %s, last_viewed_date = %s WHERE document_id = %s"
-        self.execute(query, (doc_id, text_content))
+        self.execute(query, (text_content, time.strftime('%Y-%m-%d %H:%M:%S'), doc_id))
         self.conn.commit()
 
 
