@@ -1,5 +1,7 @@
 import {getCurrentElement, triggerEvent, getCaretCharacterOffsetWithin, get_uuid_element} from '../utils.js';
 
+let colors = ['blue', 'red', 'brown'];
+
 
 export default class Cursor{
     
@@ -12,14 +14,21 @@ export default class Cursor{
             let element = this.editor.querySelector('div[uuid="' + e.detail.request.data.id + '"]');
             // Insert at the right place the cursor
             let old_elements = this.editor.querySelectorAll('div[user-id="null"]');
+            let current_color = null;
             old_elements.forEach(element => {
+                current_color = element.style.background;
                 element.setAttribute('user-id', '');
                 element.className = '';
+                element.style.background = null;
             });
             element.className = 'cursor-line';
             element.setAttribute('user-id', 'null');
-            // TODO randomize and keep same color
-            element.style.background = 'blue'
+            if (current_color) {
+                element.style.background = current_color;
+            }
+            else {
+                element.style.background = colors[Math.floor(Math.random() * colors.length)]
+            }
         });
 
         this.editor.addEventListener('focus', this.sendCursorPosition);
