@@ -111,10 +111,10 @@ function intersects(start1, end1, start2, end2) {
  *
  * @class
  */
-class Prism {
+export class Prism {
     constructor(patterns) {
 
-        self.patterns = patterns;
+        this.patterns = patterns;
 
         /**
          * Object of replacements to process at the end of the processing
@@ -232,12 +232,13 @@ class Prism {
          * This is where pretty much all the work is done but it should not
          * be called directly.
          *
+         * @param {Prism} instance
          * @param {Object} pattern
          * @param {string} code
          * @param {number} offset
          * @return {mixed}
          */
-        function _processPattern(pattern, code, offset = 0) {
+        function _processPattern(instance, pattern, code, offset = 0) {
             let regex = pattern.pattern;
             if (!regex) {
                 return false;
@@ -320,10 +321,11 @@ class Prism {
             /**
              * Helper function for processing a sub group
              *
+             * @param {Prism} instance
              * @param {number} groupKey      index of group
              * @return {void}
              */
-            function _processGroup(groupKey) {
+            function _processGroup(instance, groupKey) {
                 const block = match[groupKey];
 
                 // If there is no match here then move on
@@ -383,7 +385,7 @@ class Prism {
                 }
 
                 let localCode;
-                const prism = new Prism(self.patterns);
+                const prism = new Prism(instance.patterns);
 
                 // If this is a sublanguage go and process the block using
                 // that language
@@ -409,7 +411,7 @@ class Prism {
             // on what gets replaced in later matches.
             const groupKeys = keys(pattern.matches);
             for (const groupKey of groupKeys) {
-                _processGroup(groupKey);
+                _processGroup(instance, groupKey);
             }
 
             // Finally, call `onMatchSuccess` with the replacement
@@ -423,10 +425,10 @@ class Prism {
          * @return {string}
          */
         function _processCodeWithPatterns(code) {
-            for (const pattern of self.patterns) {
-                let result = _processPattern(pattern, code);
+            for (const pattern of this.patterns) {
+                let result = _processPattern(this, pattern, code);
                 while (result) {
-                    result = _processPattern(pattern, result.remaining, result.offset);
+                    result = _processPattern(this, pattern, result.remaining, result.offset);
                 }
             }
 

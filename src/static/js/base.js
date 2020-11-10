@@ -36,10 +36,6 @@ function getRandomString(length) {
     return result;
 }
 
-function getCurrentElement(){
-    return window.getSelection().getRangeAt(0).startContainer;
-}
-
 class Welcome{
     constructor() {
         if(new Cookie('welcome').getCookie() === ""){
