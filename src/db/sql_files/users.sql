@@ -4,14 +4,14 @@
 -- Ext: sql
 -- Licensed under MIT
 -- Copyright (c) 2020 Alexandre Dewilde, Brieuc Dubois and Theo Technicguy.
--- Version 0.1.1
+-- Version 0.1.2
 -- -----------------------
 
 -- Human Administator called `ABN` - has ALL permissions
 DROP USER IF EXISTS `ABS`;
 CREATE USER `ABN` IDENTIFIED BY [**redacted**];
 GRANT ALL
-ON CodeWe.*
+ON codewe.*
 TO ABN;
 
 -- Python API - has Read/Write permissions.
