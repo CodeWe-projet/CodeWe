@@ -5,7 +5,7 @@ import Cursor from './cursor.js'
 
 const socket = new Socket(doc_id);
 const editor = new Editor('editor');
-const cursor = new Cursor('editor');
+const cursor = new Cursor(document.getElementById('editor'));
 
 for(const child of document.getElementById('editor').children){
     new PrismCustom(child, 'python').ApplyWithCaret();
