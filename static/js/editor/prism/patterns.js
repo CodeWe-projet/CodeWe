@@ -1,4 +1,4 @@
-const patterns = {
+export const patterns = {
     generic: [
         {
             matches: {

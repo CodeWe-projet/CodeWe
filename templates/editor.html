@@ -34,7 +34,5 @@
       let doc_id = "{{ document['document_id'] }}" ;
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <script src="{{ url_for('static', filename = 'js/prism.js') }}"></script>
-    <script src="{{ url_for('static', filename = 'js/patterns.js') }}"></script>
-    <script src="{{ url_for('static', filename = 'js/editor.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename = 'js/editor/main.js') }}"></script>
 {% endblock %}
