@@ -74,3 +74,7 @@ section#colorful{
     top: 200px; /* number of pixels from top */
     left: 100px; /* number of pixels from top */
   }
+
+.cursor-line {
+    opacity: 0.5;
+}
