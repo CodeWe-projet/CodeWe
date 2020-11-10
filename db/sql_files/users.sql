@@ -4,17 +4,19 @@
 -- Ext: sql
 -- Licensed under MIT
 -- Copyright (c) 2020 Alexandre Dewilde, Brieuc Dubois and Theo Technicguy.
--- Version 0.1.0
+-- Version 0.1.1
 -- -----------------------
 
 -- Human Administator called `ABN` - has ALL permissions
+DROP USER IF EXISTS `ABS`;
 CREATE USER `ABN` IDENTIFIED BY [**redacted**];
 GRANT ALL
 ON CodeWe.*
 TO ABN;
 
 -- Python API - has Read/Write permissions.
-CREATE USER `codewe_python_api` IDENTIFIED BY [**redacted**];
+DROP USER IF EXISTS `codewe_python_api`@`localhost`;
+CREATE USER `codewe_python_api`@`localhost` IDENTIFIED BY [**redacted**];
 GRANT SELECT, INSERT, UPDATE, DELETE, EXECUTE
-ON CodeWe.*
-TO `codewe_python_api`;
+ON codewe.*
+TO `codewe_python_api`@`localhost`;

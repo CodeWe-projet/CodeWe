@@ -63,6 +63,7 @@ div#welcome{
     height: 100vh;
     background-color: rgba(10, 10, 10, 0.5);
     display: none;
+    z-index: 4;
 }
 
 div#welcome div#welcome-text{
@@ -107,6 +108,11 @@ div#welcome button{
 div#welcome button:hover{
     cursor: pointer;
 }
+
+.blur-background > *:not(#body):not(#welcome) {
+    filter: blur(3px);
+    pointer-events: none;
+  }
 
 /******************\
 |      Footer      |

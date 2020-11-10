@@ -20,3 +20,5 @@ documents.db
 
 # Authenticaion files
 db/auth.py
+config/db_config.py
+codewe.db
