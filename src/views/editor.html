@@ -4,6 +4,7 @@
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/editor.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/rainbow.css') }}">
 {% endblock %}
 
 {% block header %}
@@ -22,8 +23,8 @@
 
 {% block corps %}
     <section id="editor" contenteditable="true" spellcheck="false">
-        {% for line in document['content'].split('\n') %}
-            <div>{{ line }}<br></div>
+        {% for line in document['content'] %}
+            <div uuid="{{ line[0] }}">{{ line[1] }}<br></div>
         {% endfor %}
     </section>
 {% endblock %}
@@ -33,5 +34,5 @@
       let doc_id = "{{ document['document_id'] }}" ;
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <script src="{{ url_for('static', filename = 'js/editor.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename = 'js/editor/main.js') }}"></script>
 {% endblock %}

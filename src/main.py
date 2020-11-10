@@ -1,9 +1,10 @@
 from flask import Flask, render_template, redirect, abort
-from flask_socketio import SocketIO, emit, join_room, leave_room, rooms, send
-from api.api import api
+from flask_socketio import SocketIO, emit, join_room
+from config import DEBUG
+from api import api
 from db import db
-from api.data import DEBUG
 import sys
+import json
 
 app = Flask(__name__, template_folder='templates')
 app.register_blueprint(api, url_prefix='/api')
@@ -24,9 +25,10 @@ def create_document():
 @app.route('/<doc_id>')
 @app.route('/editor/<doc_id>')
 def editor(doc_id):
-    doc_id = db.get_document(doc_id)
+    content = db.get_document(doc_id)
+    content['content'] = json.loads(content['content']) 
     if doc_id is not None:
-        return render_template('editor.html', document=doc_id)
+        return render_template('editor.html', document=content)
     return abort(404)
 
 
@@ -38,14 +40,17 @@ def on_join(data):
 
 @socketio.on('update text')
 def update_text(data):
-    db.update_document(data['room'], data['text'])
     emit('text updated', data, room=data['room'], include_self=False)
+
+
+@socketio.on('save')
+def update_text(data):
+    db.update_document(data['room'], json.dumps(data['requests'][0]['data']))
 
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
-
 
 
 if __name__ == '__main__':
