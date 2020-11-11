@@ -1,0 +1,19 @@
+version: "2"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: DockerFile
+    links:
+      - db
+    ports:
+      - '5000:5000'
+  db:
+      image: mysql:5.7
+      ports:
+        - "32000:3306"
+      command: --init-file /create_db.sql
+      volumes:
+        - ./db/sql_files/create_db.sql:/create_db.sql
+      environment:
+        MYSQL_ROOT_PASSWORD: set_password_here
