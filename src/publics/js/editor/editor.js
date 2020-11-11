@@ -1,20 +1,22 @@
 import {PrismCustom} from "./prism/prism-custom.js";
-import {get_uuid_element, triggerEvent} from "../utils.js";
+import {get_uuid_element, triggerEvent, triggerMultipleEvent} from "../utils.js";
+import {DEBUG} from "./main.js";
 
 export class Editor{
-    constructor(id='editor', tabSize=4) {
-        this.id = id;
-        this.editor = document.getElementById(id);
+    constructor(element, tabSize=4) {
+        this.editor = element;
         this.tabSize = tabSize;
+        this.lines = this.getAll();
+        this.last_request = {};
 
         this.editor.addEventListener('keyup', e => {
-            new PrismCustom(get_uuid_element(), 'python').ApplyWithCaret();
+            if([9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144, 145, 225].includes(e.keyCode)) return;
 
+            new PrismCustom(get_uuid_element(), 'python').ApplyWithCaret();
             switch (e.keyCode) {
-                case 13: // enter
+                case 13: // Enter
                     let new_element = get_uuid_element();
                     let previous_element = new_element.previousElementSibling;
-                    let previous_uuid = previous_element.getAttribute('uuid');
                     let uuid = getRandomString(10);
                     new_element.setAttribute('uuid', uuid);
 
@@ -23,21 +25,20 @@ export class Editor{
                     if(n_spaces < 0) n_spaces = 0;
 
                     new_element.insertBefore(document.createTextNode(' '.repeat(n_spaces)), new_element.firstChild);
-
-                    triggerEvent('socket.send', this.request.newLine(uuid, previous_uuid));
-                    triggerEvent('socket.send', this.request.setLine(previous_element));
-                    triggerEvent('socket.send', this.request.setLine(new_element));
-
-                    break
-                default:
-                    triggerEvent('socket.send', this.request.setLine(get_uuid_element()));
             }
+
+            this.applyDiff();
+        });
+
+        this.editor.addEventListener('paste', e => {
+            e.preventDefault();
+            alert('C/C interdit !');
         });
 
         this.editor.addEventListener('keydown', e => {
             if ((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode === 83) {
-                save();
                 e.preventDefault();
+                document.dispatchEvent(new CustomEvent('socket.send_now', {detail: {requests: [this.request.save()], name: 'save'}}));
                 return;
             }
             switch (e.keyCode) {
@@ -50,25 +51,21 @@ export class Editor{
                     range.insertNode(document.createTextNode('    '));
                     selection.collapseToEnd();
                     break;
-                case 8: // backspace / delete
-                    if(window.getSelection().getRangeAt(0).startOffset === 0){
-                        let current = get_uuid_element();
-
-                        triggerEvent('socket.send', this.request.deleteLine(current.getAttribute('uuid')));
-                    }
-                    break
             }
         });
 
         document.addEventListener('socket.receive.set-line', e => {
+            this.last_request[e.detail.request['data']['id']] = e.detail.request['data']['content'];
             this.update(e.detail.request['data']['id'], e.detail.request['data']['content']);
         });
 
         document.addEventListener('socket.receive.new-line', e => {
-            this.new_line(e.detail.request['data']['id'], e.detail.request['data']['previous']);
+            this.last_request[e.detail.request['data']['id']] = e.detail.request['data']['content'];
+            this.new_line(e.detail.request['data']['id'], e.detail.request['data']['previous'], e.detail.request['data']['content']);
         });
 
         document.addEventListener('socket.receive.delete-line', e => {
+            if(this.last_request.has(e.detail.request['data']['id'])) delete this.last_request[e.detail.request['data']['id']];
             this.remove_line(e.detail.request['data']['id']);
         });
 
@@ -87,12 +84,23 @@ export class Editor{
                 };
             }
 
-            newLine(uuid, previous_uuid){
+            setLineFromContent(uuid, content) {
+                return {
+                    type: 'set-line',
+                    data: {
+                        id: uuid,
+                        content: content
+                    }
+                };
+            }
+
+            newLine(uuid, previous_uuid, content){
                 return {
                     type: 'new-line',
                     data: {
                         id: uuid,
-                        previous: previous_uuid
+                        previous: previous_uuid,
+                        content: content
                     }
                 };
             }
@@ -118,15 +126,19 @@ export class Editor{
     }
 
     update(uuid, content) {
-        let elements = this.editor.querySelectorAll('div[uuid="' + uuid + '"]');
-        elements.forEach(element => element.innerText = content);
+        let element = this.editor.querySelector('div[uuid="' + uuid + '"]');
+        element.innerText = content;
     }
 
-    new_line(uuid, previous_uuid) {
+    new_line(uuid, previous_uuid, content) {
+        if(this.editor.querySelectorAll('div[uuid="' + uuid + '"]').length > 0){
+            if(DEBUG) console.log(uuid + ' div still exist')
+            return;
+        }
         let element = this.editor.querySelector('div[uuid="' + previous_uuid + '"]');
         let div = document.createElement("div");
         div.setAttribute("uuid", uuid);
-        div.innerHTML = "<br>";
+        div.innerHTML = content + "<br>";
         element.parentNode.insertBefore(div, element.nextSibling);
     }
 
@@ -146,8 +158,66 @@ export class Editor{
     getAll(){
         let elements = []
         for(let element of this.editor.children){
-            elements.push([element.getAttribute('uuid'), element.innerText.replaceAll('\n', '')]);
+            elements.push({uuid: element.getAttribute('uuid'), content: element.innerText.replaceAll('\n', '')});
         }
         return elements;
+    }
+
+    applyDiff(){
+        const oldLines = this.lines;
+        this.lines = this.getAll();
+        triggerMultipleEvent('socket.send', this.checkDiff(oldLines, this.lines));
+    }
+
+    checkDiff(oldLines, newLines){
+        let oldOrder = [];
+        let oldValues = {};
+        for(const line of oldLines){
+            oldOrder.push(line.uuid);
+            oldValues[line.uuid] = line.content;
+        }
+
+        let newOrder = [];
+        let newValues = {};
+        for(const line of newLines){
+            newOrder.push(line.uuid);
+            newValues[line.uuid] = line.content;
+        }
+
+        let reqs = [];
+        for(const [i, line] of newLines.entries()){
+            if(oldOrder.includes(line.uuid)){ // intersection
+                if(oldValues[line.uuid] !== line.content) reqs.push(this.request.setLineFromContent(line.uuid, line.content));
+            }else{
+                reqs.push(this.request.newLine(line.uuid, newLines[i-1].uuid, line.content));
+            }
+        }
+        for(const line of oldLines){
+            if(!newOrder.includes(line.uuid)){
+                reqs.push(this.request.deleteLine(line.uuid));
+            }
+        }
+
+        let final_reqs = [];
+        let newRejectRequests = [];
+
+        for(const req of reqs){
+            if(req['type'] === 'set-line' && req['data']['id'] in this.last_request && this.last_request[req['data']['id']] === req['data']['content']) continue;
+            if(req['type'] === 'new-line' && req['data']['id'] in this.last_request){
+                newRejectRequests.push(req);
+                continue;
+            }
+            final_reqs.push(req);
+        }
+
+        for(let newRequest of newRejectRequests){
+            if(!final_reqs.filter(req => req['type'] === 'set-line' && req['data']['id'] === newRequest['data']['id']).length){
+                delete newRequest['data']['previous'];
+                newRequest['type'] = 'set-line';
+                final_reqs.push(newRequest);
+            }
+        }
+
+        return final_reqs;
     }
 }
