@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}CodeWe - {{ document['doc_id'] }}{% endblock %}
+{% block title %}CodeWe - {{ document['document_id'] }}{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/editor.css') }}">
@@ -9,15 +9,8 @@
 
 {% block header %}
     <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span> - {{ document['document_id'] }}</h1>
-    <div id="auto_update">
-        <div class="swipes">
-            <div><input id="auto_pull" type="checkbox" checked /></div>
-            <div><label for="auto_pull">Auto-pull</label></div>
-        </div>
-        <div class="swipes">
-            <div><input id="auto_push" type="checkbox" checked /></div>
-            <div><label for="auto_push">Auto-push</label></div>
-        </div>
+    <div id="actions">
+        <a id="download" target="iframe" download="{{ document['document_id'] }}.py" href="#">Download</a>
     </div>
 {% endblock %}
 
