@@ -6,6 +6,7 @@ export class Socket{
         this.socket = io();
         this.join();
         this.stack = {'update text': []};
+        this.preprocess = [];
 
         this.socket.on("text updated", data => {
             for(const request of data['requests']){
@@ -27,7 +28,22 @@ export class Socket{
             this.send(e.detail.name, e.detail.requests);
         });
 
+        document.addEventListener('socket.preprocess', e => {
+            const name = e.detail[0];
+            let args = e.detail[1];
+            if(name === undefined) return;
+            if(args === undefined) args = [];
+            const tab = [name, args];
+            if(!this.preprocess.includes(tab)){
+                this.preprocess.push(tab);
+                if(DEBUG) console.log('New socket.preprocess', tab);
+            }
+        });
+
         setInterval(() => {
+            for(const func of this.preprocess){
+                func[0](...func[1]);
+            }
             if(this.stack['update text'].length){
                 this.send('update text', this.stack['update text'].splice(0, this.stack['update text'].length));
             }
