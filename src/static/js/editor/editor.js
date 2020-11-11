@@ -8,6 +8,8 @@ export class Editor{
         this.tabSize = tabSize;
         this.lines = this.getAll();
         this.last_request = {};
+        this.hasChange = false;
+        document.dispatchEvent(new CustomEvent('socket.preprocess', {detail: [this.applyDiff, [this]]}));
 
         this.editor.addEventListener('keyup', e => {
             if([9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144, 145, 225].includes(e.keyCode)) return;
@@ -27,7 +29,7 @@ export class Editor{
                     new_element.insertBefore(document.createTextNode(' '.repeat(n_spaces)), new_element.firstChild);
             }
 
-            this.applyDiff();
+            this.hasChange = true;
         });
 
         this.editor.addEventListener('paste', e => {
@@ -128,6 +130,7 @@ export class Editor{
     update(uuid, content) {
         let element = this.editor.querySelector('div[uuid="' + uuid + '"]');
         element.innerText = content;
+        new PrismCustom(element, 'python').apply();
     }
 
     new_line(uuid, previous_uuid, content) {
@@ -138,7 +141,8 @@ export class Editor{
         let element = this.editor.querySelector('div[uuid="' + previous_uuid + '"]');
         let div = document.createElement("div");
         div.setAttribute("uuid", uuid);
-        div.innerHTML = content + "<br>";
+        div.innerHTML = + content + '<br>';
+        new PrismCustom(div, 'python').apply();
         element.parentNode.insertBefore(div, element.nextSibling);
     }
 
@@ -163,10 +167,13 @@ export class Editor{
         return elements;
     }
 
-    applyDiff(){
-        const oldLines = this.lines;
-        this.lines = this.getAll();
-        triggerMultipleEvent('socket.send', this.checkDiff(oldLines, this.lines));
+    applyDiff(editor){
+        if(editor.hasChange){
+            const oldLines = editor.lines;
+            editor.lines = editor.getAll();
+            triggerMultipleEvent('socket.send', editor.checkDiff(oldLines, editor.lines));
+            editor.hasChange = false;
+        }
     }
 
     checkDiff(oldLines, newLines){
