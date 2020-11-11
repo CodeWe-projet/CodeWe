@@ -38,6 +38,7 @@ export default class Cursor{
     }
     
     sendCursorPosition = () => {
+        if(getCurrentElement() === this.editor) return;
         triggerEvent('socket.send', this.cursorRequest());
     }
 
