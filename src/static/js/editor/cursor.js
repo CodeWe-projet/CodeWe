@@ -1,6 +1,6 @@
 import {getCurrentElement, triggerEvent, getCaretCharacterOffsetWithin, get_uuid_element} from '../utils.js';
 
-let colors = ['blue', 'red', 'brown'];
+const colors = ['blue', 'red', 'brown'];
 
 
 export default class Cursor{
@@ -27,7 +27,8 @@ export default class Cursor{
                 element.style.background = current_color;
             }
             else {
-                element.style.background = colors[Math.floor(Math.random() * colors.length)]
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                element.style.background = color;
             }
         });
 
