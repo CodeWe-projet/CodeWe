@@ -81,3 +81,7 @@ export function get_uuid_element(child=getCurrentElement()){
 export function triggerEvent(name, request){
     document.dispatchEvent(new CustomEvent(name, {detail: {request}}));
 }
+
+export function triggerMultipleEvent(name, requests){
+    document.dispatchEvent(new CustomEvent(name, {detail: {requests}}));
+}
