@@ -1,7 +1,7 @@
 from db.auth import DB_DATABASE
 
 
-DB_HOST = ""
+DB_HOST = "db"
 DB_USERNAME = ""
 DB_PASSWORD = ""
 DB_DATABASE = "codewe"
