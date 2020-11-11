@@ -68,3 +68,13 @@ section#editor div:before{
 section#colorful{
     font-weight: normal !important;
 }
+
+#cursor {
+    display: absolute;
+    top: 200px; /* number of pixels from top */
+    left: 100px; /* number of pixels from top */
+  }
+
+.cursor-line {
+    opacity: 0.8;
+}
