@@ -19,7 +19,7 @@ def home():
 @app.route("/create_document", methods=['POST'])
 def create_document():
     doc_id = db.create_document()
-    return redirect(f"/editor/{doc_id}")
+    return redirect(f"/{doc_id}")
 
 
 @app.route('/<doc_id>')
@@ -30,6 +30,22 @@ def editor(doc_id):
     if doc_id is not None:
         return render_template('editor.html', document=content)
     return abort(404)
+
+
+@app.route('/tos')
+@app.route('/tac')
+def tos():
+    return render_template('legal/tos.html')
+
+
+@app.route('/privacy')
+def privacy():
+    return render_template('legal/privacy.html')
+
+
+@app.route('/licence')
+def licence():
+    return render_template('legal/licence.html')
 
 
 @socketio.on("join")
