@@ -1,7 +1,7 @@
 import {getCurrentElement, triggerEvent, getCaretCharacterOffsetWithin, get_uuid_element} from '../utils.js';
 
 const colors = ['blue', 'red', 'brown'];
-
+const uuid = getRandomString(10);
 
 export default class Cursor{
     
@@ -10,10 +10,9 @@ export default class Cursor{
         // Listen for others caret moves
         document.addEventListener('socket.receive.cursor-moves', e => {
             // select the good line and set the cursor
-            console.log(e.detail.request.data);
             let element = this.editor.querySelector('div[uuid="' + e.detail.request.data.id + '"]');
             // Insert at the right place the cursor
-            let old_elements = this.editor.querySelectorAll('div[user-id="null"]');
+            let old_elements = this.editor.querySelectorAll('div[user-id="' + e.detail.request.data.userId + '"]');
             let current_color = null;
             old_elements.forEach(element => {
                 current_color = element.style.background;
@@ -22,7 +21,7 @@ export default class Cursor{
                 element.style.background = null;
             });
             element.className = 'cursor-line';
-            element.setAttribute('user-id', 'null');
+            element.setAttribute('user-id', e.detail.request.data.userId);
             if (current_color) {
                 element.style.background = current_color;
             }
@@ -48,6 +47,7 @@ export default class Cursor{
             type: 'cursor-moves',
             data: {
                 id: element.getAttribute('uuid'),
+                userId: uuid,
                 content: getCaretCharacterOffsetWithin(element)
             }
         };
