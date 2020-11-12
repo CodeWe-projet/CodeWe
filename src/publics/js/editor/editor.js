@@ -3,10 +3,10 @@ import {
     get_uuid_element,
     getCurrentElement,
     setCurrentCursorPosition,
-    triggerEvent,
     triggerMultipleEvent
 } from "../utils.js";
 import {DEBUG} from "./main.js";
+import {htmlEncode} from "../utils";
 
 export class Editor{
     constructor(element, tabSize=4) {
@@ -160,7 +160,7 @@ export class Editor{
 
     update(uuid, content) {
         let element = this.editor.querySelector('div[uuid="' + uuid + '"]');
-        element.innerText = content;
+        element.innerText = htmlEncode(content);
         new PrismCustom(element, 'python').apply();
     }
 

@@ -1,5 +1,5 @@
 import {patterns} from "./patterns.js";
-import {getCaretCharacterOffsetWithin, setCurrentCursorPosition} from "../../utils.js";
+import {getCaretCharacterOffsetWithin, setCurrentCursorPosition, htmlEncode} from "../../utils.js";
 import {Prism} from "./prism.js";
 
 
@@ -29,7 +29,7 @@ export class PrismCustom{
 
     apply(){
         const prismInstance = new Prism(this.pattern);
-        this.element.innerHTML = prismInstance.refract(this.element.innerText);
+        this.element.innerHTML = prismInstance.refract(htmlEncode(this.element.innerText));
     }
 
     ApplyWithCaret(){
