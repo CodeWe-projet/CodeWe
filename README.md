@@ -23,20 +23,24 @@ pip install -Ur requirements.txt
 pip3 install -Ur requirements.txt
 ```
 
-#### Run the project
+Should you have a MySQL or MariaDB database server, execute `/src/db/sql_files/create_db.sql` for the database and `/src/db/sql_files/users.sql` for the users in your sql shell.
+
+If you do not have such a database, fear not my friend! Simply execute `python[3] /src/db/create_sqlite_db.py` and change `DB_TUPE` to `"sqlite` in `/src/config/config.py`.
+
+
+### Build with docker *(instable)*
+```bash
+sudo docker-compose up -d --no-deps --build
+```
+Help wanted configuring it correctly!
+
+## Rununing `CodeWe`.
 To run the server, run a shell in the `CodeWe/src` folder and run:
 ```bash
 python main.py [ip [port]]
 # or on debian
 python3 main.py [ip [port]]
 ```
-
-### Build with docker *(instable)*
-```bash
-sudo docker-compose up -d --no-deps --build
-```
-
-Help wanted configuring it correctly!
 
 ## Licence
 This project is under MIT licence. The full licence can be read [here](https://github.com/allEyezOnCode/CodeWe).
