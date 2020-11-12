@@ -173,7 +173,7 @@ export class Editor{
         let div = document.createElement("div");
         div.setAttribute("uuid", uuid);
         div.innerHTML = content + '<br>';
-        new PrismCustom(div, 'python').apply();
+        // new PrismCustom(div, 'python').apply();
         element.parentNode.insertBefore(div, element.nextSibling);
     }
 
