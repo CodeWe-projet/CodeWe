@@ -43,13 +43,15 @@ export default class Cursor{
 
     cursorRequest = () => {
         let element = get_uuid_element();
-        return {
-            type: 'cursor-moves',
-            data: {
-                id: element.getAttribute('uuid'),
-                userId: uuid,
-                content: getCaretCharacterOffsetWithin(element)
-            }
-        };
+        if (element.hasAttribute('uuid')) {
+            return {
+                type: 'cursor-moves',
+                data: {
+                    id: element.getAttribute('uuid'),
+                    userId: uuid,
+                    content: getCaretCharacterOffsetWithin(element)
+                }
+            };
+        }
     }
 }
