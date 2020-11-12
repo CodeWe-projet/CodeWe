@@ -9,11 +9,11 @@ services:
     ports:
       - '5000:5000'
   db:
-      image: mysql:5.7
+      image: mysql:8.0.20
       ports:
         - "32000:3306"
       command: --init-file /create_db.sql
       volumes:
         - ./db/sql_files/create_db.sql:/create_db.sql
       environment:
-        MYSQL_ROOT_PASSWORD: set_password_here
+        MYSQL_ROOT_PASSWORD: root
