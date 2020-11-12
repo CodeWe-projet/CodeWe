@@ -85,3 +85,7 @@ export function triggerEvent(name, request){
 export function triggerMultipleEvent(name, requests){
     document.dispatchEvent(new CustomEvent(name, {detail: {requests}}));
 }
+
+export function htmlEncode(str){
+  return String(str).replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+}
