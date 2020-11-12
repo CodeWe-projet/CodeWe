@@ -12,6 +12,14 @@ git clone https://github.com/allEyezOnCode/CodeWe.git
 cd CodeWe
 pip install -r requirements.txt
 ```
+### Build with docker (instable)
+change Host to 0.0.0.0 and run the following :
+
+`sudo docker-compose up`
+
+`sudo docker-compose up -d --no-deps --build`
+
+Help wanted to configure it correctly
 
 ## Usage
 To run the server, open a terminal in the folder and run :
