@@ -75,6 +75,11 @@ header .title-1{
     font-size: 40px;
 }
 
+header a{
+    color: inherit;
+    text-decoration: inherit;
+}
+
 /*******************\
 |      Welcome      |
 \*******************/
