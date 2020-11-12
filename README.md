@@ -25,7 +25,7 @@ pip3 install -Ur requirements.txt
 
 Should you have a MySQL or MariaDB database server, execute `/src/db/sql_files/create_db.sql` for the database and `/src/db/sql_files/users.sql` for the users in your sql shell.
 
-If you do not have such a database, fear not my friend! Simply execute `python[3] /src/db/create_sqlite_db.py` and change `DB_TUPE` to `"sqlite` in `/src/config/config.py`.
+If you do not have such a database, fear not my friend! Simply execute `python[3] /src/db/create_sqlite_db.py` and change `DB_TYPE` to `"sqlite` in `/src/config/config.py`.
 
 
 ### Build with docker *(instable)*
