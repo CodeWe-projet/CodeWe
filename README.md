@@ -1,46 +1,42 @@
 # CodeWe
 
-CodeWe is a open source live code sharing website developed in python with flask
+CodeWe is an open-source live code-sharing website developed in python with flask.
 
 ## Installation
 
 ### Classic installation
 
 #### Requirements
-
-* python 3.7 or newer
+* python 3.7 or newer (this project is developed in python 3.8.3 and up)
 * git
 
-The first step is to clone the repo, so open a terminal and run :
-
+The first step is to clone this repository, so open a terminal and run:
 ```bash
 git clone https://github.com/allEyezOnCode/CodeWe.git
 ```
 
-Install project requirements
-
+Install project requirements and dependencies
 ```bash
 cd CodeWe
-pip install -r requirements.txt
+pip install -Ur requirements.txt
+# or on debian
+pip3 install -Ur requirements.txt
 ```
 
 #### Run the project
-
-To run the server, open a terminal in the folder and run :
-
+To run the server, run a shell in the `CodeWe/src` folder and run:
 ```bash
-cd src
 python main.py [ip [port]]
+# or on debian
+python3 main.py [ip [port]]
 ```
 
-### Build with docker (instable)
-
+### Build with docker *(instable)*
 ```bash
 sudo docker-compose up -d --no-deps --build
 ```
 
-Help wanted to configure it correctly!
+Help wanted configuring it correctly!
 
 ## Licence
-
-This projects is under MIT licence. The full licence can be read [here](https://github.com/allEyezOnCode/CodeWe).
+This project is under MIT licence. The full licence can be read [here](https://github.com/allEyezOnCode/CodeWe).
