@@ -3,13 +3,13 @@
 {% block title %}CodeWe{% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/index.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/index.css') }}">
 {% endblock %}
 
 {% block corps %}
 <div id="section">
-    <form action="/create_document" method="post">
-        <button type="submit" id="new_document_button">Create Document</button>
-    </form>
+  <form action="/create_document" method="post">
+    <button type="submit" id="new_document_button">Create Document</button>
+  </form>
 </div>
 {% endblock %}
