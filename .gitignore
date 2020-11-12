@@ -19,6 +19,7 @@ build/
 documents.db
 
 # Authenticaion files
-db/auth.py
-config/db_config.py
+*db_config.py
+
+# Databases
 codewe.db
