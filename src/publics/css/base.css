@@ -5,6 +5,7 @@
 *{
     margin: 0;
     padding: 0;
+    scrollbar-color: #202324 #454a4d;
 }
 
 .bold{
@@ -26,6 +27,29 @@ body{
 
 #body{
     padding: 70px 10px 10px 10px;
+}
+
+/******************\
+|    AlertCards    |
+\******************/
+
+.alertCard{
+    height: 100px;
+    width: 200px;
+    background-color: forestgreen;
+    position: fixed;
+    top: 80px ;
+    right: 20px ;
+    border-radius: 20px;
+    padding: 5px;
+    border: 1px solid darkgreen;
+}
+
+.alertCard h3{
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 5px;
 }
 
 /******************\
@@ -124,7 +148,7 @@ div#welcome button:hover{
 }
 
 #body{
-    padding-bottom: 50px;
+    padding-bottom: 130px;
 }
 
 #footer{
@@ -133,9 +157,26 @@ div#welcome button:hover{
     right: 0;
     bottom: 0;
     margin: auto;
-    height: 25px;
+    height: 80px;
     width: 80%;
     padding: 15px 0 5px 0;
     border-top: 1px solid rgb(53, 58, 60);
     text-align: center;
+}
+
+#footer #links{
+    margin-bottom: 20px;
+}
+
+#footer #links a{
+    margin: 0 25px;
+    font-size: 12px;
+    color: lightgray;
+    text-decoration: none;
+}
+
+#footer #links a[href="#"]{
+    color: #555;
+    text-decoration: line-through;
+    font-style: italic;
 }
