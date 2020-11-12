@@ -24,7 +24,10 @@ pip install -Ur requirements.txt
 pip3 install -Ur requirements.txt
 ```
 
-Should you have a MySQL or MariaDB database server, execute `/src/db/sql_files/create_db.sql` for the database and `/src/db/sql_files/users.sql` for the users in your sql shell.
+#### Databases
+Should you have a MySQL or MariaDB database server, execute `/src/db/sql_files/create_db.sql` in your sql shell to create the database.
+Fill out (chage `[**redacted**]` to real passwords (do not share)) and then run `/src/db/sql_files/users.sql` in your sql shell to create the users.
+Using `cp /src/config/db_config.dist.py /src/config/db_config.py`, copy the database configuration file and fill it with the info needed.
 
 If you do not have such a database, fear not my friend! Simply execute `python[3] /src/db/create_sqlite_db.py` and change `DB_TYPE` to `"sqlite` in `/src/config/config.py`.
 
