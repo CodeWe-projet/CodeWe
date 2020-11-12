@@ -9,6 +9,7 @@ CodeWe is an open-source live code-sharing website developed in python with flas
 #### Requirements
 * python 3.7 or newer (this project is developed in python 3.8.3 and up)
 * git
+* MySQL, MariaDB or sqlite
 
 The first step is to clone this repository, so open a terminal and run:
 ```bash
