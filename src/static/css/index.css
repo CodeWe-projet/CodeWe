@@ -1,6 +1,6 @@
 #section{
     display: grid;
-    height: 60vh;
+    height: 90vh;
     place-items: center;
 }
 
@@ -23,4 +23,10 @@
     cursor: pointer;
     background-color: green;
     transition: 0.2s ease-in-out;
+}
+
+body{
+  background-position: center;
+  background-image: url("/static/img/PNG/Webpage layout.png");
+  background-repeat: no-repeat;
 }
