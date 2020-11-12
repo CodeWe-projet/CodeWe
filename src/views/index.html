@@ -4,12 +4,168 @@
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/index.css') }}">
+    <link rel="background-image" href="{{url_for('static', filename='img/bk.png')}}">
 {% endblock %}
 
 {% block corps %}
 <div id="section">
-    <form action="/create_document" method="post">
-        <button type="submit" id="new_document_button">Create Document</button>
-    </form>
+    <table>
+      <tbody>
+        <!-- ROW 1 -->
+        <tr>
+          <!-- 1 -->
+          <td></td>
+          <!-- 2 -->
+          <td></td>
+          <!-- 3 -->
+          <td></td>
+          <!-- 4 MID -->
+          <td class="first_last">
+            <img src="{{url_for('static', filename='img/1x/Computer Screen.png')}}" alt="">
+          </td>
+          <!-- 5 -->
+          <td></td>
+          <!-- 6 -->
+          <td></td>
+          <!-- 7 -->
+          <td></td>
+        </tr>
+
+        <!-- ROW 2 -->
+        <tr>
+          <!-- 1 -->
+          <td></td>
+          <!-- 2 -->
+          <td></td>
+          <!-- 3 -->
+          <td class="second">
+            <img src="{{url_for('static', filename='img/1x/Computer Screen.png')}}" alt="">
+          </td>
+          <!-- 4 MID -->
+          <td></td>
+          <!-- 5 -->
+          <td class="second">
+            <img src="{{url_for('static', filename='img/1x/Computer Screen.png')}}" alt="">
+          </td>
+          <!-- 6 -->
+          <td></td>
+          <!-- 7 -->
+          <td></td>
+        </tr>
+
+        <!-- ROW 3 -->
+        <tr>
+          <!-- 1 -->
+          <td></td>
+          <!-- 2 -->
+          <td class="third">
+            <img src="{{url_for('static', filename='img/1x/Computer Screen.png')}}" alt="">
+          </td>
+          <!-- 3 -->
+          <td></td>
+          <!-- 4 MID -->
+          <td></td>
+          <!-- 5 -->
+          <td></td>
+          <!-- 6 -->
+          <td class="third">
+            <img src="{{url_for('static', filename='img/1x/Computer Screen.png')}}" alt="">
+          </td>
+          <!-- 7 -->
+          <td></td>
+        </tr>
+
+        <!-- ROW 4 MID ROW-->
+        <tr>
+          <!-- 1 -->
+          <td class="center">
+            <img src="{{url_for('static', filename='img/1x/Computer Screen.png')}}" alt="">
+          </td>
+          <!-- 2 -->
+          <td></td>
+          <!-- 3 -->
+          <td></td>
+          <!-- 4 MID -->
+          <td class="center">
+            <form action="/create_document" method="post">
+              <button type="submit" id="new_document_button">Create Document</button>
+            </form>
+          </td>
+          <!-- 5 -->
+          <td></td>
+          <!-- 6 -->
+          <td></td>
+          <!-- 7 -->
+          <td class="center">
+            <img src="{{url_for('static', filename='img/1x/Computer Screen.png')}}" alt="">
+          </td>
+        </tr>
+
+        <!-- ROW 5 -->
+        <tr>
+          <!-- 1 -->
+          <td></td>
+          <!-- 2 -->
+          <td class="third">
+            <img src="{{url_for('static', filename='img/1x/Computer Screen.png')}}" alt="">
+          </td>
+          <!-- 3 -->
+          <td></td>
+          <!-- 4 MID -->
+          <td></td>
+          <!-- 5 -->
+          <td></td>
+          <!-- 6 -->
+          <td class="third">
+            <img src="{{url_for('static', filename='img/1x/Computer Screen.png')}}" alt="">
+          </td>
+          <!-- 7 -->
+          <td></td>
+        </tr>
+
+        <!-- ROW 6 -->
+        <tr>
+          <!-- 1 -->
+          <td></td>
+          <!-- 2 -->
+          <td></td>
+          <!-- 3 -->
+          <td class="second">
+            <img src="{{url_for('static', filename='img/1x/Computer Screen.png')}}" alt="">
+          </td>
+          <!-- 4 MID -->
+          <td></td>
+          <!-- 5 -->
+          <td class="second">
+            <img src="{{url_for('static', filename='img/1x/Computer Screen.png')}}" alt="">
+          </td>
+          <!-- 6 -->
+          <td></td>
+          <!-- 7 -->
+          <td></td>
+        </tr>
+
+        <!-- ROW 7 -->
+        <tr>
+          <!-- 1 -->
+          <td></td>
+          <!-- 2 -->
+          <td></td>
+          <!-- 3 -->
+          <td></td>
+          <!-- 4 MID -->
+          <td class="first_last">
+            <img src="{{url_for('static', filename='img/1x/Computer Screen.png')}}" alt="">
+          </td>
+          <!-- 5 -->
+          <td></td>
+          <!-- 6 -->
+          <td></td>
+          <!-- 7 -->
+          <td></td>
+        </tr>
+
+      </tbody>
+    </table>
 </div>
 {% endblock %}
