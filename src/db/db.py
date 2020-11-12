@@ -12,11 +12,11 @@ from db.sql_query import queries
 random.seed()
 
 base_code = json.dumps([
-    [f"{utils.uuid(random.random(), 10)}", "def main(text: str) -> None:"],
-    [f"{utils.uuid(random.random(), 10)}", "    print(text)"],
-    [f"{utils.uuid(random.random(), 10)}", ""],
-    [f"{utils.uuid(random.random(), 10)}", "if __name__ == \'__main__\':"],
-    [f"{utils.uuid(random.random(), 10)}", "    main(\'Hello World !\')"]
+    {'uuid': f'{utils.uuid(random.random(), 10)}', 'content': 'def main(text: str) -> None:'},
+    {'uuid': f"{utils.uuid(random.random(), 10)}", 'content': '    print(text)'},
+    {'uuid': f"{utils.uuid(random.random(), 10)}", 'content': ''},
+    {'uuid': f"{utils.uuid(random.random(), 10)}", 'content': 'if __name__ == \'__main__\':'},
+    {'uuid': f"{utils.uuid(random.random(), 10)}", 'content': '    main(\'Hello World !\')'}
 ])
 datetime_format = '%Y-%m-%d %H:%M:%S'
 
@@ -34,8 +34,7 @@ class DB:
             port=port
         )
         self.cursor = self.conn.cursor()
-    
-    
+
     def fetch_as_dict(self, query, args):
         c = self.conn.cursor(dictionary=True)
         c.execute(query, args)
@@ -43,7 +42,6 @@ class DB:
     
     def execute(self, query, args):
         self.cursor.execute(query, args)
-    
 
     def get_document(self, doc_id):
         """Get doc in the databse with id specified
@@ -57,7 +55,6 @@ class DB:
         query = queries['get_document'][self.get_db_mode()]
         return self.fetch_as_dict(query, (doc_id,))
 
-
     def update_document(self, doc_id, text_content):
         """Update the document in the db with the id specified
 
@@ -68,7 +65,6 @@ class DB:
         query = queries['update_document'][self.get_db_mode()]
         self.execute(query, (text_content, time.strftime(datetime_format), doc_id))
         self.conn.commit()
-
 
     def create_document(self):
         """Create the document with id specified
@@ -88,14 +84,12 @@ class DB:
         self.conn.commit()
         return doc_id
 
-
     def delete_old_document(self, days):
         """Delete document according to days and their last_viewed_date
         """
         limit_date = (datetime.datetime.today() - datetime.timedelta(days=days)).strftime(datetime_format)
         query = queries['delete_old_document'][self.get_db_mode()]
         self.execute(query, (limit_date,))
-
 
     @classmethod
     def get_db_mode(cls):
