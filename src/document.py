@@ -13,10 +13,9 @@ class Document:
             line_uuid (str): line id
             content (str): new content
         """
-        for elem in self.document_dict:
-            if elem['uuid'] == line_uuid:
-                elem["content"] = content
-                break
+        index = next((i for i, el in enumerate(self.document_dict) if el["uuid"] == line_uuid), None)
+        if index is not None:
+            self.document_dict[index]["content"] = content
 
     def new_line(self, previous_uuid, line_uuid, content):
         """Add a new line to the document
@@ -26,8 +25,9 @@ class Document:
             line_uuid (str): the new line id
             content (str): content of the new line
         """
-        index = self.document_dict.index(list(filter(lambda el: el['uuid'] == previous_uuid, self.document_dict))[0])
-        self.document_dict.insert(index+1, {"uuid": line_uuid, "content": content})
+        index = next((i for i, el in enumerate(self.document_dict) if el["uuid"] == previous_uuid), None)
+        if index is not None:
+            self.document_dict.insert(index+1, {"uuid": line_uuid, "content": content})
     
     def delete_line(self, line_uuid):
         """Delete a line in the document
@@ -35,10 +35,9 @@ class Document:
         Args:
             line_uuid (str): id of the line to delete
         """
-        for elem in self.document_dict:
-            if elem["uuid"] == line_uuid:
-                self.document_dict.remove(elem)
-                break
+        index = next((i for i, el in enumerate(self.document_dict) if el["uuid"] == line_uuid), None)
+        if index is not None:
+            del self.document_dict[index]
 
 
     def apply_requests(self, requests):
