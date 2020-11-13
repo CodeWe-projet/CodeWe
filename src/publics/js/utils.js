@@ -74,8 +74,17 @@ export function getCurrentElement(){
 }
 
 export function get_uuid_element(child=getCurrentElement()){
-    if(child.nodeType !== Node.TEXT_NODE && child.hasAttribute('uuid')) return child;
-    else return get_uuid_element(child.parentElement);
+    try{
+        if(child.nodeType !== Node.TEXT_NODE && child.hasAttribute('uuid')) return child;
+        else return get_uuid_element(child.parentElement);
+    }catch (e){
+        return undefined;
+    }
+}
+
+export function getDivOrSectionParent(child=getCurrentElement()){
+    if(child.nodeName === "DIV" || child.nodeName === "SECTION") return child;
+    else return getDivOrSectionParent(child.parentElement);
 }
 
 export function triggerEvent(name, request){
