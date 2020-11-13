@@ -48,9 +48,7 @@ export default class Cursor{
 
     cursorRequest = () => {
         let element = get_uuid_element();
-        console.log(this.current);
         for(const entry of this.current.entries()){
-            console.log(entry, entry[0]);
             if(entry[0] !== this.uuid && entry[1][1] === element) return {};
         }
         if (element.hasAttribute('uuid')) {

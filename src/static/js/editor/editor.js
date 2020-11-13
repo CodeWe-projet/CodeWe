@@ -1,5 +1,13 @@
 import {PrismCustom} from "./prism/prism-custom.js";
-import {get_uuid_element, getCurrentElement, setCurrentCursorPosition, triggerMultipleEvent, htmlEncode} from "../utils.js";
+import {
+    get_uuid_element,
+    getCurrentElement,
+    setCurrentCursorPosition,
+    triggerMultipleEvent,
+    htmlEncode,
+    getDivOrSectionParent,
+    getCaretCharacterOffsetWithin
+} from "../utils.js";
 import {DEBUG} from "./main.js";
 
 export class Editor{
@@ -13,7 +21,7 @@ export class Editor{
         document.dispatchEvent(new CustomEvent('socket.preprocess', {detail: [this.applyDiff, [this]]}));
 
         this.editor.addEventListener('keyup', e => {
-            if([9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144, 145, 225].includes(e.keyCode)) return;
+            if([9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144, 145, 225].includes(e.keyCode)) return;
 
             switch (e.keyCode) {
                 case 13: // Enter
@@ -25,29 +33,20 @@ export class Editor{
                         new_element.setAttribute('uuid', uuid);
 
                         let n_spaces = previous_element.innerText.search(/\S/);
-                        if(previous_element.innerText.endsWith(':')) n_spaces += this.tabSize;
+                        if(previous_element.innerText.trimEnd().endsWith(':')) n_spaces += this.tabSize;
                         if(n_spaces < 0) n_spaces = 0;
 
-                        new_element.insertBefore(document.createTextNode(' '.repeat(n_spaces)), new_element.firstChild);
+                        new_element.innerHTML = ' '.repeat(n_spaces) + new_element.innerHTML;
 
-                        if(n_spaces === 0) new_element.innerHTML = '<br>';
+                        if(new_element.innerText.length === 0) new_element.innerHTML = '<br>';
 
                         setCurrentCursorPosition(new_element, n_spaces);
                     }catch (error){
-                        e.preventDefault();
                         if(DEBUG) console.log('Can\'t apply "space" : error during execution')
                     }
                     break;
-                case 8:
-                    if(getCurrentElement() === document.getElementById('editor')){
-                        document.getSelection().modify('move', 'backward', 'character');
-                        for(const child of document.getElementById('editor').children){
-                            if(child.tagName) child.remove();
-                        }
-                    }
-                    break;
                 default:
-                    new PrismCustom(get_uuid_element(), 'python').ApplyWithCaret();
+                    if(!e.ctrlKey && !e.altKey) new PrismCustom(get_uuid_element(), 'python').ApplyWithCaret();
             }
 
             this.hasChange = true;
@@ -64,6 +63,14 @@ export class Editor{
                 document.dispatchEvent(new CustomEvent('socket.send_now', {detail: {requests: [this.request.save()], name: 'save'}}));
                 return;
             }
+
+            const anchorParent = getDivOrSectionParent(document.getSelection().anchorNode);
+            const focusParent = getDivOrSectionParent(document.getSelection().focusNode);
+            if(anchorParent !== focusParent){
+                e.preventDefault();
+                console.log(document.getSelection().anchorOffset, );
+            }
+
             switch (e.keyCode) {
                 case 9: // tab
                     e.preventDefault();
@@ -73,11 +80,29 @@ export class Editor{
                     //TODO Spaces
                     range.insertNode(document.createTextNode('    '));
                     selection.collapseToEnd();
+                    new PrismCustom(get_uuid_element(), 'python').ApplyWithCaret();
                     break;
-                case 13:
+                case 13: // space
                     if(DEBUG && this.keepSpace) console.log('Prevent add new line (key is probably maintain)');
                     if(this.keepSpace) e.preventDefault();
                     else this.keepSpace = true;
+                    break;
+                case 8: // suppr
+                    if(getDivOrSectionParent().hasAttribute('uuid') && getCaretCharacterOffsetWithin(get_uuid_element()) === 0){
+                        e.preventDefault();
+                        const currentSibling = get_uuid_element();
+                        let previousSibling = get_uuid_element().previousSibling;
+                        while(previousSibling && previousSibling.nodeType !== 1) {
+                            previousSibling = previousSibling.previousSibling;
+                        }
+                        if(previousSibling !== null){
+                            const len = previousSibling.innerText.length;
+                            previousSibling.innerHTML += currentSibling.innerHTML;
+                            currentSibling.remove();
+                            setCurrentCursorPosition(previousSibling, len);
+                        }
+                    }
+                    break;
             }
         });
 
