@@ -36,7 +36,7 @@ export default class Cursor{
 
     }
     
-    updateCursorRequest = () => {
+    updateCursorRequest(e){
         if(getCurrentElement() === this.editor) return;
         this.request = this.cursorRequest();
     }
@@ -46,7 +46,7 @@ export default class Cursor{
         cursor.request = {};
     }
 
-    cursorRequest = () => {
+    cursorRequest(){
         let element = get_uuid_element();
         for(const entry of this.current.entries()){
             if(entry[0] !== this.uuid && entry[1][1] === element) return {};
@@ -72,7 +72,7 @@ export default class Cursor{
             this.current.get(data.userId)[0].remove();
             this.current.get(data.userId)[1].removeAttribute('contenteditable');
             this.current.get(data.userId)[1].classList.remove('noteditable');
-            delete this.current.delete(data.userId);
+            this.current.delete(data.userId);
         }
 
         const element = document.querySelector('div[uuid="' + data.uuid + '"]');
@@ -97,7 +97,7 @@ export default class Cursor{
                 this.current.get(data.userId)[0].remove();
                 this.current.get(data.userId)[1].removeAttribute('contenteditable');
                 this.current.get(data.userId)[1].classList.remove('noteditable');
-                delete this.current.delete(data.userId);
+                this.current.delete(data.userId);
             }
         }, 10000);
 
