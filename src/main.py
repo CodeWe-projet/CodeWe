@@ -33,10 +33,14 @@ def editor(doc_id):
     :pre:
         doc_id: str, 5 char - in database
     """
-    content = db.get_document(doc_id)
-    content["content"] = json.loads(content["content"])
-    if doc_id is not None:
-        return render_template("editor.html", document=content)
+    try:
+        content = db.get_document(doc_id)
+        content["content"] = json.loads(content["content"])
+        if doc_id is not None:
+            return render_template("editor.html", document=content)
+    except Exception as error:
+        if DEBUG:
+            print(error)
     return abort(404)
 
 
