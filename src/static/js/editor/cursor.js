@@ -2,11 +2,19 @@ import {getCurrentElement, triggerEvent, get_uuid_element} from '../utils.js';
 import {DEBUG} from "./main.js";
 
 export default class Cursor{
-    
+
+    /**
+     * Constructor of Cursor class. Init everything for this class.
+     * @param {HTMLElement} element
+     */
     constructor(element) {
         this.editor = element;
 
-        this.current = {};
+        /**
+         * @type {Map}
+         */
+        this.current = new Map();
+
         this.color = [
             Math.round(Math.random()*255),
             Math.round(Math.random()*255),
@@ -40,6 +48,11 @@ export default class Cursor{
 
     cursorRequest = () => {
         let element = get_uuid_element();
+        console.log(this.current);
+        for(const entry of this.current.entries()){
+            console.log(entry, entry[0]);
+            if(entry[0] !== this.uuid && entry[1][1] === element) return {};
+        }
         if (element.hasAttribute('uuid')) {
             return {
                 type: 'cursor-moves',
@@ -57,18 +70,20 @@ export default class Cursor{
      * @param {Object.<string, string | Array>} data: Content of 'cursor-moves' request.
      */
     update(data){
-        if(data.userId in this.current){
-            this.current[data.userId][0].remove();
-            this.current[data.userId][1].removeAttribute('contenteditable');
-            this.current[data.userId][1].classList.remove('noteditable');
-            delete this.current[data.userId];
+        if(this.current.has(data.userId)){
+            this.current.get(data.userId)[0].remove();
+            this.current.get(data.userId)[1].removeAttribute('contenteditable');
+            this.current.get(data.userId)[1].classList.remove('noteditable');
+            delete this.current.delete(data.userId);
         }
 
         const element = document.querySelector('div[uuid="' + data.uuid + '"]');
+
         if(element === null){
             if(DEBUG) console.log('Cursor position doesn\' exist');
             return;
         }
+
         const pointer = document.createElement('div');
         pointer.classList.add('pointer');
         pointer.style.top = element.offsetTop + 'px';
@@ -80,15 +95,15 @@ export default class Cursor{
         element.classList.add('noteditable');
 
         setTimeout(() => {
-            if(data.userId in this.current && Date.now() - this.current[data.userId][2] > 9000){
-                this.current[data.userId][0].remove();
-                this.current[data.userId][1].removeAttribute('contenteditable');
-                this.current[data.userId][1].classList.remove('noteditable');
-                delete this.current[data.userId];
+            if(this.current.has(data.userId) && Date.now() - this.current.get(data.userId)[2] > 9000){
+                this.current.get(data.userId)[0].remove();
+                this.current.get(data.userId)[1].removeAttribute('contenteditable');
+                this.current.get(data.userId)[1].classList.remove('noteditable');
+                delete this.current.delete(data.userId);
             }
         }, 10000);
 
-        this.current[data.userId] = [pointer, element, Date.now()];
+        this.current.set(data.userId, [pointer, element, Date.now()]);
     }
 
 }
