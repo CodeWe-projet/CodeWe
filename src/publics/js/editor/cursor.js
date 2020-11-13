@@ -1,8 +1,5 @@
-import {getCurrentElement, triggerEvent, getCaretCharacterOffsetWithin, get_uuid_element} from '../utils.js';
+import {getCurrentElement, triggerEvent, get_uuid_element} from '../utils.js';
 import {DEBUG} from "./main.js";
-
-const colors = ['blue', 'red', 'brown'];
-const uuid = getRandomString(10);
 
 export default class Cursor{
     
@@ -15,19 +12,30 @@ export default class Cursor{
             Math.round(Math.random()*255),
             Math.round(Math.random()*255)
         ];
+        this.uuid = getRandomString(10);
+        this.request = {};
+
         // Listen for others caret moves
         document.addEventListener('socket.receive.cursor-moves', e => {
             this.update(e.detail.request.data);
         });
 
-        this.editor.addEventListener('focus', this.sendCursorPosition);
-        this.editor.addEventListener('click', this.sendCursorPosition);
-        this.editor.addEventListener('keypress', this.sendCursorPosition);
+        document.dispatchEvent(new CustomEvent('socket.preprocess', {detail: [this.sendCursorPosition, [this]]}));
+
+        this.editor.addEventListener('focus', this.updateCursorRequest);
+        this.editor.addEventListener('click', this.updateCursorRequest);
+        this.editor.addEventListener('keypress', this.updateCursorRequest);
+
     }
     
-    sendCursorPosition = () => {
+    updateCursorRequest = () => {
         if(getCurrentElement() === this.editor) return;
-        triggerEvent('socket.send', this.cursorRequest());
+        this.request = this.cursorRequest();
+    }
+
+    sendCursorPosition(cursor){
+        if(Object.keys(cursor.request).length > 0) triggerEvent('socket.send', cursor.request);
+        cursor.request = {};
     }
 
     cursorRequest = () => {
@@ -37,7 +45,7 @@ export default class Cursor{
                 type: 'cursor-moves',
                 data: {
                     uuid: element.getAttribute('uuid'),
-                    userId: uuid,
+                    userId: this.uuid,
                     color: this.color
                 }
             };
@@ -50,7 +58,10 @@ export default class Cursor{
      */
     update(data){
         if(data.userId in this.current){
-            this.current[data.userId].remove();
+            this.current[data.userId][0].remove();
+            this.current[data.userId][1].removeAttribute('contenteditable');
+            this.current[data.userId][1].classList.remove('noteditable');
+            delete this.current[data.userId];
         }
 
         const element = document.querySelector('div[uuid="' + data.uuid + '"]');
@@ -64,7 +75,20 @@ export default class Cursor{
         pointer.style.backgroundColor = 'rgb(' + data.color[0] + ', ' + data.color[1] + ', ' + data.color[2] + ')'
         if(DEBUG) pointer.id = getRandomString(20);
         document.getElementById('body').appendChild(pointer);
-        this.current[data.userId] = pointer;
+
+        element.setAttribute('contenteditable', 'false');
+        element.classList.add('noteditable');
+
+        setTimeout(() => {
+            if(data.userId in this.current && Date.now() - this.current[data.userId][2] > 9000){
+                this.current[data.userId][0].remove();
+                this.current[data.userId][1].removeAttribute('contenteditable');
+                this.current[data.userId][1].classList.remove('noteditable');
+                delete this.current[data.userId];
+            }
+        }, 10000);
+
+        this.current[data.userId] = [pointer, element, Date.now()];
     }
 
 }

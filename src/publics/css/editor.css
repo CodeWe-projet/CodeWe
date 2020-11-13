@@ -45,3 +45,8 @@ section#colorful{
     background-color: red;
     border-radius: 10px;
 }
+
+.noteditable{
+    background-color: #181818;
+    opacity: 30%;
+}
