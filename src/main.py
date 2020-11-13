@@ -80,7 +80,6 @@ def update_text(data):
     document_content = json.loads(db.get_document(data["room"])["content"])
     document = Document(document_content)
     document.apply_requests(data["requests"])
-    print(document.document_dict)
     db.update_document(data["room"], json.dumps(document.document_dict))
 
 
