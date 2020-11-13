@@ -1,12 +1,6 @@
 import {PrismCustom} from "./prism/prism-custom.js";
-import {
-    get_uuid_element,
-    getCurrentElement,
-    setCurrentCursorPosition,
-    triggerMultipleEvent
-} from "../utils.js";
+import {get_uuid_element, getCurrentElement, setCurrentCursorPosition, triggerMultipleEvent, htmlEncode} from "../utils.js";
 import {DEBUG} from "./main.js";
-import {htmlEncode} from "../utils";
 
 export class Editor{
     constructor(element, tabSize=4) {
