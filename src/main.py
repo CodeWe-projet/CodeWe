@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, abort
 from flask_socketio import SocketIO, emit, join_room
+from document import Document
 from config import DEBUG
 from api import api
 from db import db
@@ -76,6 +77,13 @@ def on_join(data):
 @socketio.on("update text")
 def update_text(data):
     emit("text updated", data, room=data["room"], include_self=False)
+    document_content = json.loads(db.get_document(data["room"])["content"])
+    document = Document(document_content)
+    document.apply_requests(data["requests"])
+    print(document.document_dict)
+    db.update_document(data["room"], json.dumps(document.document_dict))
+
+
 
 
 @socketio.on("save")
