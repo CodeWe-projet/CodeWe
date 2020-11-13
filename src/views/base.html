@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}CodeWe{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}">
+    <link rel="stylesheet/less" type="text/css" href="{{ url_for('static', filename = 'css/base.less') }}">
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename = 'img/SVG/Small.svg') }}">
     <link rel="alternate icon" type="image/png" href="{{ url_for('static', filename = 'img/PNG/Small.png') }}">
     {% block head %}{% endblock %}
 </head>
+<script src="//cdn.jsdelivr.net/npm/less" ></script>
 <body>
     <div id="main">
         <header id="header">
