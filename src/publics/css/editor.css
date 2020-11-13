@@ -35,6 +35,13 @@ section#colorful{
     font-weight: normal !important;
 }
 
-.cursor-line {
-    opacity: 0.8;
+.pointer{
+    position: absolute;
+    left: 0;
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 10px;
 }

@@ -1,4 +1,5 @@
 import {getCurrentElement, triggerEvent, getCaretCharacterOffsetWithin, get_uuid_element} from '../utils.js';
+import {DEBUG} from "./main.js";
 
 const colors = ['blue', 'red', 'brown'];
 const uuid = getRandomString(10);
@@ -7,28 +8,16 @@ export default class Cursor{
     
     constructor(element) {
         this.editor = element;
+
+        this.current = {};
+        this.color = [
+            Math.round(Math.random()*255),
+            Math.round(Math.random()*255),
+            Math.round(Math.random()*255)
+        ];
         // Listen for others caret moves
         document.addEventListener('socket.receive.cursor-moves', e => {
-            // select the good line and set the cursor
-            let element = this.editor.querySelector('div[uuid="' + e.detail.request.data.id + '"]');
-            // Insert at the right place the cursor
-            let old_elements = this.editor.querySelectorAll('div[user-id="' + e.detail.request.data.userId + '"]');
-            let current_color = null;
-            old_elements.forEach(element => {
-                current_color = element.style.background;
-                element.setAttribute('user-id', '');
-                element.className = '';
-                element.style.background = null;
-            });
-            element.className = 'cursor-line';
-            element.setAttribute('user-id', e.detail.request.data.userId);
-            if (current_color) {
-                element.style.background = current_color;
-            }
-            else {
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                element.style.background = color;
-            }
+            this.update(e.detail.request.data);
         });
 
         this.editor.addEventListener('focus', this.sendCursorPosition);
@@ -47,11 +36,35 @@ export default class Cursor{
             return {
                 type: 'cursor-moves',
                 data: {
-                    id: element.getAttribute('uuid'),
+                    uuid: element.getAttribute('uuid'),
                     userId: uuid,
-                    content: getCaretCharacterOffsetWithin(element)
+                    color: this.color
                 }
             };
         }
     }
+
+    /**
+     * Update the pointer position depending on gived data.
+     * @param {Object.<string, string | Array>} data: Content of 'cursor-moves' request.
+     */
+    update(data){
+        if(data.userId in this.current){
+            this.current[data.userId].remove();
+        }
+
+        const element = document.querySelector('div[uuid="' + data.uuid + '"]');
+        if(element === null){
+            if(DEBUG) console.log('Cursor position doesn\' exist');
+            return;
+        }
+        const pointer = document.createElement('div');
+        pointer.classList.add('pointer');
+        pointer.style.top = element.offsetTop + 'px';
+        pointer.style.backgroundColor = 'rgb(' + data.color[0] + ', ' + data.color[1] + ', ' + data.color[2] + ')'
+        if(DEBUG) pointer.id = getRandomString(20);
+        document.getElementById('body').appendChild(pointer);
+        this.current[data.userId] = pointer;
+    }
+
 }
