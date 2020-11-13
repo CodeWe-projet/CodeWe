@@ -77,8 +77,8 @@ export class Editor{
                     let selection = window.getSelection();
                     selection.collapseToStart();
                     let range = selection.getRangeAt(0);
-                    //TODO Spaces
-                    range.insertNode(document.createTextNode('    '));
+                    let n_spaces = this.tabSize - (getCaretCharacterOffsetWithin(get_uuid_element()) % this.tabSize)
+                    range.insertNode(document.createTextNode(' '.repeat(n_spaces)));
                     selection.collapseToEnd();
                     new PrismCustom(get_uuid_element(), 'python').ApplyWithCaret();
                     break;
