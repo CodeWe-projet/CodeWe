@@ -30,20 +30,19 @@ export default class Cursor{
 
         document.dispatchEvent(new CustomEvent('socket.preprocess', {detail: [this.sendCursorPosition, [this]]}));
 
-        this.editor.addEventListener('focus', this.updateCursorRequest);
-        this.editor.addEventListener('click', this.updateCursorRequest);
-        this.editor.addEventListener('keypress', this.updateCursorRequest);
+        this.editor.addEventListener('focus', () => {
+            if(getCurrentElement() === this.editor) return;
+            this.request = this.cursorRequest();
+        });
+        this.editor.addEventListener('click', () => {
+            if(getCurrentElement() === this.editor) return;
+            this.request = this.cursorRequest();
+        });
+        this.editor.addEventListener('keypress', () => {
+            if(getCurrentElement() === this.editor) return;
+            this.request = this.cursorRequest();
+        });
 
-    }
-    
-    updateCursorRequest(e){
-        if(getCurrentElement() === this.editor) return;
-        this.request = this.cursorRequest();
-    }
-
-    sendCursorPosition(cursor){
-        if(Object.keys(cursor.request).length > 0) triggerEvent('socket.send', cursor.request);
-        cursor.request = {};
     }
 
     cursorRequest(){
@@ -60,6 +59,14 @@ export default class Cursor{
                     color: this.color
                 }
             };
+        }
+        return {};
+    }
+
+    sendCursorPosition(cursor){
+        if(cursor && Object.keys(cursor.request).length > 0){
+            triggerEvent('socket.send', cursor.request);
+            cursor.request = {};
         }
     }
 
