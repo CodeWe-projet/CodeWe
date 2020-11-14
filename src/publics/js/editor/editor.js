@@ -105,8 +105,9 @@ export class Editor{
             const focusParent = getDivOrSectionParent(document.getSelection().focusNode);
             if(!anchorParent.hasAttribute('uuid')
                 || !focusParent.hasAttribute('uuid')
-                || getCaretCharacterStartOffset(get_uuid_element()) === 0
-                || getCaretCharacterOffsetWithin(get_uuid_element()) === 0){
+                || ((getCaretCharacterStartOffset(get_uuid_element()) === 0
+                    || getCaretCharacterOffsetWithin(get_uuid_element()) === 0)
+                    ) && anchorParent !== focusParent){
                 e.preventDefault();
                 temporaryCardAlert('Override', 'Sorry, you can\'t override the first char of this line', 5000);
                 return;
