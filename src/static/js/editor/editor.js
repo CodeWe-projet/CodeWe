@@ -53,16 +53,19 @@ export class Editor{
         });
 
         this.editor.addEventListener('paste', e => {
+            const s = document.getSelection();
+            function canPaste(lines){
+                if(!getDivOrSectionParent().hasAttribute('uuid')) return false;
+                if(getDivOrSectionParent(s.anchorNode) !== getDivOrSectionParent(s.focusNode)) return false;
+                return lines.length === 1 || (s.anchorNode === s.focusNode && s.anchorOffset === s.focusOffset);
+            }
+
             let paste = (e.clipboardData || window.clipboardData).getData('text');
             if(paste){
                 const lines = paste.split('\n');
-                if(getDivOrSectionParent().hasAttribute('uuid')
-                    && getDivOrSectionParent(document.getSelection().anchorNode)
-                    === getDivOrSectionParent(document.getSelection().focusNode)
-                    && (lines.length === 1 || (document.getSelection().anchorNode === document.getSelection().focusNode
-                    && document.getSelection().anchorOffset === document.getSelection().focusOffset))){
-                    const currentElement = get_uuid_element();
+                if(canPaste(lines)){
                     if(lines.length > 1){
+                        const currentElement = get_uuid_element();
                         e.preventDefault();
                         currentElement.innerHTML += lines[0];
                         new PrismCustom(currentElement, 'python').apply();
