@@ -6,9 +6,11 @@ import {
     triggerMultipleEvent,
     htmlEncode,
     getDivOrSectionParent,
-    getCaretCharacterOffsetWithin
+    getCaretCharacterOffsetWithin,
+    getCaretCharacterStartOffset
 } from "../utils.js";
 import {DEBUG} from "./main.js";
+import {temporaryCardAlert} from './text-alert.js';
 
 export class Editor{
     constructor(element, tabSize=4) {
@@ -83,9 +85,11 @@ export class Editor{
                     }
                 }else{
                     e.preventDefault();
+                    temporaryCardAlert('Paste Event', 'Sorry, you can\'t past over a multiline selection' , 5000);
                 }
             }else{
                 e.preventDefault();
+                temporaryCardAlert('Paste Event', 'Error with content of your clipboard', 5000);
             }
         });
 
@@ -93,13 +97,19 @@ export class Editor{
             if ((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode === 83) {
                 e.preventDefault();
                 document.dispatchEvent(new CustomEvent('socket.send_now', {detail: {requests: [this.request.save()], name: 'save'}}));
+                temporaryCardAlert('Save', 'Your document has been saved', 5000, "#228b22");
                 return;
             }
 
             const anchorParent = getDivOrSectionParent(document.getSelection().anchorNode);
             const focusParent = getDivOrSectionParent(document.getSelection().focusNode);
-            if(anchorParent !== focusParent){
+            if(!anchorParent.hasAttribute('uuid')
+                || !focusParent.hasAttribute('uuid')
+                || getCaretCharacterStartOffset(get_uuid_element()) === 0
+                || getCaretCharacterOffsetWithin(get_uuid_element()) === 0){
                 e.preventDefault();
+                temporaryCardAlert('Override', 'Sorry, you can\'t override the first char of this line', 5000);
+                return;
             }
 
             switch (e.keyCode) {
@@ -113,7 +123,7 @@ export class Editor{
                     selection.collapseToEnd();
                     new PrismCustom(get_uuid_element(), 'python').ApplyWithCaret();
                     break;
-                case 13: // space
+                case 13: // enter
                     if(DEBUG && this.keepSpace) console.log('Prevent add new line (key is probably maintain)');
                     if(this.keepSpace) e.preventDefault();
                     else this.keepSpace = true;
