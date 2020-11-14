@@ -53,8 +53,37 @@ export class Editor{
         });
 
         this.editor.addEventListener('paste', e => {
-            e.preventDefault();
-            alert('C/C interdit !');
+            let paste = (e.clipboardData || window.clipboardData).getData('text');
+            if(paste){
+                const lines = paste.split('\n');
+                if(getDivOrSectionParent().hasAttribute('uuid')
+                    && getDivOrSectionParent(document.getSelection().anchorNode)
+                    === getDivOrSectionParent(document.getSelection().focusNode)
+                    && (lines.length === 1 || (document.getSelection().anchorNode === document.getSelection().focusNode
+                    && document.getSelection().anchorOffset === document.getSelection().focusOffset))){
+                    const currentElement = get_uuid_element();
+                    if(lines.length > 1){
+                        e.preventDefault();
+                        currentElement.innerHTML += lines[0];
+                        new PrismCustom(currentElement, 'python').apply();
+                        let currentUuid = currentElement.getAttribute('uuid');
+                        for(let i=1;i<lines.length;i++){
+                            let nextUuid = getRandomString(10);
+                            this.new_line(
+                                nextUuid,
+                                currentUuid,
+                                lines[i]
+                            )
+                            new PrismCustom(this.editor.querySelector('div[uuid="' + nextUuid + '"]'), 'python').apply();
+                            currentUuid = nextUuid;
+                        }
+                    }
+                }else{
+                    e.preventDefault();
+                }
+            }else{
+                e.preventDefault();
+            }
         });
 
         this.editor.addEventListener('keydown', e => {
@@ -68,7 +97,6 @@ export class Editor{
             const focusParent = getDivOrSectionParent(document.getSelection().focusNode);
             if(anchorParent !== focusParent){
                 e.preventDefault();
-                console.log(document.getSelection().anchorOffset, );
             }
 
             switch (e.keyCode) {
