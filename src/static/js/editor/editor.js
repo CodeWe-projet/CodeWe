@@ -101,6 +101,8 @@ export class Editor{
                 return;
             }
 
+            if([9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144, 145, 225].includes(e.keyCode)) return;
+
             const anchorParent = getDivOrSectionParent(document.getSelection().anchorNode);
             const focusParent = getDivOrSectionParent(document.getSelection().focusNode);
             if(!anchorParent.hasAttribute('uuid')
