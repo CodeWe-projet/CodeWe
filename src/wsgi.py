@@ -1,4 +1,7 @@
-from main import app as application
+from main import app
+
+if __name__ == "__main__":
+    app.run()
 
 # def application(env, start_response):
 #	start_response('200 OK', [('Con#tent-Type','text/html')])
