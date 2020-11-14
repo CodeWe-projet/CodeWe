@@ -78,5 +78,11 @@ python main.py [ip [port]]
 python3 main.py [ip [port]]
 ```
 
+## Plan vor V2
+
+* Migration to Nodejs (instead of flask)
+* Store document as json or an array in Database
+
 ## Licence
+
 This project is under MIT licence. The full licence can be read [here](https://github.com/allEyezOnCode/CodeWe).
