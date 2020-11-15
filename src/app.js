@@ -19,7 +19,7 @@ const app = express();
 app.disable("x-powered-by");
 
 // Configure views folder
-nunjucks.configure('templates', {
+nunjucks.configure('views', {
     autoescape: true,
     express: app
 });
@@ -29,7 +29,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // Set static folder
-app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, 'publics')));
 
 // Configure routes
 app.use('/', index);
