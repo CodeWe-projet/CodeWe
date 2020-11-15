@@ -3,7 +3,7 @@
 {% block title %}CodeWe{% endblock %}
 
 {% block head %}
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/index.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="/css/index.min.css">
 {% endblock %}
 
 {% block corps %}
@@ -15,5 +15,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="module" src="{{ url_for('static', filename = 'js/base.js') }}"></script>
+<script type="module" src="/js/base.js"></script>
 {% endblock %}

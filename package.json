@@ -1,0 +1,26 @@
+{
+  "name": "codewe",
+  "version": "1.0.0",
+  "description": "CodeWe is an open-source live code-sharing website developed in python with flask.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allEyezOnCode/CodeWe.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/allEyezOnCode/CodeWe/issues"
+  },
+  "homepage": "https://github.com/allEyezOnCode/CodeWe#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "nunjucks": "^3.2.2",
+    "socket.io": "^3.0.1"
+  }
+}
