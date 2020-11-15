@@ -26,3 +26,4 @@ codewe.db
 /git-mv-with-history.sh
 
 node_modules/
+src/config/config.json
