@@ -18,7 +18,6 @@ const baseCode = JSON.stringify([
 
 class DB {
     constructor (host, user, password, db, port) {
-        // TODO deal with connect error
         this.pool = mysql.createPool({
             host: host,
             user: user,
@@ -34,7 +33,6 @@ class DB {
                 connection.query(querySelectDocument, [docId], (error, rows) => {
                     connection.release();
                     if (error) reject(error);
-                    // TODO deal with id not in db
                     // Return the document (first result of the results)
                     resolve(rows[0]);
                 });
@@ -48,7 +46,6 @@ class DB {
                 if (err) reject(err);
                 let date = new Date();
                 connection.query(queryUpdateDocument, [textContent, date, docId], (error, result) => {
-                    // TODO DEAL with id not in db, error?
                     if (error) reject(error);
                 });
             });

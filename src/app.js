@@ -1,3 +1,13 @@
+/**
+ * App
+ * @author Alexandre Dewilde
+ * @date 15/11/2020
+ * @version 1.0.0
+ * @requires express
+ * @requires ../db/DB
+ * 
+ */
+
 const express = require('express');
 const nunjucks = require('nunjucks');
 const path = require('path');
@@ -27,9 +37,13 @@ app.use('/editor', editor);
 
 
 // 404 error
-app.use((req, res, next) => {
-    res.status(404);
-    res.render('404.html');
-})
+app.all('*', (req, res) => {
+    res.status(404).render('404.html');
+});
+
+// Handle errors
+app.use((err, req, res, next) => {
+    res.sendStatus(500);
+});
 
 module.exports = app;
