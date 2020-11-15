@@ -11,18 +11,19 @@
 <body>
     <div id="main">
         <header id="header">
-            {% block header %}{% include 'header.html' %}{% endblock %}
+            {% block header %}{% include 'component/header.html' %}{% endblock %}
         </header>
 
         <div id="body">
-            {% include 'welcome.html' %}
+            {% include 'component/welcome.html' %}
             {% block corps %}{% endblock %}
         </div>
 
         <footer id="footer">
-            {% block footer %}{% include 'footer.html' %}{% endblock %}
+            {% block footer %}{% include 'component/footer.html' %}{% endblock %}
         </footer>
     </div>
 </body>
+    <script type="module" src="/js/dev/page/base.js"></script>
     {% block scripts %}{% endblock %}
 </html>

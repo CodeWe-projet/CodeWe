@@ -10,7 +10,7 @@ import {
     getCaretCharacterStartOffset
 } from "../utils.js";
 import {DEBUG} from "./main.js";
-import {temporaryCardAlert} from './text-alert.js';
+import {temporaryCardAlert} from '../../component/text-alert.js';
 
 export class Editor{
     constructor(element, tabSize=4) {

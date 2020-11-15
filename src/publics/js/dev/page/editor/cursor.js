@@ -1,8 +1,9 @@
-import {getCurrentElement, triggerEvent, get_uuid_element} from '../utils.js';
-import {DEBUG} from "./main.js";
+import Config from "../../config.js";
+import Random from "../../utils/random.js";
+import _, {getCurrentNode, getNodeFromAttribute} from "../../utils/element.js";
+
 
 export default class Cursor{
-
     /**
      * Constructor of Cursor class. Init everything for this class.
      * @param {HTMLElement} element
@@ -10,43 +11,34 @@ export default class Cursor{
     constructor(element) {
         this.editor = element;
 
-        /**
-         * @type {Map}
-         */
         this.current = new Map();
 
-        this.color = [
-            Math.round(Math.random()*255),
-            Math.round(Math.random()*255),
-            Math.round(Math.random()*255)
-        ];
-        this.uuid = getRandomString(10);
+        this.color = Random.randInt(0, 255, 3);
+        this.uuid = Random.string(10);
         this.request = {};
 
         // Listen for others caret moves
-        document.addEventListener('socket.receive.cursor-moves', e => {
-            this.update(e.detail.request.data);
-        });
+        document.addEventListener('socket.receive.cursor-moves', this.update);
 
         document.dispatchEvent(new CustomEvent('socket.preprocess', {detail: [this.sendCursorPosition, [this]]}));
 
         this.editor.addEventListener('focus', () => {
-            if(getCurrentElement() === this.editor) return;
+            if(getCurrentNode() === this.editor) return;
             this.request = this.cursorRequest();
         });
         this.editor.addEventListener('click', () => {
-            if(getCurrentElement() === this.editor) return;
+            if(getCurrentNode() === this.editor) return;
             this.request = this.cursorRequest();
         });
         this.editor.addEventListener('keypress', () => {
-            if(getCurrentElement() === this.editor) return;
+            if(getCurrentNode() === this.editor) return;
             this.request = this.cursorRequest();
         });
 
     }
 
     cursorRequest(){
-        let element = get_uuid_element();
+        let element = getNodeFromAttribute('uuid');
         for(const entry of this.current.entries()){
             if(entry[0] !== this.uuid && entry[1][1] === element) return {};
         }
@@ -64,17 +56,19 @@ export default class Cursor{
     }
 
     sendCursorPosition(cursor){
-        if(cursor && Object.keys(cursor.request).length > 0){
-            triggerEvent('socket.send', cursor.request);
+        const request = cursor.request;
+        if(cursor && Object.keys(request).length > 0){
+            Event.triggerCustom('socket.send', {request});
             cursor.request = {};
         }
     }
 
     /**
      * Update the pointer position depending on gived data.
-     * @param {Object.<string, string | Array>} data: Content of 'cursor-moves' request.
+     * @param {Object.<string, string | Array>} ev
      */
-    update(data){
+    update(ev){
+        const data = ev.detail.request.data
         if(this.current.has(data.userId)){
             this.current.get(data.userId)[0].remove();
             this.current.get(data.userId)[1].removeAttribute('contenteditable');
@@ -85,7 +79,7 @@ export default class Cursor{
         const element = document.querySelector('div[uuid="' + data.uuid + '"]');
 
         if(element === null){
-            if(DEBUG) console.log('Cursor position doesn\' exist');
+            if(Config.DEBUG) console.log('Cursor position doesn\' exist');
             return;
         }
 
@@ -93,8 +87,8 @@ export default class Cursor{
         pointer.classList.add('pointer');
         pointer.style.top = element.offsetTop + 'px';
         pointer.style.backgroundColor = 'rgb(' + data.color[0] + ', ' + data.color[1] + ', ' + data.color[2] + ')'
-        if(DEBUG) pointer.id = getRandomString(20);
-        document.getElementById('body').appendChild(pointer);
+        if(Config.DEBUG) pointer.id = getRandomString(20);
+        _.id('body').appendChild(pointer);
 
         element.setAttribute('contenteditable', 'false');
         element.classList.add('noteditable');
