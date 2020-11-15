@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2020 Dewilde Alexandre, Dubois Brieuc and Technicguy Theo
+Copyright (c) 2020 Dewilde Alexandre, Dubois Brieuc and Fischer Nicolas
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,6 +1,6 @@
-{% extends 'legal-base.html' %}
+{% extends 'base.html' %}
 
-{% block title %}CodeWe - Terms of Service{% endblock %}
+{% block title %}CodeWe{% endblock %}
 
 {% block head %}
     <link rel="stylesheet/less" type="text/css" href="{{ url_for('static', filename = 'css/legal.less') }}">
@@ -8,487 +8,87 @@
 
 {% block corps %}
 <section>
-  <br />
-  <div class="revision">
-    <h2>Revision History</h2>
-    <table>
-      <tbody>
-        <tr>
-          <a href="/tos-archive">
-            <td>Terms of Service from November 6<sup>th</sup>, 2020 to November 15<sup>th</sup>, 2020
-            </td>
-          </a>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <br />
-  <h1>Terms of Service</h1>
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          Last Revision: November 15<sup>th</sup>, 2020
-        </td>
-        <td class="align-right">
-          Valid Starting: November 15<sup>th</sup>, 2020.
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p>
-    <i>
-      A downloadable PDF version can be found <a href="/tos-pdf">here</a>.
-    </i>
-
-    <br><br>
-    <strong>Hello!</strong> We are happy to see You here at CodeWe!
-    <br>
-    Read these Terms and Conditions and Privacy Policy carefully before accessing the Service.
-    <br>
-    CodeWe is a Service that allows you to share and collaborate on programs and scripts. These are the Terms and Conditions that regulate and govern Your use of our Service. They also inform you about the sharing Service. When you access our Website or Service, you fully agree to these terms.
-    <br>
-    We don’t charge you to use CodeWe. Because We don’t like advertisement so We don’t display advertisement (besides, You are probably using an adblocker anyway 😉). We therefore have no reason to collect personal data and even less to sell or share any data or information that MAY directly identify You (these are things like Your name, (email) address and other).
-    <br>
-    Your access to and use of the Service is conditioned by the acceptance of these Terms. These Terms and Conditions apply to all and any visitor, user and others who access or use the Service.
-    <br>
-    Our Privacy Policy explains how we (don’t) collect and use Your personal information to provide Our Service. These Privacy Policies should be read alongside these Terms.
-  </p>
-  <h2>Interpretation and Definitions</h2>
-  <p>
-    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all capitals, as shown here.
-    <br>
-    Words of which the first letter is capitalized, such as “<i>Terms</i>”, have meanings that are defined in the section here-under. The definitions apply whatever derivative form they take.
-    <br>
-    For the purpose and in context of these Terms and Conditions,
-    <ul>
-      <li><i>Country</i> refers to Belgium.</li>
-      <li><i>Owners</i> (also referred as “<i>the Owners</i>”, “<i>We</i>”, “<i>Us</i>” or “<i>Our</i>”) refers to us, the creators and maintainers of this project as described in the Owners section.</li>
-      <li><i>Device</i> means any item, object or device able to access or contact the Service. Examples include, but are not limited to, computers, smartphones, phones or a digital tablet.</li>
-      <li><i>Privacy Policy</i> (or simply “<i>Policy</i>”) refers to the document governing the collection, use and disclosure of information we collect. More information is to be found in the Other terms, policies and definitions that MAY apply to You section;</li>
-      <li><i>Service</i> (also referred as “<i>CodeWe</i>”, “<i>the Project</i>” or “<i>Project</i>”) refers to the Website.</li>
-      <li><i>Terms of Service</i> (also referred as “<i>Terms</i>” or “<i>Terms and Conditions</i>”) mean these Terms and Conditions forming the entire agreement between You and Us regarding the use of this Service.</li>
-      <li><i>Third-Party</i> mean any entity that is not You or We.</li>
-      <li>
-        <i>Website</i> refers to CodeWe, the internet page accessible form <a href="http://codewe.bhasher.com">http://codewe.bhasher.com</a>, the IP address version 4 or version 6 by secure or insecure connections displaying the CodeWe logo and design.
-      </li>
-      <li>
-        <i>You</i> mean the individual being accessing the Service, or any other legal entity acting on behalf of which is accessing the Service.
-      </li>
-    </ul>
-  </p>
-  <h2>Owners</h2>
-  <p>
-    The Owners of this Project or Service are the people regularly updating, maintaining and supervising the evolution of the Project, in other words:
-    <ul>
-      <li>Alexandre DEWILDE;</li>
-      <li>Brieuc DUBOIS;</li>
-      <li>Theo TECHNICGUY.</li>
-    </ul>
-    <br>We are also the copyright owners for this Service.</p>
-  <p>We would like to thank every person having contributed to this Project.</p>
-
-  <h2>The Service We provide</h2>
-  <p>We provide and make available to You to the best of Our abilities a Service that allows You to share, distribute and collaborate on programs, scripts and more.</p>
-  <h3>Who can use CodeWe</h3>
-  <p>
-    We try to make this Service as broadly available to any and everyone who wishes to use it, but We don’t allow You to use Our Service SHOULD:
-    <ul>
-      <li>
-        You be under the legal age of 18 and not have consent from Your parents or guardians;
-      </li>
-      <li>
-        We have revoked or disabled Your access to CodeWe following a breach of Our Terms or Policies;
-      </li>
-      <li>
-        You are prohibited or not allowed to receive or access CodeWe under applicable laws.
-      </li>
-    </ul>
-  </p>
-  <h3>What can you share and do on CodeWe</h3>
-  <p>
-    We wish that people can use CodeWe to share and collaborate on algorithms and code freely but under no circumstance at the expense of the safety of You and others. You therefor agree not to engage in the behaviour or conduct described below (or to facilitate or support others in doing so):
-    <ul>
-      <li>
-        You MUST NOT use CodeWe to do or share anything…
-        <ul>
-          <li>… that breaches these Terms or Policies;</li>
-          <li>… that is unlawful, discriminatory or fraudulent;</li>
-          <li>
-            … that infringes or breaches someone else’s rights, including intellectual property rights.
-          </li>
-        </ul>
-      </li>
-      <li>
-        You also MUST NOT use CodeWe to create or share viruses, malware, spyware, malicious code or scripts, or do anything that could disable, overburden, or impair the proper and correct working or appearance of CodeWe.
-      </li>
-      <li>
-        You MUST NOT access or collect data from CodeWe using automated means (without Our prior permission) or attempt to access data that You do not have permission to access.
-      </li>
-    </ul>
-    <br>
-    We reserve Ourselves the right to remove, delete or block content that breaches these Terms without prior notice to anyone.
-    <br>
-    If We remove, delete or bock content that You have made available or shared for violating these Terms, We MAY try to notify You in a reasonable delay by mean easily accessible to Us.
-    <br>
-    We also can remove or restrict access to Your content or information if We determine that doing so is reasonably necessary to avoid or mitigate adverse legal or regulatory disputes or impacts on/to Us.
-  </p>
-  <h3>Permission You give Us</h3>
-  <p>
-    To correctly and efficiently provide You with Our Service, We need permission Your permission to store or save content You create and share
-    <br>
-    The content you create and share is saved temporarily in our database. Some content that you create and make available to others MAY be protected by intellectual property rights.
-    <br>
-    You (or the owner) own(s) the intellectual property rights (e.g.: copyright or trademarks) in any such content that you create or share on CodeWe. Nothing in these Terms takes away these rights You have to Your own content. You are free to share or not Your content with anyone else, whenever You want.
-    <br>
-    However, to be able to provide Our Service, You MUST give Us legal permissions (“license”) to store or save this content. This is solely for the purpose to provide Our Service (as described above).
-    <br>
-    Specifically, when You create, share or make available content that is covered by intellectual property rights, on CodeWe, You grant Us a non-exclusive, transferable, sub-licensable, royalty-free, and worldwide licence or authorisation to host, save, store, distribute, modify, run, copy, duplicate, publicly display and create derivative works of Your content.
-    <br>
-    <i>
-      Example: You share a script on CodeWe. You give us permission to store, save, copy and share it with others. This is the intent after all, isn’t it?
-    </i>
-    <br>
-    Content stored for longer than 48 hours after last activity or view will automatically be removed. You can download the content You created or shared anytime by using the “Download” button.
-    <br>
-    When content is deleted, it’s no longer accessible to other users, however it MAY continue to exist elsewhere on CodeWe where:
-    <ul>
-      <li>
-        Immediate deletion is not possible due to technical limitations, in which case Your content will be deleted within a maximum of 10 working days from the day it was marked for deletion;
-      </li>
-      <li>
-        Immediate deletion or deletion in general would restrict Our ability to…
-        <ul>
-          <li>
-            … investigate or identify illegal activity or violations of Our Terms and/or Policies;
-          </li>
-          <li>
-            … comply with legal obligation, such as preservation of evidence;
-          </li>
-          <li>
-            … comply with a request from a judicial or administrative authority, law enforcement or government agency.
-          </li>
-        </ul>
-      </li>
-    </ul>
-    in which cases the content will be retained for longer than necessary for the purpose of which it has been retained. This extra duration MAY vary case-by-case.
-    <br>
-    If the content is retained for longer; this license will prevail and continue to be valid until the content has been fully deleted.
-  </p>
-
-  <h2>Limits on using Our intellectual property</h2>
-  <p>
-    This project is licensed under the MIT License available <a href="https://github.com/allEyezOnCode/CodeWe/blob/master/LICENCE.md">here</a>. You are free to obtain a copy of this project. If You obtain a copy of this Project, these Terms and Condition as well as the Privacy Policy no longer apply and We cannot be held responsible for any actions when using this copy.
-  </p>
-
-  <h2>Updating these Terms or Policies</h2>
-  <p>
-    We constantly work on improving CodeWe and develop new features to make Our Service better for You and others. We thus MAY need to update and maintain these Terms every now and then to accurately reflect Our services and practices. We will only make any changes if We feel the Terms are no longer appropriate or incomplete.
-    <br>
-    We will attempt to notify You of such changes a reasonable time before the changes take effect to give You an opportunity to review the changes to these Terms, unless changes are required by an external force. Once the Terms have been updated, You will be bound by them if You continue using CodeWe.
-    <br>
-    We still hope that You will continue using CodeWe, but should You no longer agree to these Terms, You MUST terminate Your connection to Us as described in the Termination section here below.
-  </p>
-
-  <h2>Suspenstion or Termination</h2>
-  <p>
-    We want CodeWe to be a place to safely share and collaborate.
-    <br>
-    If We determine that You clearly, seriously or repeatedly breached Our Terms and Privacy Policy, We MAY suspend or permanently disable Your access to CodeWe without prior notice. We MAY also suspend or disable Your access to CodeWe if You repeatedly infringe or disregard other people’s intellectual rights or where We are REQUIRED by legal reasons, here too, without prior notice.
-    <br>
-    Once You have been subject to suspension or termination, You MUST delete any and all data linking or connecting You to Us in any way. You MUST comply with Our decision and MUST NOT attempt to circumvent or find another way to use CodeWe.
-    <br>
-    If You think We have terminated Your access wrongfully, contact Us using the information in the Contact section.
-    <br>
-    If You wish to terminate this agreement, You MUST immediately stop using CodeWe and delete any and all data linking or connecting You to Us in any way. Once this agreement terminated, You will have to consent again before using CodeWe.
-    <br>
-    Please note that following section prevail and continue to be valid after termination:
-    <ul>
-      <li>Suspension or Termination;</li>
-      <li>Permissions You give Us;</li>
-      <li>Limits of liability;</li>
-      <li>“AS IS” and “AS AVAILABLE” Disclaimer;</li>
-      <li>Disputes;</li>
-      <li>Other.</li>
-    </ul>
-  </p>
-
-  <h2>Limits on liability</h2>
-  <p>
-    We MUST NOT be held liable for any special, incidental, indirect, or consequential damages whatsoever. This includes, but is not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service, Third-Party software and/or Third-Party hardware used with CodeWe, or otherwise in connection with any provision of these Terms. This, even if We have been advised of the possibility that such damages MAY occur and even if the remedy fails of its essential purpose.
-    <br>
-    Knowing that some states do not allow the exclusion of implied warranties or limitation of liability for incidental or consequential damages, some of the above limitations MAY not apply. In these states, each party's liability will be limited to the greatest extent permitted by law.
-  </p>
-
-  <h2>“<i>AS IS</i>” and “<i>AS AVAILABLE</i>” Disclaimer</h2>
-  <p>
-    CodeWe, not only being in active development, but also in estimated alpha (not ready for public release) stage and generally, is provided to You “AS IS” and “AS AVAILABLE”, with all its faults, defects and bugs, without warranty of any kind. To the maximum extent permitted under applicable law, We expressly disclaim all warranties, whether express, implied, statutory or otherwise. Respecting the Service, this includes all implied warranties of merchantability, fitness for a particular purpose, title and non-infringement. Warranties that MAY arise out of course of dealing, performance usage or trade practice are also included.
-    <br>
-    Without limiting the foregoing, We provide no warranty or undertaking, and make no representation of any kind that CodeWe will meet Your requirements, achieve any intended or implied results, be compatible or work with any other software, application, system or service. We do not warrant that CodeWe will be running without any interruptions meet any performance or reliability standard or be error free. We also give no warranty that any errors or deflects will be corrected.
-    <br>
-    Without limiting the foregoing, We don’t make any representation or warranty of any kind, be it express or implied:
-    <ul>
-      <li>
-        as to the operation or availability of CodeWe, or the information, content, and materials or products included thereon;
-      </li>
-      <li>
-        that CodeWe will be uninterrupted or error-free;
-      </li>
-      <li>
-        as to the accuracy, reliability, or currency of any information or content provided through CodeWe or
-      </li>
-      <li>
-        that CodeWe, its servers, the content, or e-mails sent from or on behalf of Us are free of viruses, scripts, trojan horses, worms, malware, timebombs or other harmful components.
-      </li>
-    </ul>
-    <br>
-    As some jurisdictions do not allow the exclusion of certain types of warranties or limitations on applicable statutory rights of a consumer, some or all of the above exclusions and limitation MAY not apply to You. In such case, You MUST immediately terminate this agreement.
-  </p>
-
-  <h2>Disputes</h2>
-  <p>
-    In an attempt to limit or avoid disputes between You and Us, We try to provide clear regulations and guidelines. However, if a dispute does arise, You agree to first and foremost attempt to resolve it with Us without involving the public before resolving it in any legal court. You also agree that the laws of Belgium govern these Terms and Privacy Policies including any conflicts of law provisions.
-    <br>
-    There MAY exist translations of these Terms. In case of any dispute, You agree that the English version will be valid and considered.
-  </p>
-
-  <h2>Other</h2>
-  <p>
-    These Terms make up the entire agreement between You and Us, Owners of this Project.
-    <br>
-    If any part of these Terms is found to be unenforceable, the remaining portion MUST be considered having full force or effect. If we fail to enforce any of these Terms, it MUST NOT be considered a waiver. Any amendment to or waiver of these Terms MUST be made in writing and signed by Us.
-    <br>
-    You MUST NOT transfer of delegate any of Your rights or obligations under these Terms to anyone else without Our explicit consent.
-    <br>
-    We always appreciate Your feedback, suggestions and issue findings about CodeWe. You agree that We MAY use them without any restriction or obligation to compensate You and We are under no obligation to keep them confidential.
-    <br>
-    These Terms only cover the Project instance hosted, managed, created, developed and maintained by Us. If You fork, copy, modify or alter a separate version of this Project, these Terms MUST NOT apply to You.
-  </p>
-
-  <h2>Other terms, policies and definitions that MAY apply to You</h2>
-  <h3>RFC 2119</h3>
-  <p>
-    In this document, the key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" are to be interpreted as described in RFC 2119. An arranged copy can be found in the Annex section.
-  </p>
-  <h3>Privacy Policy</h3>
-  <p>
-    The <a href="/privacy">Policy Privacy</a> describes how We collect and use Your personal information to provide CodeWe. They are a fully integrated part of these Terms.
-  </p>
-  <h3>Hosting Service</h3>
-  <p>
-    The Service is hosted and made available through a virtual private server hosted by Groupe PulseHerge. By using our Service, You also accept their terms and condition available at <a href="https://www.pulseheberg.com/legal">https://www.pulseheberg.com/legal</a>.
-  </p>
-  <h3>Links to other websites</h3>
-  <p>
-    Our Service MAY contain hyperlinks, links or references to Third Party websites that are not owned or controlled by Us.
-    <br>
-    We have no control over, and assume no responsibility for, the content, privacy policies or practices of any Third-Party web site or service. You further acknowledge and agree that We shall not be held responsible or liable, it being directly or indirectly, for any damage, loss or modification alleged to be caused by, in or during a connection with the use of or reliance on any such content, goods or services available on or through any such web site, web page or service.
-    <br>
-    We strongly advise You to carefully read the terms or service and privacy policies of any Third-Party web site, web page or services that You visit.
-  </p>
-  <h2>Contact</h2>
-  <p>If you have any request or require additional clarification, do not hesitate to contact Us!
-    <br>
-    Email: <a href="mailto:terms@codewe.bhasher.com">terms@codewe.bhasher.com</a>
-  </p>
-</section>
-<section>
-  <h2>Annex 1: Arranged copy of RFC 2119</h2>
-  <p>
-    The original was found at <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a> on November 9<sup>th</sup>, 2020
-  </p>
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          Updated by: 8174<br />
-          <br />
-          Network Working Group<br />
-          Request for Comments: 2119<br />
-          BCP: 14<br />
-          Category: Best Current Practice<br />
-        </td>
-        <td class="align-right">
-          BEST CURRENT PRACTICE<br />
-          Errata Exist<br />
-          S. Bradner<br />
-          Harvard University<br />
-          March 1997<br />
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h1>Key words for use in RFCs to Indicate Requirement Levels</h1>
-  <h2>Status of this Memo</h2>
-  <p>
-    This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements. Distribution of this memo is unlimited.
-  </p>
-  <h2>Abstract</h2>
-  <p>
-    In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. Authors who follow these guidelines should incorporate this phrase near the beginning of their document:
-    <br>
-    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119.
-    <br>
-    Note that the force of these words is modified by the requirement level of the document in which they are used.
-  </p>
-  <h2>MUST</h2>
-  <p>
-    This word, or the terms "REQUIRED" or "SHALL", mean that the definition is an absolute requirement of the specification.
-  </p>
-  <h2>MUST NOT</h2>
-  <p>
-    This phrase, or the phrase "SHALL NOT", mean that the definition is an absolute prohibition of the specification.
-  </p>
-  <h2>SHOULD</h2>
-  <p>
-    This word, or the adjective "RECOMMENDED", mean that there may exist valid reasons in particular circumstances to ignore a particular item, but the full implications must be understood and carefully weighed before choosing a different course.
-  </p>
-  <h2>SHOULD NOT</h2>
-  <p>
-    This phrase, or the phrase "NOT RECOMMENDED" mean that there may exist valid reasons in particular circumstances when the particular behavior is acceptable or even useful, but the full implications should be understood and the case carefully weighed before implementing any behavior described with this label.
-  </p>
-  <h2>MAY</h2>
-  <p>
-    This word, or the adjective "OPTIONAL", mean that an item is truly optional. One vendor may choose to include the item because a particular marketplace requires it or because the vendor feels that it enhances the product while another vendor may omit the same item. An implementation which does not include a particular option MUST be prepared to interoperate with another implementation which does include the option, though perhaps with reduced functionality. In the same vein an implementation which does include a particular option MUST be prepared to interoperate with another implementation which does not include the option (except, of course, for the feature the option provides.)
-  </p>
-  <h2>Guidance in the use of these Imperatives</h2>
-  <p>
-    Imperatives of the type defined in this memo must be used with care and sparingly. In particular, they MUST only be used where it is actually required for interoperation or to limit behavior which has potential for causing harm (e.g., limiting retransmisssions). For example, they must not be used to try to impose a particular method on implementors where the method is not required for interoperability.
-  </p>
-  <h2>Security Considerations</h2>
-  <p>
-    These terms are frequently used to specify behavior with security implications. The effects on security of not implementing a MUST or SHOULD, or doing something the specification says MUST NOT or SHOULD NOT be done may be very subtle. Document authors should take the time to elaborate the security implications of not following recommendations or requirements as most implementors will not have had the benefit of the experience and discussion that produced the specification.
-  </p>
-  <h2>Acknowledgments</h2>
-  <p>
-    The definitions of these terms are an amalgam of definitions taken from a number of RFCs. In addition, suggestions have been incorporated from a number of people including Robert Ullmann, Thomas Narten, Neal McBurnett, and Robert Elz.
-  </p>
-  <h2>Author's Address</h2>
-  <p>
-    Scott Bradner<br>
-    Harvard University<br>
-    1350 Mass. Ave.<br>
-    Cambridge, MA 02138<br><br>
-    Phone - +1 617 495 3864<br>
-    Email - sob@harvard.edu
-  </p>
-
-  <h2>Annex 2: Arranged copy of RFC 8174</h2>
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <br><br>
-          Internet Engineering Task Force (IETF)<br>
-          Request for Comments: 8174<br>
-          BCP: 14<br>
-          Updates: 2119<br>
-          Category: Best Current Practice<br>
-          ISSN: 2070-1721<br>
-        </td>
-        <td class="align-right">
-          BEST CURRENT PRACTICE<br>
-          Errata Exist<br>
-          B. Leiba<br>
-          Huawei Technologies<br>
-          May 2017<br>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h1>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</h1>
-  <h2>Abstract</h2>
-  <p>
-    RFC 2119 specifies common key words that may be used in protocol specifications. This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the keywords have the defined special meanings.
-  </p>
-  <h2>Status of This Memo</h2>
-  <p>
-    This memo documents an Internet Best Current Practice.<br>
-
-    This document is a product of the Internet Engineering Task Force (IETF). It represents the consensus of the IETF community. It has received public review and has been approved for publication by the Internet Engineering Steering Group (IESG). Further information on BCPs is available in Section 2 of RFC 7841.<br>
-
-    Information about the current status of this document, any errata, and how to provide feedback on it may be obtained at http://www.rfc-editor.org/info/rfc8174.
-  </p>
-  <h2>Copyright Notice</h2>
-  <p>
-    Copyright (c) 2017 IETF Trust and the persons identified as the document authors. All rights reserved.<br>
-
-    This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document. Please review these documents carefully, as they describe your rights and restrictions with respect to this document. Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.
-  </p>
-  <h2>Introduction</h2>
-  <p>
-    RFC 2119 specifies common key words, such as "MUST", "SHOULD", and "MAY", that may be used in protocol specifications. It says that the key words "are often capitalized," which has caused confusion about how to interpret non-capitalized words such as "must" and "should".
-    <br>
-    This document updates RFC 2119 by clarifying that only UPPERCASE usage of the key words have the defined special meanings. This document is part of BCP 14.
-  </p>
-  <h2>Clarifying Capitalization of Key Words</h2>
-  <p>
-    The following change is made to [RFC2119]:
-    <br>
-    === OLD ===
-    <br>
-    In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. Authors who follow these guidelines should incorporate this phrase near the beginning of their document:
-    <br>
-    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119.
-    <br>
-    === NEW ===
-    <br>
-    In many IETF documents, several words, when they are in all capitals as shown below, are used to signify the requirements in the specification. These capitalized words can bring significant clarity and consistency to documents because their meanings are well defined. This document defines how those words are interpreted in IETF documents when the words are in all capitals.
-    <ul>
-      <li>
-        These words can be used as defined here, but using them is not required. Specifically, normative text does not require the use of these key words. They are used for clarity and consistency when that is what's wanted, but a lot of normative text does not use them and is still normative.
-      </li>
-      <li>
-        The words have the meanings specified herein only when they are in all capitals.
-      </li>
-      <li>
-        When these words are not capitalized, they have their normal English meanings and are not affected by this document.
-      </li>
-    </ul>
-    Authors who follow these guidelines should incorporate this phrase near the beginning of their document:
-    <br>
-    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all capitals, as shown here.
-    <br>
-    === END ===
-  </p>
-  <h2>IANA Considerations</h2>
-  <p>
-    This document does not require any IANA actions.
-  </p>
-  <h2>Security Considerations</h2>
-  <p>
-    This document is purely procedural; there are no related security considerations.
-  </p>
-  <h2>Normative References</h2>
-  <p>
-    [RFC2119] Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, <a href="http://www.rfc-editor.org/info/rfc2119">http://www.rfc-editor.org/info/rfc2119</a>.
-  </p>
-  <h2>Author's Address</h2>
-  <p>
-    Barry Leiba<br>
-    Huawei Technologies<br>
-    Phone: +1 646 827 0648<br>
-    Email: barryleiba@computer.org<br>
-    URI: <a href="http://internetmessagingtechnology.org/">http://internetmessagingtechnology.org/</a><br>
-  </p>
-
-  <h2>Annex 3: Simplified BSD License</h2>
-  <p>
-    Copyright (c) < year >, < copyright holder >
-    <br>
-    Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-    <ol>
-      <li>
-        Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-      </li>
-      <li>
-        Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-      </li>
-    </ol>
-    <br>
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  </p>
+<h1>Terms of Conditions</h1>
+<p>Last updated: November 06, 2020</p>
+<p>Please read these terms and conditions carefully before using Our Service.</p>
+<h1>Interpretation and Definitions</h1>
+<h2>Interpretation</h2>
+<p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
+<h2>Definitions</h2>
+<p>For the purposes of these Terms and Conditions:</p>
+<ul>
+<li>
+<p><strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</p>
+</li>
+<li>
+<p><strong>Country</strong> refers to: Belgium</p>
+</li>
+<li>
+<p><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to CodeWe.</p>
+</li>
+<li>
+<p><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</p>
+</li>
+<li>
+<p><strong>Service</strong> refers to the Website.</p>
+</li>
+<li>
+<p><strong>Terms and Conditions</strong> (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service.</p>
+</li>
+<li>
+<p><strong>Third-party Social Media Service</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</p>
+</li>
+<li>
+<p><strong>Website</strong> refers to CodeWe, accessible from <a href="https://codewe.bhasher.com" rel="external nofollow noopener" target="_blank">https://codewe.bhasher.com</a></p>
+</li>
+<li>
+<p><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
+</li>
+</ul>
+<h1>Acknowledgment</h1>
+<p>These are the Terms and Conditions governing the use of this Service and the agreement that operates between You and the Company. These Terms and Conditions set out the rights and obligations of all users regarding the use of the Service.</p>
+<p>Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and Conditions. These Terms and Conditions apply to all visitors, users and others who access or use the Service.</p>
+<p>By accessing or using the Service You agree to be bound by these Terms and Conditions. If You disagree with any part of these Terms and Conditions then You may not access the Service.</p>
+<p>You represent that you are over the age of 18. The Company does not permit those under 18 to use the Service.</p>
+<p>Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the Privacy Policy of the Company. Our Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your personal information when You use the Application or the Website and tells You about Your privacy rights and how the law protects You. Please read Our Privacy Policy carefully before using Our Service.</p>
+<h1>Links to Other Websites</h1>
+<p>Our Service may contain links to third-party web sites or services that are not owned or controlled by the Company.</p>
+<p>The Company has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that the Company shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods or services available on or through any such web sites or services.</p>
+<p>We strongly advise You to read the terms and conditions and privacy policies of any third-party web sites or services that You visit.</p>
+<h1>Termination</h1>
+<p>We may terminate or suspend Your access immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions.</p>
+<p>Upon termination, Your right to use the Service will cease immediately.</p>
+<h1>Limitation of Liability</h1>
+<p>Notwithstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or 100 USD if You haven't purchased anything through the Service.</p>
+<p>To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service, third-party software and/or third-party hardware used with the Service, or otherwise in connection with any provision of this Terms), even if the Company or any supplier has been advised of the possibility of such damages and even if the remedy fails of its essential purpose.</p>
+<p>Some states do not allow the exclusion of implied warranties or limitation of liability for incidental or consequential damages, which means that some of the above limitations may not apply. In these states, each party's liability will be limited to the greatest extent permitted by law.</p>
+<h1>"AS IS" and "AS AVAILABLE" Disclaimer</h1>
+<p>The Service is provided to You "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, the Company, on its own behalf and on behalf of its Affiliates and its and their respective licensors and service providers, expressly disclaims all warranties, whether express, implied, statutory or otherwise, with respect to the Service, including all implied warranties of merchantability, fitness for a particular purpose, title and non-infringement, and warranties that may arise out of course of dealing, course of performance, usage or trade practice. Without limitation to the foregoing, the Company provides no warranty or undertaking, and makes no representation of any kind that the Service will meet Your requirements, achieve any intended results, be compatible or work with any other software, applications, systems or services, operate without interruption, meet any performance or reliability standards or be error free or that any errors or defects can or will be corrected.</p>
+<p>Without limiting the foregoing, neither the Company nor any of the company's provider makes any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the Service, or the information, content, and materials or products included thereon; (ii) that the Service will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Service; or (iv) that the Service, its servers, the content, or e-mails sent from or on behalf of the Company are free of viruses, scripts, trojan horses, worms, malware, timebombs or other harmful components.</p>
+<p>Some jurisdictions do not allow the exclusion of certain types of warranties or limitations on applicable statutory rights of a consumer, so some or all of the above exclusions and limitations may not apply to You. But in such a case the exclusions and limitations set forth in this section shall be applied to the greatest extent enforceable under applicable law.</p>
+<h1>Governing Law</h1>
+<p>The laws of the Country, excluding its conflicts of law rules, shall govern this Terms and Your use of the Service. Your use of the Application may also be subject to other local, state, national, or international laws.</p>
+<h1>Disputes Resolution</h1>
+<p>If You have any concern or dispute about the Service, You agree to first try to resolve the dispute informally by contacting the Company.</p>
+<h1>For European Union (EU) Users</h1>
+<p>If You are a European Union consumer, you will benefit from any mandatory provisions of the law of the country in which you are resident in.</p>
+<h1>United States Legal Compliance</h1>
+<p>You represent and warrant that (i) You are not located in a country that is subject to the United States government embargo, or that has been designated by the United States government as a "terrorist supporting" country, and (ii) You are not listed on any United States government list of prohibited or restricted parties.</p>
+<h1>Severability and Waiver</h1>
+<h2>Severability</h2>
+<p>If any provision of these Terms is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.</p>
+<h2>Waiver</h2>
+<p>Except as provided herein, the failure to exercise a right or to require performance of an obligation under this Terms shall not effect a party's ability to exercise such right or require such performance at any time thereafter nor shall be the waiver of a breach constitute a waiver of any subsequent breach.</p>
+<h1>Translation Interpretation</h1>
+<p>These Terms and Conditions may have been translated if We have made them available to You on our Service.
+You agree that the original English text shall prevail in the case of a dispute.</p>
+<h1>Changes to These Terms and Conditions</h1>
+<p>We reserve the right, at Our sole discretion, to modify or replace these Terms at any time. If a revision is material We will make reasonable efforts to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at Our sole discretion.</p>
+<p>By continuing to access or use Our Service after those revisions become effective, You agree to be bound by the revised terms. If You do not agree to the new terms, in whole or in part, please stop using the website and the Service.</p>
+<h1>Contact Us</h1>
+<p>If you have any questions about these Terms and Conditions, You can contact us:</p>
+<ul>
+<li>By email: privacy@codewe.net</li>
+</ul>
 </section>
 {% endblock %}
