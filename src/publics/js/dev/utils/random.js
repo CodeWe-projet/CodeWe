@@ -1,11 +1,18 @@
 /**
- * Return random string based on chars
- * @param length
- * @param randomChars
- * @returns {string}
+ * This module deals with random values.
+ * @author Brieuc Dubois
+ * @date Created on 14/11/2020
+ * @date Last modification on 14/11/2020
+ * @version 1.0.0
  */
 
 export default class Random{
+    /**
+     * Return random string based on chars
+     * @param length
+     * @param randomChars
+     * @returns {string}
+     */
     static string(
         length,
         randomChars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'

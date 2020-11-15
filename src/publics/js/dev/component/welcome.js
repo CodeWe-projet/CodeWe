@@ -1,11 +1,13 @@
-import Cookie from "../utils/cookie.js";
-import _ from "../utils/element.js";
 /**
  * This component deals with the welcome message
  * @author Brieuc Dubois
- * @date 14/11/2020
- * @version 1.0.0
+ * @date Created on 14/11/2020
+ * @date Last modification on 15/11/2020
+ * @version 1.0.1
  */
+
+import Cookie from "/js/dev/utils/cookie.js";
+import _ from "/js/dev/utils/element.js";
 
 /**
  * Class for managing welcome message
@@ -16,8 +18,7 @@ export default class Welcome{
      * @param {HTMLElement} element
      */
     constructor(element) {
-        console.log(Cookie.exist('welcome'));
-        if(Cookie.exist('welcome')) Welcome.hide();
+        if(Cookie.exist('welcome') || document.documentURI.includes('/legal/')) Welcome.hide();
         else Welcome.show();
         element.addEventListener('click', Welcome.hideWithCookie);
     }

@@ -1,9 +1,12 @@
 /**
  * This component deals with cards alerts.
  * @author Brieuc Dubois
- * @date 14/11/2020
+ * @date Created on 14/11/2020
+ * @date Last modification on 14/11/2020
  * @version 1.0.0
  */
+
+import Random from "/js/dev/utils/random.js";
 
 /**
  * Create temporary card on the top right of screen
@@ -13,7 +16,7 @@
  * @param {string} color
  */
 export default function temporaryCardAlert(title, message, duration, color='#1e90ff'){
-    const id = getRandomString(11);
+    const id = Random.string(11);
     const card = document.createElement('div');
     card.classList.add('alertCard');
     card.style.backgroundColor = color;

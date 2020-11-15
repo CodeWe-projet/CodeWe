@@ -1,9 +1,9 @@
-import {patterns} from "./patterns.js";
-import {getCaretCharacterOffsetWithin, setCurrentCursorPosition, htmlEncode} from "../../utils.js";
-import {Prism} from "./prism.js";
+import {patterns} from "/js/dev/page/editor/prism/patterns.js";
+import {Prism} from "/js/dev/page/editor/prism/prism.js";
+import Caret from "/js/dev/utils/caret.js";
+import {htmlEncode} from "/js/dev/utils/string.js";
 
-
-export class PrismCustom{
+export default class PrismCustom{
     constructor(element, lang) {
         this.element = element;
         this.lang = lang;
@@ -34,10 +34,10 @@ export class PrismCustom{
     }
 
     ApplyWithCaret(){
-        const offset = getCaretCharacterOffsetWithin(this.element);
+        const offset = Caret.getBeginPosition(this.element);
 
         this.apply();
 
-        setCurrentCursorPosition(this.element, offset);
+        Caret.setPosition(this.element, offset);
     }
 }

@@ -1,12 +1,12 @@
 /**
  * This module deals with the user caret.
  * @author Brieuc Dubois
- * @date 14/11/2020
- * @version 1.0.0
+ * @date Created on 14/11/2020
+ * @date Last modification on 15/11/2020
+ * @version 1.0.1
  */
 
 export default class Caret{
-
     /**
      *  Create range on the specified position in node or in children if necessary
      * inspired from https://jsfiddle.net/nrx9yvw9/5/
@@ -50,7 +50,7 @@ export default class Caret{
     /**
      * Set the position of the user caret on specified position in element or children
      * inspired from https://jsfiddle.net/nrx9yvw9/5/
-     * @param {HTMLElement} element
+     * @param {HTMLElement|Node} element
      * @param {number} position
      */
     static setPosition(element, position) {
@@ -77,7 +77,7 @@ export default class Caret{
         let caretOffset = 0;
         const sel = document.getSelection();
         if(sel && sel.rangeCount > 0) {
-            let range = sel.getSelection().getRangeAt(0);
+            let range = sel.getRangeAt(0);
             let preCaretRange = range.cloneRange();
             preCaretRange.selectNodeContents(element);
             preCaretRange.setEnd(range.endContainer, range.endOffset);

@@ -1,8 +1,9 @@
 /**
  * This module deals with DOM elements.
  * @author Brieuc Dubois
- * @date 14/11/2020
- * @version 1.0.0
+ * @date Created on 14/11/2020
+ * @date Last modification on 15/11/2020
+ * @version 1.0.1
  */
 
 /**
@@ -50,13 +51,13 @@ export function getCurrentNode(){
 /**
  * Return parent with specified attribute
  * @param {string} attribute
- * @param {HTMLElement} child
+ * @param {HTMLElement|Node} child
  * @return {Node|undefined}
  */
 export function getNodeFromAttribute(attribute, child=getCurrentNode()){
     try{
         if(child.nodeType !== Node.TEXT_NODE && child.hasAttribute(attribute)) return child;
-        else return get_uuid_element(child.parentElement);
+        else return getNodeFromAttribute(attribute, child.parentElement);
     }catch (e){
         return undefined;
     }
@@ -70,7 +71,7 @@ export function getNodeFromAttribute(attribute, child=getCurrentNode()){
  */
 export function getParentFromSpecificTypes(types, child=getCurrentNode()){
     try{
-        if(types.includes(child.nodeName)) return child;
+        if(types.includes(child.nodeName.toLowerCase())) return child;
         else return getParentFromSpecificTypes(types, child.parentElement);
     }catch (e){
         return undefined;

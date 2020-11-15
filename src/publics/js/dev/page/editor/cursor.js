@@ -1,7 +1,7 @@
-import Config from "../../config.js";
-import Random from "../../utils/random.js";
-import _, {getCurrentNode, getNodeFromAttribute} from "../../utils/element.js";
-
+import Config from "/js/dev/config.js";
+import _, {getCurrentNode, getNodeFromAttribute} from "/js/dev/utils/element.js";
+import EventManager from "/js/dev/utils/events.js";
+import Random from "/js/dev/utils/random.js";
 
 export default class Cursor{
     /**
@@ -12,13 +12,16 @@ export default class Cursor{
         this.editor = element;
 
         this.current = new Map();
+        console.log(this.current);
 
         this.color = Random.randInt(0, 255, 3);
         this.uuid = Random.string(10);
         this.request = {};
 
         // Listen for others caret moves
-        document.addEventListener('socket.receive.cursor-moves', this.update);
+        document.addEventListener('socket.receive.cursor-moves', e => {
+            this.update(e);
+        });
 
         document.dispatchEvent(new CustomEvent('socket.preprocess', {detail: [this.sendCursorPosition, [this]]}));
 
@@ -58,7 +61,7 @@ export default class Cursor{
     sendCursorPosition(cursor){
         const request = cursor.request;
         if(cursor && Object.keys(request).length > 0){
-            Event.triggerCustom('socket.send', {request});
+            EventManager.triggerCustom('socket.send', {request});
             cursor.request = {};
         }
     }
@@ -68,7 +71,7 @@ export default class Cursor{
      * @param {Object.<string, string | Array>} ev
      */
     update(ev){
-        const data = ev.detail.request.data
+        const data = ev.detail.request.data;
         if(this.current.has(data.userId)){
             this.current.get(data.userId)[0].remove();
             this.current.get(data.userId)[1].removeAttribute('contenteditable');
@@ -87,7 +90,7 @@ export default class Cursor{
         pointer.classList.add('pointer');
         pointer.style.top = element.offsetTop + 'px';
         pointer.style.backgroundColor = 'rgb(' + data.color[0] + ', ' + data.color[1] + ', ' + data.color[2] + ')'
-        if(Config.DEBUG) pointer.id = getRandomString(20);
+        if(Config.DEBUG) pointer.id = Random.string(20);
         _.id('body').appendChild(pointer);
 
         element.setAttribute('contenteditable', 'false');

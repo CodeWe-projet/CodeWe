@@ -1,4 +1,4 @@
-import {DEBUG} from "./main.js";
+import Config from "/js/dev/config.js";
 
 export class Socket{
     constructor(doc_id, interval=1000) {
@@ -10,7 +10,7 @@ export class Socket{
 
         this.socket.on("text updated", data => {
             for(const request of data['requests']){
-                if(DEBUG) {
+                if(Config.DEBUG) {
                     console.log('RECEIVE', request['type'], request['data']);
                 }
                 const room = data['room'];
@@ -36,7 +36,7 @@ export class Socket{
             const tab = [name, args];
             if(!this.preprocess.includes(tab)){
                 this.preprocess.push(tab);
-                if(DEBUG) console.log('New socket.preprocess', tab);
+                if(Config.DEBUG) console.log('New socket.preprocess', tab);
             }
         });
 
@@ -52,7 +52,7 @@ export class Socket{
     }
 
     send(name, requests) {
-        if(DEBUG && Array.isArray(requests)){
+        if(Config.DEBUG && Array.isArray(requests)){
             for(const request of requests){
                 console.log('SEND to \'' + name + '\' with type \'' + request['type'] + '\'', request['data']);
             }

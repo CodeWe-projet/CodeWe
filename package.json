@@ -22,5 +22,8 @@
     "mysql": "^2.18.1",
     "nunjucks": "^3.2.2",
     "socket.io": "^3.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.4.0"
   }
 }

@@ -1,7 +1,8 @@
 /**
  * This module manage configuration.
  * @author Brieuc Dubois
- * @date 14/11/2020
+ * @date Created on 14/11/2020
+ * @date Last modification on 14/11/2020
  * @version 1.0.0
  */
 

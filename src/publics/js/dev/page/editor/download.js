@@ -1,6 +1,6 @@
-export function download(element, link_id){
+export default function download(element, link_id){
     const link = document.getElementById(link_id);
-    link.addEventListener('click', e => {
+    link.addEventListener('click', () => {
         const content = element.innerText.replaceAll('\n\n', '\n');
         link.setAttribute(
             'href',
