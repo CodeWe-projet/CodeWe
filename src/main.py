@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, abort
+from flask import Flask, render_template, redirect, abort, send_file
 from flask_socketio import SocketIO, emit, join_room
 from document import Document
 from config import DEBUG
@@ -24,6 +24,12 @@ def create_document():
     """Create a new document/code file."""
     doc_id = db.create_document()
     return redirect(f"/{doc_id}")
+
+
+@app.route("/tos-pdf")
+def pdf_tos():
+    """Reroute to ToS PDF."""
+    return send_file("templates/legal/tos-pdf.pdf")
 
 
 @app.route("/<doc_id>")
@@ -54,6 +60,15 @@ def tos():
     return render_template("legal/tos.html")
 
 
+@app.route("/tos/archive/<doc_id>")
+@app.route("/tac/archive/<doc_id>")
+@app.route("/termsofservice/archive/<doc_id>")
+@app.route("/terms-of-service/archive/<doc_id>")
+def tos_archive(doc_id):
+    """Render terms of service form archive."""
+    return render_template(f"legal/archive/tos-{doc_id}.html")
+
+
 @app.route("/privacy")
 @app.route("/privacypolicy")
 @app.route("/privacy-policy")
@@ -81,8 +96,6 @@ def update_text(data):
     document = Document(document_content)
     document.apply_requests(data["requests"])
     db.update_document(data["room"], json.dumps(document.document_dict))
-
-
 
 
 @socketio.on("save")
