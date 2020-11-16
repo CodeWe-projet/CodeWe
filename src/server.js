@@ -9,6 +9,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const WebSocket = require('ws');
 const configs = require('./config/config');
 // Server config
 const host = configs.HOST;
@@ -26,8 +27,9 @@ const options = ssl ? {
 const app = require('./app');
 const server = ssl ? require('https').createServer(options, app) : require('http').createServer(app);
 
-const io = require('socket.io')(server);
-const socket = require('./routes/socket')(io);
+// config websockets
+const wss = new WebSocket.Server({ server });
+require('./socket/socket')(wss);
 
 
 
