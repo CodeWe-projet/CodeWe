@@ -5,6 +5,7 @@
     "DB_TYPE": "mysql",
     "PRODUCTION": false,
     "CLIENT_VERBOSE": 2,
+    "DISCORD_WEBHOOK": null,
     "SSL": false,
     "KEY_FILE_SSL": null,
     "CERT_FILE_SSL" : null,
