@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/allEyezOnCode/CodeWe#readme",
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",

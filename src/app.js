@@ -12,10 +12,11 @@ const express = require('express');
 const nunjucks = require('nunjucks');
 const path = require('path');
 const logger = require('morgan');
+const compression = require('compression');
 const index = require('./routes/index');
 const editor = require('./routes/editor');
 const legal = require('./routes/legal');
-const config = require('../config/config');
+const config = require('./config/config');
 
 const app = express();
 app.disable("x-powered-by");
@@ -28,6 +29,7 @@ nunjucks.configure(path.join(__dirname, 'views'), {
 
 // Adding middleware
 app.use(logger('dev'));
+app.use(compression())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // Set static folder
