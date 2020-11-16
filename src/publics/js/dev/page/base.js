@@ -12,14 +12,14 @@ import Socket from "/js/dev/utils/websocket/socket.js";
 // Display Welcome Message is new user
 new Welcome(_.id('welcome-button'));
 
+document.getElementById('link-welcome').onclick = Welcome.show;
+
+/*
 const socket = new Socket({
     secure: false,
     port: window.location.port,
     hostname: window.location.origin,
     pathname: 'ws',
-    /*params: {
-        room_id: 'e4D5f'
-    }*/
 });
 
 const a = {
@@ -31,4 +31,4 @@ const a = {
 socket.ws.onopen = e => {
     socket.send(a);
 }
-
+*/
