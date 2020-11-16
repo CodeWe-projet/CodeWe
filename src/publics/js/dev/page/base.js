@@ -12,9 +12,6 @@ import Socket from "/js/dev/utils/websocket/socket.js";
 // Display Welcome Message is new user
 new Welcome(_.id('welcome-button'));
 
-document.getElementById('link-welcome').onclick = Welcome.show;
-
-/*
 const socket = new Socket({
     secure: false,
     port: window.location.port,
@@ -22,13 +19,13 @@ const socket = new Socket({
     pathname: 'ws',
 });
 
-const a = {
-    'room': '4e5dF',
-    'event': 'ping',
-    'data': {}
-};
+document.getElementById('link-welcome').onclick = Welcome.show;
 
-socket.ws.onopen = e => {
-    socket.send(a);
+document.getElementById('link-report').onclick = () => {
+    socket.send({
+        'event': 'report',
+        'data': {
+            'content': 'I can\'t remove default code: I have an error message.'
+        }
+    })
 }
-*/

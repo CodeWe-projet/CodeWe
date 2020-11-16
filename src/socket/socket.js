@@ -6,6 +6,8 @@
  * @version 1.0.0
  *
  */
+const discordWebhook = require('webhook-discord');
+
  /**
  * DB module
  * @type {object}
@@ -22,6 +24,8 @@ const Document = require('../document/Document');
 const utils = require('../utils');
 
 const rooms = {};
+
+const hook = new discordWebhook.Webhook('https://discord.com/api/webhooks/778022700496978021/A7QlAhmBUbE8f6ozro8RqjLQGlZ3eM7KBp8THSVC8gxO1CCbomk0dtcPEKWbIU1cZ7fu');
 
 module.exports = function (wss) {
 	// TODO catch error handle disconnection etc
@@ -64,6 +68,8 @@ module.exports = function (wss) {
 				case 'ping':
 					socket.send('pong');
 					break;
+				case 'report':
+					hook.warn('Report', data.data.content);
 			}
 		});
 

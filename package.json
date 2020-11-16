@@ -25,6 +25,7 @@
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "nunjucks": "^3.2.2",
+    "webhook-discord": "^3.7.7",
     "ws": "^7.4.0"
   },
   "devDependencies": {
