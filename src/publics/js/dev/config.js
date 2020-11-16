@@ -7,5 +7,7 @@
  */
 
 export default class Config{
-    static DEBUG = true;
+    static isDebug(){
+        return true;
+    }
 }

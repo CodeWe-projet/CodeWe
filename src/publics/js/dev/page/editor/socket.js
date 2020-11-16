@@ -51,7 +51,7 @@ export class Socket{
     }
 
     send(name, requests) {
-        if(Config.DEBUG && Array.isArray(requests)){
+        if(Config.isDebug() && Array.isArray(requests)){
             for(const request of requests){
                 Debug.debug('SEND to \'' + name + '\' with type \'' + request['type'] + '\'', request['data']);
             }

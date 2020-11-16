@@ -43,19 +43,20 @@ class Track{
     }
 }*/
 
+const _site = window.location.origin;
+const history = new Stack(1000);
+
 /**
  * Manage classic debugging
  */
 export default class Debug{
-    static _site = window.location.origin;
-    static history = new Stack(1000);
 
     /**
      * Check if debugging is on
      * @return {boolean}
      */
     static has(){
-        return Config.DEBUG;
+        return Config.isDebug();
     }
 
     /**
@@ -66,11 +67,11 @@ export default class Debug{
      */
     static entry(level, e, ...data){
         let where = null
-        if(e && e.stack) where = e.stack.toString().split(/\r\n|\n/)[1].replace(Debug._site, '');
+        if(e && e.stack) where = e.stack.toString().split(/\r\n|\n/)[1].replace(_site, '');
 
         const date = DateStyle.full();
 
-        Debug.history.push([date, level, where, data]);
+        history.push([date, level, where, data]);
         if(Debug.has() || level.verbosity <= 2){
             for(const fct of level.fcts){
                 fct(`${date} - ${level.name} - ${where} - `, ...data);

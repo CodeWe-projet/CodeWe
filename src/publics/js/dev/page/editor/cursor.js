@@ -81,7 +81,7 @@ export default class Cursor{
         const element = document.querySelector('div[uuid="' + data.uuid + '"]');
 
         if(element === null){
-            if(Config.DEBUG) console.log('Cursor position doesn\'t exist');
+            if(Config.isDebug()) console.log('Cursor position doesn\'t exist');
             return;
         }
 
@@ -89,7 +89,7 @@ export default class Cursor{
         pointer.classList.add('pointer');
         pointer.style.top = element.offsetTop + 'px';
         pointer.style.backgroundColor = 'rgb(' + data.color[0] + ', ' + data.color[1] + ', ' + data.color[2] + ')'
-        if(Config.DEBUG) pointer.id = Random.string(20);
+        if(Config.isDebug()) pointer.id = Random.string(20);
         _.id('body').appendChild(pointer);
 
         element.setAttribute('contenteditable', 'false');
