@@ -20,6 +20,7 @@ const express = require('express');
  * @type {object}
  */
 const db = require('../db/DB');
+const config = require('../config/config');
 /**
  * Express router.
  * @type {object}
@@ -35,7 +36,7 @@ const router = express.Router();
  * @inner
  */
 router.get('/', (req, res) => {
-    res.render('index.html');
+    res.render('index.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
 });
 
 /**

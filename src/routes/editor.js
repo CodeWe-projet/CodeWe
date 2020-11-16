@@ -6,6 +6,7 @@
  * @version 1.0.0
  * @requires express
  * @requires ../db/DB
+ * @requires ../config/config
  * 
  */
 
@@ -20,6 +21,8 @@ const express = require('express');
  * @const
  */
 const db = require('../db/DB');
+
+const config = require('../config/config');
 /**
  * Express router.
  * @type {object}
@@ -40,10 +43,10 @@ router.get('/:docId', async (req, res) => {
         let document = (await db.getDocument(req.params.docId));
         if (document) {
             document['content'] = JSON.parse(document.content);
-            res.render('editor.html', {document: document});
+            res.render('editor.html', {document: document, production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
         }
         else {
-            res.status(404).render('404.html')
+            res.status(404).render('404.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE})
         }
     } catch (err) {
         console.log(err);

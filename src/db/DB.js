@@ -6,12 +6,12 @@
  * @version 1.0.0
  * @requires express
  * @requires ../db/DB
+ * @requires ../config/config
  * 
  */
 
 const mysql = require('mysql');
-const fs = require('fs');
-const path = require('path');
+const configs = require('../config/config');
 const utils = require('../utils');
 
 
@@ -85,7 +85,5 @@ class DB {
     }
 }
 
-// Read the config file for db configuration, etc
-const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../config/config.json'), 'utf8'));
 // Create connection with DB
-module.exports = new DB(config.DB_CONFIG.DB_HOST, config.DB_CONFIG.DB_USERNAME, config.DB_CONFIG.DB_PASSWORD, config.DB_CONFIG.DB_DATABASE, config.DB_CONFIG.DB_PORT);
+module.exports = new DB(configs.DB_CONFIG.DB_HOST, configs.DB_CONFIG.DB_USERNAME, configs.DB_CONFIG.DB_PASSWORD, configs.DB_CONFIG.DB_DATABASE, configs.DB_CONFIG.DB_PORT);

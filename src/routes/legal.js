@@ -13,7 +13,7 @@
  * @const
  */
 const express = require('express');
-
+const config = require('../config/config');
 /**
  * Express router.
  * @type {object}
@@ -29,7 +29,7 @@ const router = express.Router();
  * @inner
  */
 router.get(['/tos', '/tac', '/termsofservice', '/terms-of-service'], (req, res) => {
-    res.render('legal/tos.html');
+    res.render('legal/tos.html', {document: document, production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
 });
 
 /**
@@ -40,7 +40,7 @@ router.get(['/tos', '/tac', '/termsofservice', '/terms-of-service'], (req, res) 
  * @inner
  */
 router.get(['/privacy', '/privacy-policy', '/privacypolicy'], (req, res) => {
-    res.render('legal/privacy.html');
+    res.render('legal/privacy.html', {document: document, production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
 });
 
 /**
@@ -51,7 +51,7 @@ router.get(['/privacy', '/privacy-policy', '/privacypolicy'], (req, res) => {
  * @inner
  */
 router.get('/license', (req, res) => {
-    res.render('legal/licence.html');
+    res.render('legal/licence.html', {document: document, production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
 });
 
 module.exports = router;

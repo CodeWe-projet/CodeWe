@@ -9,8 +9,8 @@
  */
 const fs = require('fs');
 const path = require('path');
+const configs = require('./config/config');
 // Server config
-const configs = JSON.parse(fs.readFileSync(path.join(__dirname, './config/config.json'), 'utf8'));
 const host = configs.HOST;
 const port = configs.PORT;
 const DEBUG = configs.DEBUG;

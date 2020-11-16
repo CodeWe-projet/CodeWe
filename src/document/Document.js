@@ -11,7 +11,6 @@ module.exports = class Document {
 
     newLine (previousUuid, uuid, content) {
         // insert a line a the right place
-        // TODO bug with lot of lines added
         let id = this.findIndexUuid(previousUuid);
         if (this.documentContent.length > id) {
             this.documentContent.splice(id + 1, 0, {uuid: uuid, content: content});
