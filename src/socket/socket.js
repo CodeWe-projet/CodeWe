@@ -26,7 +26,7 @@ const utils = require('../utils');
 
 const rooms = {};
 
-const hook = config.DICORD_WEBHOOK ? new discordWebhook.Webhook(config.DICORD_WEBHOOK) : null;
+const hook = config.DISCORD_WEBHOOK ? new discordWebhook.Webhook(config.DISCORD_WEBHOOK) : null;
 
 module.exports = function (wss) {
 	// TODO catch error handle disconnection etc
@@ -72,7 +72,7 @@ module.exports = function (wss) {
 				case 'report':
 					if (hook) {
 						hook.warn('Report', data.data.content);
-					}	
+					}
 			}
 		});
 
