@@ -37,27 +37,32 @@ module.exports = function (wss) {
 			else delete rooms[room][uuid];
 		};
 
-		socket.on('message', data => {
-			if (data.event === 'update') {
-				try {
-					Object.entries(rooms[data.room]).forEach(([, sock]) => sock.send({ data }));
-					let documentContent = (await db.getDocument(data["room"])).content;
-					documentContent = JSON.parse(documentContent);
-					let document = new Document(documentContent);
-					document.applyRequests(data["requests"]);
-					db.updateDocument(data["room"], JSON.stringify(document.documentContent));
-				} catch (err) {
-					throw new Error(err);
-				}
-			}
-			else if (data.event === 'join') {
-				if (data.room in rooms)  {
-					rooms[data.room][uuid] = socket;
-				}
-				else {
-					rooms[data.room] = {};
-					rooms[data.room][uuid] = socket;
-				}
+		socket.on('message', async data => {
+			switch (data.event) {
+				case 'update':
+					try {
+						Object.entries(rooms[data.room]).forEach(([, sock]) => sock.send({ data }));
+						let documentContent = (await db.getDocument(data["room"])).content;
+						documentContent = JSON.parse(documentContent);
+						let document = new Document(documentContent);
+						document.applyRequests(data["requests"]);
+						db.updateDocument(data["room"], JSON.stringify(document.documentContent));
+					} catch (err) {
+						throw new Error(err);
+					}
+					break;
+				case 'join':
+					if (data.room in rooms)  {
+						rooms[data.room][uuid] = socket;
+					}
+					else {
+						rooms[data.room] = {};
+						rooms[data.room][uuid] = socket;
+					}
+					break;
+				case 'ping':
+					socket.send('pong');
+					break;
 			}
 		});
 
