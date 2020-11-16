@@ -4,7 +4,7 @@
  * @author Alexandre Dewilde
  * @date 16/11/2020
  * @version 1.0.0
- * 
+ *
  */
  /**
  * DB module
@@ -27,8 +27,7 @@ module.exports = function (wss) {
 	// TODO catch error handle disconnection etc
 	// Based on https://stackoverflow.com/a/62867363
   	wss.on('connection', socket => {
-
-		const uuid = utils.uuid(Math.random());
+		const uuid = utils.uuid(Math.random().toString());
 
 		const leave = room => {
 			if(! rooms[room][uuid]) return;
@@ -37,7 +36,9 @@ module.exports = function (wss) {
 			else delete rooms[room][uuid];
 		};
 
+
 		socket.on('message', async data => {
+			data = JSON.parse(data);
 			switch (data.event) {
 				case 'update':
 					try {
@@ -69,5 +70,5 @@ module.exports = function (wss) {
 		socket.on('close', data => {
 			Object.keys(rooms).forEach(room => leave(room));
 		});
-  	}); 
+  	});
 }
