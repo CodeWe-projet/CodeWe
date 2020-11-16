@@ -27,3 +27,5 @@ codewe.db
 
 node_modules/
 src/config/config.json
+src/key.pem
+src/cert.pem

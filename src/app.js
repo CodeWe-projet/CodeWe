@@ -20,7 +20,7 @@ const app = express();
 app.disable("x-powered-by");
 
 // Configure views folder
-nunjucks.configure('views', {
+nunjucks.configure(path.join(__dirname, 'views'), {
     autoescape: true,
     express: app
 });
@@ -45,6 +45,7 @@ app.all('*', (req, res) => {
 
 // Handle errors
 app.use((err, req, res, next) => {
+    console.log(err)
     res.sendStatus(500);
 });
 

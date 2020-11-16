@@ -1,5 +1,17 @@
+/**
+ * Express router providing editor related routes
+ * @module db/DB
+ * @author Alexandre Dewilde
+ * @date 16/11/2020
+ * @version 1.0.0
+ * @requires express
+ * @requires ../db/DB
+ * 
+ */
+
 const mysql = require('mysql');
 const fs = require('fs');
+const path = require('path');
 const utils = require('../utils');
 
 
@@ -74,6 +86,6 @@ class DB {
 }
 
 // Read the config file for db configuration, etc
-const config = JSON.parse(fs.readFileSync('./config/config.json', 'utf8'));
+const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../config/config.json'), 'utf8'));
 // Create connection with DB
 module.exports = new DB(config.DB_CONFIG.DB_HOST, config.DB_CONFIG.DB_USERNAME, config.DB_CONFIG.DB_PASSWORD, config.DB_CONFIG.DB_DATABASE, config.DB_CONFIG.DB_PORT);
