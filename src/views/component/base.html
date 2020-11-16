@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}CodeWe{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="/css/base.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/base.less">
     <link rel="icon" type="image/svg+xml" href="/img/SVG/Small.svg">
     <link rel="alternate icon" type="image/png" href="/img/PNG/small.png">
     {% block head %}{% endblock %}
@@ -24,6 +24,10 @@
         </footer>
     </div>
 </body>
-    <script type="module" src="/js/dev/page/base.js"></script>
+    {% if production %}
+        <script type="application/javascript" src="/js/dist/base.min.js"></script>
+    {% else %}
+        <script type="module" src="/js/dev/page/base.js"></script>
+    {% endif %}
     {% block scripts %}{% endblock %}
 </html>
