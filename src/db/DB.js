@@ -46,6 +46,7 @@ class DB {
                 if (err) reject(err);
                 let date = new Date();
                 connection.query(queryUpdateDocument, [textContent, date, docId], (error, result) => {
+                    connection.release();
                     if (error) reject(error);
                 });
             });
