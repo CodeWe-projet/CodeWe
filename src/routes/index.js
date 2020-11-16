@@ -55,38 +55,4 @@ router.post('/create_document', async (req, res) => {
     }
 });
 
-/**
- * Route serving termsofservice
- * @name get/termsofservice
- * @function
- * @memberof modules:routes/index
- * @inner
- */
-router.get(['/tos', '/tac', '/termsofservice', '/terms-of-service'], (req, res) => {
-    res.render('legal/tos.html');
-});
-
-/**
- * Route serving privacy policy
- * @name get/privacy
- * @function
- * @memberof modules:routes/index
- * @inner
- */
-router.get(['privacy', 'privacy-policy', 'privacypolicy'], (req, res) => {
-    res.render('legal/privacy.html');
-});
-
-/**
- * Route serving licence
- * @name get/licence
- * @function
- * @memberof modules:routes/index
- * @inner
- */
-router.get('license', (req, res) => {
-    res.render('legal/licence.html');
-});
-
-
 module.exports = router;
