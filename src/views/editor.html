@@ -3,8 +3,8 @@
 {% block title %}CodeWe - {{ document['document_id'] }}{% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="/css/editor.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/rainbow.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/editor.less">
+    <link rel="stylesheet" type="text/css" href="/css/rainbow.less">
 {% endblock %}
 
 {% block header %}
@@ -27,5 +27,9 @@
       let doc_id = "{{ document['document_id'] }}" ;
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js" integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg==" crossorigin="anonymous"></script>
-    <script type="module" src="/js/dev/page/editor.js"></script>
+    {% if production %}
+        <script type="application/javascript" src="/js/dist/editor.min.js"></script>
+    {% else %}
+        <script type="module" src="/js/dev/page/editor.js"></script>
+    {% endif %}
 {% endblock %}

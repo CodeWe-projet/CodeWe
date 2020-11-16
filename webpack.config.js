@@ -14,7 +14,7 @@ module.exports = {
         //'css/base': path.resolve(__dirname, 'src/publics/css/base.less'),
     },
     output: {
-        path: path.resolve(__dirname, 'src/dist'),
-        filename: 'js/[name].min.js',
+        path: path.resolve(__dirname, 'src/publics/js/dist'),
+        filename: '[name].min.js',
     },
 };
