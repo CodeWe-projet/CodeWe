@@ -15,6 +15,7 @@ const logger = require('morgan');
 const index = require('./routes/index');
 const editor = require('./routes/editor');
 const legal = require('./routes/legal');
+const config = require('../config/config');
 
 const app = express();
 app.disable("x-powered-by");
@@ -40,7 +41,7 @@ app.use('/legal', legal);
 
 // 404 error
 app.all('*', (req, res) => {
-    res.status(404).render('404.html');
+    res.status(404).render('404.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
 });
 
 // Handle errors
