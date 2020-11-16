@@ -18,7 +18,9 @@
   "homepage": "https://github.com/allEyezOnCode/CodeWe#readme",
   "dependencies": {
     "compression": "^1.7.4",
+    "debug": "^4.2.0",
     "express": "^4.17.1",
+    "express-minify": "^1.0.0",
     "less": "^3.12.2",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",

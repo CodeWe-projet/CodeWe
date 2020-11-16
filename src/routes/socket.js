@@ -26,7 +26,11 @@ const Document = require('../document/Document');
 module.exports = function (io) {
     io.sockets.on('connection', (socket) => {
         socket.on('join', (data) => {
-            socket.join(data.room);
+            try {
+                socket.join(data.room);
+            } catch (err) {
+                throw new Error(err);
+            }
         });
 
         socket.on('update text', async (data) => {
@@ -38,7 +42,6 @@ module.exports = function (io) {
                 document.applyRequests(data["requests"]);
                 db.updateDocument(data["room"], JSON.stringify(document.documentContent));
             } catch (err) {
-                console.log(err);
                 throw new Error(err);
             }
         });
@@ -47,7 +50,6 @@ module.exports = function (io) {
             try {
                 db.updateDocument(data.room, JSON.stringify(data.requests[0].data));
             } catch (err) {
-                console.log(err);
                 throw new Error(err);
             }
             

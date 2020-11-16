@@ -3,16 +3,15 @@
  * @author Alexandre Dewilde
  * @date 15/11/2020
  * @version 1.0.0
- * @requires express
- * @requires ../db/DB
- * 
  */
 
 const express = require('express');
 const nunjucks = require('nunjucks');
 const path = require('path');
+const minify = require('express-minify');
 const logger = require('morgan');
 const compression = require('compression');
+let debug = require('debug');
 const index = require('./routes/index');
 const editor = require('./routes/editor');
 const legal = require('./routes/legal');
@@ -28,10 +27,13 @@ nunjucks.configure(path.join(__dirname, 'views'), {
 });
 
 // Adding middleware
+// TODO change logger for production mode
 app.use(logger('dev'));
-app.use(compression())
+app.use(compression());
+app.use(minify());
+//app.use(lessMiddleware(path.join(__dirname, 'publics/css'), { compress: true, debug: config.DEBUG }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 // Set static folder
 app.use(express.static(path.join(__dirname, 'publics/')));
 
@@ -47,8 +49,8 @@ app.all('*', (req, res) => {
 });
 
 // Handle errors
-app.use((err, req, res, next) => {
-    console.log(err)
+app.use((error, req, res, next) => {
+    debug(error);
     res.sendStatus(500);
 });
 

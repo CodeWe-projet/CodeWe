@@ -49,7 +49,6 @@ router.get('/:docId', async (req, res) => {
             res.status(404).render('404.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE})
         }
     } catch (err) {
-        console.log(err);
         throw new Error(err);
     }
 });
