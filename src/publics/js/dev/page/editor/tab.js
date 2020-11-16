@@ -27,6 +27,7 @@ export default class Tab{
     constructor(element, type=TabType.SPACES, size=null) {
         this.element = element;
         this.set(type, size);
+        console.log(this);
     }
 
     /**
@@ -37,6 +38,7 @@ export default class Tab{
     set(type, size=null){
         this.type = type;
         this.setSize(size);
+        console.log(this);
     }
 
     /**
@@ -45,10 +47,13 @@ export default class Tab{
      */
     setSize(size){
         if(this.type === TabType.TAB){
-            this.size = size | 8;
+            this.size = size;
+            if(!this.size) this.size = 8;
             this.element.style.tabSize = this.size + 'px';
-        }else if(this.type === TabType.TAB){
-            this.size = size | 4;
+        }else if(this.type === TabType.SPACES){
+            this.size = size;
+            if(!this.size) this.size = 4;
+            console.log(this.size, size);
             this.element.style.tabSize = this.size*2 + 'px';
         }else{
             this.size = size;
@@ -72,5 +77,14 @@ export default class Tab{
     getCompletion(position){
         if(this.type === TabType.SPACES) return ' '.repeat(this.size-position%this.size);
         else if(this.type === TabType.TAB) return '\t';
+    }
+
+    /**
+     * Return spaces based on position
+     * @param {number} position
+     */
+    getCompletionSize(position){
+        if(this.type === TabType.SPACES) return this.size-position%this.size;
+        return 1;
     }
 }

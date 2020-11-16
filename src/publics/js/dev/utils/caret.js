@@ -3,40 +3,40 @@
  * @author Brieuc Dubois
  * @date Created on 14/11/2020
  * @date Last modification on 15/11/2020
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 export default class Caret{
     /**
      *  Create range on the specified position in node or in children if necessary
      * inspired from https://jsfiddle.net/nrx9yvw9/5/
-     * @param {Node} node
-     * @param {number} position
+     * @param {HTMLElement|Node} node
+     * @param {{count: number}} data
      * @param {Range} range
      * @return {Range}
      */
-    static createRange(node, position, range) {
+    static createRange(node, data, range=null) {
         if (!range) {
-            range = document.createRange()
+            range = document.createRange();
             range.selectNode(node);
             range.setStart(node, 0);
         }
 
-        if (position === 0) {
-            range.setEnd(node, position);
-        } else if (node && position > 0) {
+        if (data.count === 0) {
+            range.setEnd(node, data.count);
+        } else if (node && data.count > 0) {
             if (node.nodeType === Node.TEXT_NODE) {
-                if (node.textContent.length < position) {
-                    position -= node.textContent.length;
+                if (node.textContent.length < data.count) {
+                    data.count -= node.textContent.length;
                 } else {
-                    range.setEnd(node, position);
-                    position = 0;
+                    range.setEnd(node, data.count);
+                    data.count = 0;
                 }
             } else {
                 for (let lp = 0; lp < node.childNodes.length; lp++) {
-                    range = Caret.createRange(node.childNodes[lp], position, range);
+                    range = Caret.createRange(node.childNodes[lp], data, range);
 
-                    if (position === 0) {
+                    if (data.count === 0) {
                         break;
                     }
                 }
@@ -57,7 +57,7 @@ export default class Caret{
         if (position >= 0) {
             let selection = document.getSelection();
 
-            let range = Caret.createRange(element, position, null);
+            let range = Caret.createRange(element, {count: position});
 
             if (range) {
                 range.collapse(false);
@@ -70,7 +70,7 @@ export default class Caret{
     /**
      * Get the position of the end of the user selection
      * Based on https://stackoverflow.com/a/4812022/11247647
-     * @param {HTMLElement} element
+     * @param {HTMLElement|Node} element
      * @return {number}
      */
      static getEndPosition(element) {
@@ -89,7 +89,7 @@ export default class Caret{
     /**
      * Get the position of the end of the user selection
      * Based on https://stackoverflow.com/a/4812022/11247647
-     * @param {HTMLElement} element
+     * @param {HTMLElement|Node} element
      * @return {number}
      */
      static getBeginPosition(element) {
