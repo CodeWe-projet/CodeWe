@@ -16,5 +16,5 @@ var crypto = require('crypto');
  * @param  {int} length=5
  */
 exports.uuid =  function (i, length=5) {
-    return crypto.createHash('sha256').update(i).digest('base64').substring(0, length);
+    return crypto.createHash('sha256').update(i).digest('base64').substring(0, length).replace('/', '0');
 }
