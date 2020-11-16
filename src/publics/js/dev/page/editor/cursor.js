@@ -12,7 +12,6 @@ export default class Cursor{
         this.editor = element;
 
         this.current = new Map();
-        console.log(this.current);
 
         this.color = Random.randInt(0, 255, 3);
         this.uuid = Random.string(10);
@@ -82,7 +81,7 @@ export default class Cursor{
         const element = document.querySelector('div[uuid="' + data.uuid + '"]');
 
         if(element === null){
-            if(Config.DEBUG) console.log('Cursor position doesn\' exist');
+            if(Config.DEBUG) console.log('Cursor position doesn\'t exist');
             return;
         }
 

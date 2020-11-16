@@ -2,8 +2,8 @@
  * This module deals with DOM elements.
  * @author Brieuc Dubois
  * @date Created on 14/11/2020
- * @date Last modification on 15/11/2020
- * @version 1.0.1
+ * @date Last modification on 16/11/2020
+ * @version 1.1.1
  */
 
 /**
@@ -44,7 +44,7 @@ export default class _{
  * @return {Node}
  */
 export function getCurrentNode(){
-    if(window.getSelection().rangeCount === 0) return undefined;
+    if(window.getSelection().rangeCount === 0) return null;
     return window.getSelection().getRangeAt(0).startContainer;
 }
 
@@ -59,7 +59,7 @@ export function getNodeFromAttribute(attribute, child=getCurrentNode()){
         if(child.nodeType !== Node.TEXT_NODE && child.hasAttribute(attribute)) return child;
         else return getNodeFromAttribute(attribute, child.parentElement);
     }catch (e){
-        return undefined;
+        return null;
     }
 }
 
@@ -74,6 +74,21 @@ export function getParentFromSpecificTypes(types, child=getCurrentNode()){
         if(types.includes(child.nodeName.toLowerCase())) return child;
         else return getParentFromSpecificTypes(types, child.parentElement);
     }catch (e){
-        return undefined;
+        return null;
     }
+}
+
+/**
+ * Create new element based on data gived
+ * @param {string} type
+ * @param {string} content
+ * @param {{}} attributes
+ */
+export function createElement(type, content, attributes){
+    const element = document.createElement(type);
+    element.innerHTML = content;
+    for(const [name, value] of Object.entries(attributes)){
+        element.setAttribute(name, value);
+    }
+    return element;
 }

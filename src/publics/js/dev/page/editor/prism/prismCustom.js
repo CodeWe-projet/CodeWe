@@ -1,6 +1,8 @@
 import {patterns} from "/js/dev/page/editor/prism/patterns.js";
 import {Prism} from "/js/dev/page/editor/prism/prism.js";
 import Caret from "/js/dev/utils/caret.js";
+import Debug from "/js/dev/utils/debug.js";
+import {getNodeFromAttribute} from "/js/dev/utils/element.js";
 import {htmlEncode} from "/js/dev/utils/string.js";
 
 export default class PrismCustom{
@@ -39,5 +41,15 @@ export default class PrismCustom{
         this.apply();
 
         Caret.setPosition(this.element, offset);
+    }
+
+    /**
+     * Build a PrismCustom object on the current uuid node
+     * @constructor
+     * @param {string} lang
+     * @return {PrismCustom}
+     */
+    static onCurrent(lang){
+        return new PrismCustom(getNodeFromAttribute('uuid'), lang);
     }
 }
