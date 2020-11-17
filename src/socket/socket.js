@@ -42,6 +42,7 @@ module.exports = function (wss) {
 			if(Object.keys(rooms[room]).length === 1) delete rooms[room];
 			else delete rooms[room][uuid];
 		};
+		socket.leave = leave;
 
 
 		socket.on('message', async data => {
@@ -94,9 +95,12 @@ module.exports = function (wss) {
 	  // FROM ws doc
 	  const interval = setInterval(function ping() {
 		wss.clients.forEach(function each(socket) {
-		  if (socket.isAlive === false) return socket.terminate();
-		  socket.isAlive = false;
-		  socket.ping(() => {});
+			if (socket.isAlive === false) {
+				Object.keys(rooms).forEach(room => socket.leave(room));
+				return socket.terminate();
+			}
+			socket.isAlive = false;
+			socket.ping(() => {});
 		});
 	  }, 30000);
 
