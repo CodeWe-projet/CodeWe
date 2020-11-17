@@ -1,12 +1,13 @@
 /**
  * Socket routes
- * @module routes/socket
+ * @module socket/socket
  * @author Alexandre Dewilde
  * @date 16/11/2020
  * @version 1.0.0
  *
  */
 const discordWebhook = require('webhook-discord');
+const debug = require('debug');
 const config = require('../config/config');
 
  /**
@@ -32,6 +33,7 @@ module.exports = function (wss) {
 	// TODO catch error handle disconnection etc
 	// Based on https://stackoverflow.com/a/62867363
   	wss.on('connection', socket => {
+		socket.isAlive = true;
 		const uuid = utils.uuid(Math.random().toString());
 
 		const leave = room => {
@@ -69,15 +71,38 @@ module.exports = function (wss) {
 				case 'ping':
 					socket.send('pong');
 					break;
-				case 'report':
+				case 'report': // Send issue to hook
 					if (hook) {
 						hook.warn('Report', data.data.content);
 					}
+				
 			}
+		});
+
+		socket.on('pong', () => {
+			socket.isAlive = true;
+		});
+
+		socket.on('error', (err) => {
+			debug(err);
 		});
 
 		socket.on('close', data => {
 			Object.keys(rooms).forEach(room => leave(room));
 		});
-  	});
+	  });
+	  // FROM ws doc
+	  const interval = setInterval(function ping() {
+		wss.clients.forEach(function each(socket) {
+		  if (socket.isAlive === false) return socket.terminate();
+		  socket.isAlive = false;
+		  socket.ping(() => {});
+		});
+	  }, 30000);
+
+	  wss.on('close', function close() {
+		clearInterval(interval);
+	  });
+	  
+	  
 }
