@@ -32,6 +32,12 @@ def pdf_tos():
     return send_file("templates/legal/tos-pdf.pdf")
 
 
+@app.route("/privacy-pdf")
+def pdf_policy():
+    """Reroute to ToS PDF."""
+    return send_file("templates/legal/privacy-pdf.pdf")
+
+
 @app.route("/<doc_id>")
 @app.route("/editor/<doc_id>")
 def editor(doc_id):
@@ -75,6 +81,14 @@ def tos_archive(doc_id):
 def privacy():
     """Render privacy policy."""
     return render_template("legal/privacy.html")
+
+
+@app.route("/privacy/archive/<doc_id>")
+@app.route("/privacypolicy/archive/<doc_id>")
+@app.route("/privacy-policy/archive/<doc_id>")
+def privacy_archive(doc_id):
+    """Render privacy policy from archive."""
+    return render_template(f"legal/archive/privacy-{doc_id}.html")
 
 
 @app.route("/licence")
