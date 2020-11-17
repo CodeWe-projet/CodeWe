@@ -9,10 +9,10 @@ import Cursor from "/js/dev/page/editor/cursor.js";
 import download from "/js/dev/page/editor/download.js";
 import Editable from "/js/dev/page/editor/editable.js";
 import PrismCustom from "/js/dev/page/editor/prism/prismCustom.js";
-import {Socket} from "/js/dev/page/editor/socket.js";
+import EditorSocket from "/js/dev/page/editor/socket.js";
 import _ from "/js/dev/utils/element.js";
 
-export const socket = new Socket(doc_id);
+export const socket = new EditorSocket(doc_id);
 export const editor = new Editable(_.id('editor'));
 export const cursor = new Cursor(_.id('editor'));
 

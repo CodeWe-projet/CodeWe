@@ -1,26 +1,38 @@
 import Config from "/js/dev/config.js";
 import Debug from "/js/dev/utils/debug.js";
+import Socket from "/js/dev/utils/websocket/socket.js";
 
-export class Socket{
+const UPDATE_EVENT = 'update';
+
+export default class EditorSocket{
     constructor(doc_id, interval=1000) {
         this.doc_id = doc_id;
-        this.socket = io();
-        this.join();
-        this.stack = {'update text': []};
-        this.preprocess = [];
 
-        this.socket.on("text updated", data => {
-            for(const request of data['requests']){
-                Debug.debug('RECEIVE', request['type'], request['data']);
-                const room = data['room'];
-                const event = new CustomEvent('socket.receive.' + request['type'], { detail: {request, room}});
-                document.dispatchEvent(event);
-            }
+        this.ws = new Socket({
+            secure: false,
+            port: window.location.port,
+            hostname: 'localhost',
         });
 
+        this.stack = {UPDATE_EVENT: []};
+        this.preprocess = [];
+
+        this.ws.ws.onopen =() => {
+            this.join();
+
+            setInterval(() => {
+                for(const func of this.preprocess){
+                    func[0](...func[1]);
+                }
+                if(this.stack.UPDATE_EVENT.length){
+                    this.send(UPDATE_EVENT, this.stack.UPDATE_EVENT.splice(0, this.stack.UPDATE_EVENT.length));
+                }
+            }, interval);
+        };
+
         document.addEventListener('socket.send', e => {
-            if(e.detail.hasOwnProperty('request')) this.stack['update text'].push(e.detail.request);
-            if(e.detail.hasOwnProperty('requests')) this.stack['update text'].push(...e.detail.requests);
+            if(e.detail.hasOwnProperty('request')) this.stack.UPDATE_EVENT.push(e.detail.request);
+            if(e.detail.hasOwnProperty('requests')) this.stack.UPDATE_EVENT.push(...e.detail.requests);
         })
 
         document.addEventListener('socket.send_now', e => {
@@ -39,30 +51,22 @@ export class Socket{
             }
         });
 
-        setInterval(() => {
-            for(const func of this.preprocess){
-                func[0](...func[1]);
-            }
-            if(this.stack['update text'].length){
-                this.send('update text', this.stack['update text'].splice(0, this.stack['update text'].length));
-            }
-        }, interval);
-
     }
 
-    send(name, requests) {
-        if(Config.isDebug() && Array.isArray(requests)){
-            for(const request of requests){
-                Debug.debug('SEND to \'' + name + '\' with type \'' + request['type'] + '\'', request['data']);
+    send(name, data={}) {
+        if(Config.isDebug() && Array.isArray(data)){
+            for(const d of data){
+                Debug.debug('SEND to \'' + name + '\': ', d);
             }
         }
-        this.socket.emit(name, {
+        this.ws.send({
+            event: name,
             room: this.doc_id,
-            requests: requests
+            data: data
         });
     }
 
     join() {
-        this.send("join", {room: this.doc_id})
+        this.send("join");
     }
 }

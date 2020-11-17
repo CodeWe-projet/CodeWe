@@ -18,7 +18,6 @@ export default class Socket{
         this.options = options || {};
 
         Debug.debug(this.uri().href);
-
         this.ws = new WebSocket(this.uri().href);
 
         this.ws.onmessage = this.onMessage;
