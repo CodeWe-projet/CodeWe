@@ -72,7 +72,12 @@ def tos():
 @app.route("/terms-of-service/archive/<doc_id>")
 def tos_archive(doc_id):
     """Render terms of service form archive."""
-    return render_template(f"legal/archive/tos-{doc_id}.html")
+    try:
+        return render_template(f"legal/archive/tos-{doc_id}.html")
+    except Exception as e:
+        if DEBUG:
+            print(e)
+    return abort(404)
 
 
 @app.route("/privacy")
@@ -88,7 +93,12 @@ def privacy():
 @app.route("/privacy-policy/archive/<doc_id>")
 def privacy_archive(doc_id):
     """Render privacy policy from archive."""
-    return render_template(f"legal/archive/privacy-{doc_id}.html")
+    try:
+        return render_template(f"legal/archive/privacy-{doc_id}.html")
+    except Exception as e:
+        if DEBUG:
+            print(e)
+    return abort(404)
 
 
 @app.route("/licence")
