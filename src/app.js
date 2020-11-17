@@ -11,6 +11,7 @@ const path = require('path');
 const minify = require('express-minify');
 const logger = require('morgan');
 const compression = require('compression');
+const apiMetrics = require('prometheus-api-metrics');
 let debug = require('debug');
 const index = require('./routes/index');
 const editor = require('./routes/editor');
@@ -30,6 +31,7 @@ nunjucks.configure(path.join(__dirname, 'views'), {
 // TODO change logger for production mode
 app.use(logger('dev'));
 app.use(compression());
+app.use(apiMetrics());
 app.use(minify());
 //app.use(lessMiddleware(path.join(__dirname, 'publics/css'), { compress: true, debug: config.DEBUG }));
 app.use(express.json());
