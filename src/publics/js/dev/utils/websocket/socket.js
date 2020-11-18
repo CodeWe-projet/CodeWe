@@ -17,7 +17,7 @@ export default class Socket{
 
         this.options = options || {};
 
-        Debug.debug(this.uri().href);
+        Debug.debug('Websocket connection to', this.uri());
         this.ws = new WebSocket(this.uri().href);
 
         this.ws.onmessage = this.onMessage;
@@ -53,7 +53,7 @@ export default class Socket{
         if(this.options.port
             && (protocol === 'wss' && Number(this.options.port) !== 443
                 || protocol === 'ws' && Number(this.options.port) !== 80)){
-            return ':' + this.options.port;
+            return this.options.port;
         }else{
             return '';
         }
