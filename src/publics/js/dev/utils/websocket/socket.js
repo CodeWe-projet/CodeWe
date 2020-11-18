@@ -64,7 +64,6 @@ export default class Socket{
      * @param {{}} content
      */
     send(content){
-        Debug.debug('SEND PACKET', content);
         this.ws.send(JSON.stringify(content));
     }
 

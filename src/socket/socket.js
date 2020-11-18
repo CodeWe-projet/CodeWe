@@ -50,7 +50,9 @@ module.exports = function (wss) {
 			switch (data.event) {
 				case 'update':
 					try {
-						Object.entries(rooms[data.room]).forEach(([, sock]) => sock.send({ data }));
+						Object.entries(rooms[data.room]).forEach(([, sock]) => {
+							sock.send(JSON.stringify(data));
+						});
 						let documentContent = (await db.getDocument(data["room"])).content;
 						documentContent = JSON.parse(documentContent);
 						let document = new Document(documentContent);
@@ -76,7 +78,7 @@ module.exports = function (wss) {
 					if (hook) {
 						hook.warn('Report', data.data.content);
 					}
-				
+
 			}
 		});
 
@@ -107,6 +109,6 @@ module.exports = function (wss) {
 	  wss.on('close', function close() {
 		clearInterval(interval);
 	  });
-	  
-	  
+
+
 }
