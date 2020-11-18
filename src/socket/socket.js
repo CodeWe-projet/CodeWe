@@ -56,7 +56,7 @@ module.exports = function (wss) {
 						let documentContent = (await db.getDocument(data["room"])).content;
 						documentContent = JSON.parse(documentContent);
 						let document = new Document(documentContent);
-						document.applyRequests(data["requests"]);
+						document.applyRequests(data.data);
 						db.updateDocument(data["room"], JSON.stringify(document.documentContent));
 					} catch (err) {
 						throw new Error(err);
