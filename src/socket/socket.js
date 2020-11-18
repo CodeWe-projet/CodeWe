@@ -53,11 +53,13 @@ module.exports = function (wss) {
 						Object.entries(rooms[data.room]).forEach(([, sock]) => {
 							sock.send(JSON.stringify(data));
 						});
-						let documentContent = (await db.getDocument(data["room"])).content;
-						documentContent = JSON.parse(documentContent);
-						let document = new Document(documentContent);
-						document.applyRequests(data.data);
-						db.updateDocument(data["room"], JSON.stringify(document.documentContent));
+						if (Object.entries(data.data).filter(([,el]) => el.type !== 'cursor-moves').length > 0) {
+							let documentContent = (await db.getDocument(data["room"])).content;
+							documentContent = JSON.parse(documentContent);
+							let document = new Document(documentContent);
+							document.applyRequests(data.data);
+							db.updateDocument(data["room"], JSON.stringify(document.documentContent));
+						}
 					} catch (err) {
 						throw new Error(err);
 					}

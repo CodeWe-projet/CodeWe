@@ -28,12 +28,16 @@ nunjucks.configure(path.join(__dirname, 'views'), {
 });
 
 // Adding middleware
-// TODO change logger for production mode
-app.use(logger('dev'));
-app.use(compression());
-app.use(minify());
+if (config.PRODUCTION) {
+    app.use(logger('combined'));
+    app.use(compression());
+    app.use(minify());
+}
+else {
+    app.use(logger('dev'));
+}
 
-// Prometheus
+// Prometheus middleware
 if(config.METRICS){
     app.use(promBundle({
         includeMethod: true,
