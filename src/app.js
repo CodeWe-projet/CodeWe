@@ -31,11 +31,11 @@ nunjucks.configure(path.join(__dirname, 'views'), {
 if (config.PRODUCTION) {
     app.use(logger('combined'));
     app.use(compression());
-    app.use(minify());
 }
 else {
     app.use(logger('dev'));
 }
+app.use(minify({ minifyJS: false }));
 
 // Prometheus middleware
 if(config.METRICS){
@@ -44,8 +44,6 @@ if(config.METRICS){
         includePath: true,
     }));
 }
-
-//app.use(lessMiddleware(path.join(__dirname, 'publics/css'), { compress: true, debug: config.DEBUG }));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 // Set static folder
