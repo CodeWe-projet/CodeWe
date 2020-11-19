@@ -83,6 +83,9 @@ module.exports = function (wss) {
 				case 'ping':
 					socket.send('pong');
 					break;
+				case 'pong':
+					socket.isAlive = true;
+					break;
 				case 'report': // Send issue to hook
 					if (hook) {
 						hook.warn('Report', data.data.content);
@@ -111,7 +114,7 @@ module.exports = function (wss) {
 				return socket.terminate();
 			}
 			socket.isAlive = false;
-			socket.ping(() => {});
+			socket.ping();
 		});
 	  }, 30000);
 

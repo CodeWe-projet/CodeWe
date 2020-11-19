@@ -35,7 +35,7 @@ if (config.PRODUCTION) {
 else {
     app.use(logger('dev'));
 }
-app.use(minify({ minifyJS: false }));
+app.use(minify({ jsMatch: false }));
 
 // Prometheus middleware
 if(config.METRICS){
