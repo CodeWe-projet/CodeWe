@@ -40,6 +40,16 @@ export default class Socket{
             }
         }, 1000);
 
+        /**
+         * Ping-pong alive event
+         */
+        document.addEventListener('socket.receive.ping', e => {
+            this.send(JSON.stringify({
+                event: 'pong',
+                time: Date.now(),
+            }))
+        })
+
 
     }
 
