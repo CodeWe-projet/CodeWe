@@ -2,8 +2,6 @@
 |      Generic      |
 \*******************/
 
-@bg-color: #222;
-
 *{
     margin: 0;
     padding: 0;
@@ -21,7 +19,7 @@
 }
 
 body{
-    background-color: @bg-color;
+    background-color: #222222;
     color: white;
     font-family: sans-serif;
     height:100vh;
@@ -47,13 +45,13 @@ body{
     border: 1px solid royalblue;
     size: 8px;
     text-align: center;
-}
 
-.alertCard h3{
-    display: block;
-    text-align: center;
-    text-transform: uppercase;
-    margin-bottom: 5px;
+    h3{
+        display: block;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+    }
 }
 
 /******************\
@@ -70,19 +68,19 @@ header{
     width: 100vw;
     box-sizing: border-box;
     z-index: 200;
-}
 
-header h1{
-    float: left;
-}
+    h1{
+        float: left;
+    }
 
-header .title-1{
-    font-size: 40px;
-}
+    .title-1{
+        font-size: 40px;
+    }
 
-header a{
-    color: inherit;
-    text-decoration: inherit;
+    a{
+        color: inherit;
+        text-decoration: inherit;
+    }
 }
 
 /*******************\
@@ -98,49 +96,49 @@ div#welcome{
     background-color: rgba(10, 10, 10, 0.5);
     display: none;
     z-index: 4;
-}
 
-div#welcome div#welcome-text{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 350px;
-    max-width: 500px;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    color: #111111;
-    background-color: #d5e6ed;
-    margin: 0 auto;
-    padding: 1em;
-    border-radius: 20px;
-    border: 1px solid forestgreen;
-    box-shadow: forestgreen 0 0 10px;
-}
+    div#welcome-text{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 350px;
+        max-width: 500px;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        color: #111111;
+        background-color: #d5e6ed;
+        margin: 0 auto;
+        padding: 1em;
+        border-radius: 20px;
+        border: 1px solid forestgreen;
+        box-shadow: forestgreen 0 0 10px;
+    }
 
-div#welcome .welcome-content{
-    text-align: justify;
-    padding: 10px 0;
-    letter-spacing: 0.9px;
-    line-height: 25px;
-}
+    .welcome-content{
+        text-align: justify;
+        padding: 10px 0;
+        letter-spacing: 0.9px;
+        line-height: 25px;
+    }
 
-div#welcome .welcome-enjoy{
-    float: left;
-}
+    .welcome-enjoy{
+        float: left;
+    }
 
-div#welcome button{
-    float: right;
-    width: 150px;
-    height: 45px;
-    background-color: forestgreen;
-    border: none;
-    border-radius: 10px;
-    letter-spacing: 2px;
-    color: white;
-}
+    button{
+        float: right;
+        width: 150px;
+        height: 45px;
+        background-color: forestgreen;
+        border: none;
+        border-radius: 10px;
+        letter-spacing: 2px;
+        color: white;
+    }
 
-div#welcome button:hover{
-    cursor: pointer;
+    button:hover{
+        cursor: pointer;
+    }
 }
 
 .blur-background > *:not(#body):not(#welcome) {
@@ -172,27 +170,27 @@ div#welcome button:hover{
     padding: 15px 0 5px 0;
     border-top: 1px solid rgb(53, 58, 60);
     text-align: center;
-}
 
-#footer #links{
-    margin-bottom: 20px;
-}
+    #links{
+        margin-bottom: 20px;
 
-#footer #links a{
-    margin: 0 25px;
-    font-size: 12px;
-    color: lightgray;
-    text-decoration: none;
-}
+        a{
+            margin: 0 25px;
+            font-size: 12px;
+            color: lightgray;
+            text-decoration: none;
+        }
 
-#footer #links a[href="#"]{
-    color: #555;
-    text-decoration: line-through;
-    font-style: italic;
-}
+        a[href="#"]{
+            color: #555;
+            text-decoration: line-through;
+            font-style: italic;
+        }
 
-#footer #links #link-welcome[id]{
-    color: lightgray;
-    text-decoration: none;
-    font-style: normal;
+        #link-welcome[id]{
+            color: lightgray;
+            text-decoration: none;
+            font-style: normal;
+        }
+    }
 }

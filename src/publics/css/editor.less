@@ -1,38 +1,50 @@
-header #actions{
-    float: right;
-    padding: 5px 20px;
+/******************\
+|      Header      |
+\******************/
+
+header{
+    #actions{
+        float: right;
+        padding: 5px 20px;
+    }
+
+    header #download{
+        display: inline-block;
+        background-color: #333333;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
 }
 
-header #download{
-    display: inline-block;
-    background-color: #333333;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    text-decoration: none;
-}
+/*******************\
+|      Section      |
+\*******************/
 
 section#editor{
     counter-reset: thecodenumbering;
     line-height: 22px;
-}
 
-section#editor div{
-    font-family: "Courier New", monospace;
-    counter-increment: thecodenumbering;
-    width: 100%;
-    white-space: pre-wrap;
-}
-section#editor div:before{
-    padding-right:10px;
-    content: counter(thecodenumbering);
-    display:inline-block;
-    width:3em;
-    text-align: center;
-}
+    div{
+        font-family: "Courier New", monospace;
+        counter-increment: thecodenumbering;
+        width: 100%;
+        white-space: pre-wrap;
+    }
 
-section#colorful{
-    font-weight: normal !important;
+    div:before{
+        padding-right:10px;
+        content: counter(thecodenumbering);
+        display:inline-block;
+        width:3em;
+        text-align: center;
+    }
+
+    .noteditable{
+        background-color: #181818;
+        opacity: 50%;
+    }
 }
 
 .pointer{
@@ -44,9 +56,4 @@ section#colorful{
     height: 10px;
     background-color: red;
     border-radius: 10px;
-}
-
-.noteditable{
-    background-color: #181818;
-    opacity: 50%;
 }
