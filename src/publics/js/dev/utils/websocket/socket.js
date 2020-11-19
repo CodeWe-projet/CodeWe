@@ -5,7 +5,7 @@
  * @date Last modification on 16/11/2020
  * @version 1.0.0
  */
-import Debug from "/js/dev/utils/debug.js";
+import Debug from "/js/dev/utils/debugging/debug.js";
 import EventManager from "/js/dev/utils/events.js";
 
 export default class Socket{
@@ -72,9 +72,9 @@ export default class Socket{
      * @param {MessageEvent} e
      */
     onMessage(e){
-        Debug.debug('RECEIVE PACKET', e.data);
         try{
             const data = JSON.parse(e.data);
+            Debug.debug('RECEIVE PACKET', data);
             if(data.event && data.data) EventManager.triggerCustom(`socket.receive.${data.event}`, data.data);
             else {
                 Debug.error('This packet hasn\'t valid event and data.', data);
