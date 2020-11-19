@@ -5,7 +5,7 @@
  * @date 15/11/2020
  * @version 1.0.0
  * @requires express
- * @requires ../db/DB
+ * @requires ../db/MangoDB
  *
  */
 
@@ -15,11 +15,11 @@
  */
 const express = require('express');
  /**
- * DB module
+ * MangoDB module
  * @const
  * @type {object}
  */
-const db = require('../db/DB');
+const db = require('../db/MongoDB');
 const config = require('../config/config');
 /**
  * Express router.

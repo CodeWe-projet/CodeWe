@@ -11,17 +11,11 @@ const debug = require('debug');
 const config = require('../config/config');
 
  /**
- * DB module
+ * MongoDB module
  * @type {object}
  * @const
  */
-const db = require('../db/DB');
-/**
- * Document module
- * @type {object}
- * @const
- */
-const Document = require('../document/Document');
+const db = require('../db/MongoDB');
 
 const utils = require('../utils');
 
@@ -60,13 +54,7 @@ module.exports = function (wss) {
 								}));
 							}else sock.send(JSON.stringify(data));
 						});
-						if (Object.entries(data.data).filter(([,el]) => el.type !== 'cursor-moves').length > 0) {
-							let documentContent = (await db.getDocument(data["room"])).content;
-							documentContent = JSON.parse(documentContent);
-							let document = new Document(documentContent);
-							document.applyRequests(data.data);
-							db.updateDocument(data["room"], JSON.stringify(document.documentContent));
-						}
+						db.applyRequests(data.room, data.data);
 					} catch (err) {
 						throw new Error(err);
 					}
