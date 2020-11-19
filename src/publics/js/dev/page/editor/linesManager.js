@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 import PrismCustom from "/js/dev/page/editor/prism/prismCustom.js";
-import Debug from "/js/dev/utils/debug.js";
+import Debug from "/js/dev/utils/debugging/debug.js";
 import {createElement} from "/js/dev/utils/element.js";
 import Stack from "/js/dev/utils/stack.js";
 import {htmlEncode} from "/js/dev/utils/string.js";

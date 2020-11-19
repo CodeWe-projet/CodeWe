@@ -1,5 +1,5 @@
 import Config from "/js/dev/config.js";
-import Debug from "/js/dev/utils/debug.js";
+import Debug from "/js/dev/utils/debugging/debug.js";
 import Socket from "/js/dev/utils/websocket/socket.js";
 
 const UPDATE_EVENT = 'update';

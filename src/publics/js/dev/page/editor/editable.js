@@ -6,15 +6,13 @@
  * @version 2.0.0
  */
 import temporaryCardAlert from "/js/dev/component/text-alert.js";
-import Config from "/js/dev/config.js";
 import Key from "/js/dev/page/editor/key.js";
-import Keys from "/js/dev/page/editor/key.js";
 import LinesManager from "/js/dev/page/editor/linesManager.js";
 import PrismCustom from "/js/dev/page/editor/prism/prismCustom.js";
 import Request from "/js/dev/page/editor/requests.js";
 import Tab, {TabType} from "/js/dev/page/editor/tab.js";
 import Caret from "/js/dev/utils/caret.js";
-import Debug from "/js/dev/utils/debug.js";
+import Debug from "/js/dev/utils/debugging/debug.js";
 import {getNodeFromAttribute, getParentFromSpecificTypes} from "/js/dev/utils/element.js";
 import EventManager from "/js/dev/utils/events.js";
 import Random from "/js/dev/utils/random.js";
@@ -28,6 +26,23 @@ export default class Editable{
         this.last_request = {};
 
         this.keepSpace = false;
+
+        /**
+         * Receive all update events
+         */
+        document.addEventListener('socket.receive.update', e => {
+            if(e && e.detail && e.detail && typeof e.detail[Symbol.iterator] === 'function'){
+                for(const req of e.detail){
+                    if(req.type){
+                        EventManager.triggerCustom('editor.' + req.type, req.data);
+                    }else{
+                        Debug.warn('Trying to trigger a null received event.');
+                    }
+                }
+            }else{
+                Debug.warn('Trying to iterate on non-iterable data.');
+            }
+        });
 
         EventManager.triggerCustom('socket.preprocess', [this.coroutine, [this]]);
 
@@ -157,9 +172,9 @@ export default class Editable{
         /**
          * Receive an update about the content of a line
          */
-        document.addEventListener('socket.receive.set-line', e => {
-            const id = e.detail.request.data.id;
-            const content = e.detail.request.data.content;
+        document.addEventListener('editor.set-line', e => {
+            const id = e.detail.id;
+            const content = e.detail.content;
             this.last_request[id] = content;
             this.linesManager.update(id, content);
         });
@@ -167,10 +182,10 @@ export default class Editable{
         /**
          * Receive a new line to create
          */
-        document.addEventListener('socket.receive.new-line', e => {
-            const id = e.detail.request.data.id;
-            const previous = e.detail.request.data.previous;
-            const content = e.detail.request.data.content;
+        document.addEventListener('editor.new-line', e => {
+            const id = e.detail.id;
+            const previous = e.detail.previous;
+            const content = e.detail.content;
             this.last_request[id] = content;
             this.linesManager.new(id, previous, content);
         });
@@ -178,8 +193,8 @@ export default class Editable{
         /**
          * Receive a line to delete
          */
-        document.addEventListener('socket.receive.delete-line', e => {
-            const id = e.detail.request.data.id;
+        document.addEventListener('editor.delete-line', e => {
+            const id = e.detail.id;
             if(id in this.last_request) delete this.last_request[id];
             this.linesManager.remove(id);
         });

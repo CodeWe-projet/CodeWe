@@ -1,7 +1,7 @@
 import {patterns} from "/js/dev/page/editor/prism/patterns.js";
 import {Prism} from "/js/dev/page/editor/prism/prism.js";
 import Caret from "/js/dev/utils/caret.js";
-import Debug from "/js/dev/utils/debug.js";
+import Debug from "/js/dev/utils/debugging/debug.js";
 import {getNodeFromAttribute} from "/js/dev/utils/element.js";
 import {htmlEncode} from "/js/dev/utils/string.js";
 

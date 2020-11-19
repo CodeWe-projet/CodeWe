@@ -1,3 +1,10 @@
+/**
+ * This module deals with cursor.
+ * @author Brieuc Dubois
+ * @date Created on 14/11/2020
+ * @date Last modification on 19/11/2020
+ * @version 1.0.0
+ */
 import Config from "/js/dev/config.js";
 import _, {getCurrentNode, getNodeFromAttribute} from "/js/dev/utils/element.js";
 import EventManager from "/js/dev/utils/events.js";
@@ -18,7 +25,7 @@ export default class Cursor{
         this.request = {};
 
         // Listen for others caret moves
-        document.addEventListener('socket.receive.cursor-moves', e => {
+        document.addEventListener('editor.cursor-moves', e => {
             this.update(e);
         });
 
@@ -57,6 +64,10 @@ export default class Cursor{
         return {};
     }
 
+    /**
+     * Send the cursor position if it change
+     * @param {Cursor} cursor
+     */
     sendCursorPosition(cursor){
         const request = cursor.request;
         if(cursor && Object.keys(request).length > 0){
@@ -70,7 +81,7 @@ export default class Cursor{
      * @param {Object.<string, string | Array>} ev
      */
     update(ev){
-        const data = ev.detail.request.data;
+        const data = ev.detail;
         if(this.current.has(data.userId)){
             this.current.get(data.userId)[0].remove();
             this.current.get(data.userId)[1].removeAttribute('contenteditable');
