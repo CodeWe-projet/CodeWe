@@ -47,11 +47,18 @@ module.exports = function (wss) {
 
 		socket.on('message', async data => {
 			data = JSON.parse(data);
+			if(!('uuid' in data)) data['uuid'] = 'None';
 			switch (data.event) {
 				case 'update':
 					try {
 						Object.entries(rooms[data.room]).forEach(([, sock]) => {
-							sock.send(JSON.stringify(data));
+							if(sock === socket) {
+								sock.send(JSON.stringify({
+									code: "OK",
+									uuid: data['uuid'],
+									time: Date.now(),
+								}));
+							}else sock.send(JSON.stringify(data));
 						});
 						if (Object.entries(data.data).filter(([,el]) => el.type !== 'cursor-moves').length > 0) {
 							let documentContent = (await db.getDocument(data["room"])).content;

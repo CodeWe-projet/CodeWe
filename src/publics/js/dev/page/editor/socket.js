@@ -54,11 +54,6 @@ export default class EditorSocket{
     }
 
     send(name, data={}) {
-        if(Config.isDebug() && Array.isArray(data)){
-            for(const d of data){
-                Debug.debug('SEND to \'' + name + '\': ', d);
-            }
-        }
         this.ws.send({
             event: name,
             room: this.doc_id,
