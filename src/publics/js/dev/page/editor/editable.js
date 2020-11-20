@@ -21,7 +21,7 @@ import {insertInText} from "/js/dev/utils/string.js";
 export default class Editable{
     constructor(element) {
         this.editable = element;
-        this.tab = new Tab(element, TabType.SPACES, 2);
+        this.tab = new Tab(element, TabType.SPACES, 4);
         this.linesManager = new LinesManager(element);
         this.last_request = {};
 
