@@ -64,7 +64,7 @@ router.post('/report-issue', async (req, res) => {
     try{
         const report = req.body.report;
         const agree = Boolean(req.body.agree);
-        hook.warn('Report', `***Share data:*** ${agree}\n***Report:***\n${report}`);
+        hook.info('Report', `***Share data:*** ${agree}\n***Report:***\n${report}`);
     } catch (err) {
     console.log(err);
     throw new Error(err);

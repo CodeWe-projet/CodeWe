@@ -5,6 +5,7 @@
 @background-color: #222;
 @color: #fff;
 @font: sans-serif;
+@absolute-color: #d5e6ed;
 
 *{
     margin: 0;
@@ -154,7 +155,7 @@ div#welcome{
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     color: #111111;
-    background-color: #d5e6ed;
+    background-color: @absolute-color;
     margin: 0 auto;
     padding: 1em;
     border-radius: 20px;
@@ -184,6 +185,20 @@ div#welcome{
 
     input[type=submit]{
         float: right;
+    }
+
+    span{
+        float: left;
+    }
+
+    input[type=submit],
+    span{
+        background-color: darken(@absolute-color, 10%);
+        border: 1px solid darken(@absolute-color, 20%);
+        border-radius: 5px;
+        padding: 5px 10px;
+        size: 50px;
+        cursor: pointer;
     }
 }
 

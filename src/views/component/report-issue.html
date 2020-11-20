@@ -6,7 +6,9 @@
         <p>
             <input type="checkbox" checked name="agree"/><label>I agree to anonymously share certain browser-related information with the development team.</label>
         </p>
-            <input type="submit" id="reported" value="Send" />
+            <span onclick="k()">Cancel</span>
+            <input type="submit" id="reported" value="Send" onclick="k()"/>
         </p>
     </form>
 </div>
+<script type="application/javascript">const k=()=>{document.getElementById('report-issue').style.display="none";document.getElementById('main').classList.remove("blur-background");};</script>
