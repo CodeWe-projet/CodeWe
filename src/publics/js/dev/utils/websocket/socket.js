@@ -140,7 +140,7 @@ export default class Socket{
         if(code !== 'OK'){
             Debug.warn(`${uuid} come back with a non OK code.`)
         }
-
-        this.waitingStack.archive(uuid, time);
+        const element = this.waitingStack.archive(uuid, time);
+        Debug.debug(`up: ${element.server - element.send}ms, down: ${element.received - element.server}ms`);
     }
 }

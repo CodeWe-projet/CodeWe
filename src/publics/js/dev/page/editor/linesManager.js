@@ -139,7 +139,9 @@ export default class LinesManager{
                     differences.push(['set', [line.uuid, line.content]]);
                 }
             }else{
-                if(line.uuid in last_requests) differences.push(['set', [line.uuid, line.content]]);
+                if(line.uuid in last_requests){
+                    if(line.content !== last_requests[line.uuid]) differences.push(['set', [line.uuid, line.content]]);
+                }
                 else differences.push(['new', [line.uuid, this.history.get(-1)[i-1].uuid, line.content]]);
             }
         }
