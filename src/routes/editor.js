@@ -5,7 +5,7 @@
  * @date 15/11/2020
  * @version 1.0.0
  * @requires express
- * @requires ../db/DB
+ * @requires ../db/MangoDB
  * @requires ../config/config
  * 
  */
@@ -20,7 +20,7 @@ const express = require('express');
  * @type {object}
  * @const
  */
-const db = require('../db/DB');
+const db = require('../db/MongoDB');
 
 const config = require('../config/config');
 /**
@@ -42,7 +42,8 @@ router.get('/:docId', async (req, res) => {
     try {
         let document = (await db.getDocument(req.params.docId));
         if (document) {
-            document['content'] = JSON.parse(document.content);
+            document['content'] = document.content;
+            document.document_id = req.params.docId;
             res.render('editor.html', {document: document, production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
         }
         else {

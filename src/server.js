@@ -3,8 +3,6 @@
  * @author Alexandre Dewilde
  * @date 15/11/2020
  * @version 1.0.0
- * @requires express
- * @requires ../db/DB
  * 
  */
 const fs = require('fs');

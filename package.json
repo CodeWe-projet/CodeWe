@@ -23,6 +23,7 @@
     "express-minify": "^1.0.0",
     "express-prom-bundle": "^6.2.0",
     "less": "^3.12.2",
+    "mongodb": "^3.6.3",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "nunjucks": "^3.2.2",
