@@ -32,5 +32,5 @@ require('./socket/socket')(wss);
 
 
 server.listen(port, host, () => {
-    console.log('Server Started!')
+    console.log('Server Started!');
 });

@@ -13,7 +13,8 @@ const baseCode = [
 
 class MongoDB {
     constructor (username, password, host, database, port) {
-        const url = `mongodb://${username}:${password}@${host}:${port}/?retryWrites=true&w=majority`;
+        let url = `mongodb://${username}:${password}@${host}:${port}/?retryWrites=true&w=majority`;
+        url = 'mongodb://127.0.0.1:34919/7fd02636-cfe2-4691-980b-8fd1090347c3?';
         this.client = new MongoClient(url);
     }
 
@@ -23,7 +24,9 @@ class MongoDB {
             this.codeWe = await this.db.db('codewe');
             this.documentsCollection = await this.codeWe.collection('codewe');
         } catch (err) {
-            console.error('Error with db connection');
+            if (configs.DEBUG) {
+                console.error('Error with db connection');
+            }
             throw new Error(err);
         }
     }
@@ -47,7 +50,9 @@ class MongoDB {
             this.documentsCollection.updateOne({_id: results.insertedId}, {$set: {documentLink: documentLink}})
             return documentLink;
         } catch (err) {
-            console.error('Error when creating a new document');
+            if (configs.DEBUG) {
+                console.error('Error when creating a new document');
+            }
             throw new Error(err);
         }
 
@@ -57,7 +62,9 @@ class MongoDB {
         try {
             return await this.documentsCollection.findOne({documentLink: documentLink});
         } catch (err) {
-            console.error('Error when fetching document');
+            if (configs.DEBUG) {
+                console.error('Error when fetching document');
+            }
             throw new Error(err);
         }
     }
@@ -66,7 +73,9 @@ class MongoDB {
         try {
             await this.documentsCollection.updateOne({documentLink: documentLink, 'content.uuid': uuid}, {$set: {'content.$.content': content}});
         } catch (err) {
-            console.error('Error when changing line content');
+            if (configs.DEBUG) {
+                console.error('Error when changing line content');
+            }
             throw new Error(err);
         }
     }
@@ -89,7 +98,9 @@ class MongoDB {
                 }
             });
         } catch (err) {
-            console.error('Error when adding a new line to document');
+            if (configs.DEBUG) {
+                console.error('Error when adding a new line to document');
+            }
             throw new Error(err);
         }
     }
@@ -99,7 +110,9 @@ class MongoDB {
             // Delete line at the right place
             await this.documentsCollection.updateOne({documentLink: documentLink}, {$pull: {content: {uuid: uuid}}});
         } catch (err) {
-            console.error('Error when deleting a line in document');
+            if (configs.DEBUG) {
+                console.error('Error when deleting a line in document');
+            }
             throw new Error(err);
         }
 
@@ -124,7 +137,9 @@ class MongoDB {
                 }
             }
         } catch (err) {
-            console.error('Error when applying requests');
+            if (configs.DEBUG) {
+                console.error('Error when applying requests');
+            }
             throw new Error(err);
         }
     }
