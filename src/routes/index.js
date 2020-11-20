@@ -9,7 +9,9 @@
  *
  */
 
-  /**
+const discordWebhook = require('webhook-discord');
+
+/**
  * express module
  * @const
  */
@@ -27,6 +29,8 @@ const config = require('../config/config');
  * @const
  */
 const router = express.Router();
+
+const hook = config.DISCORD_WEBHOOK ? new discordWebhook.Webhook(config.DISCORD_WEBHOOK) : null;
 
 /**
  * Route serving editorindex page
@@ -54,6 +58,17 @@ router.post('/create_document', async (req, res) => {
         console.log(err);
         throw new Error(err);
     }
+});
+
+router.post('/report-issue', async (req, res) => {
+    try{
+        const report = req.body.report;
+        const agree = Boolean(req.body.agree);
+        hook.warn('Report', `***Share data:*** ${agree}\n***Report:***\n${report}`);
+    } catch (err) {
+    console.log(err);
+    throw new Error(err);
+}
 });
 
 module.exports = router;

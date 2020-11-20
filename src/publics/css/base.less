@@ -2,26 +2,20 @@
 |      Generic      |
 \*******************/
 
+@background-color: #222;
+@color: #fff;
+@font: sans-serif;
+
 *{
     margin: 0;
     padding: 0;
-    scrollbar-color: #202324 #454a4d;
-}
-
-.bold{
-    font-weight: bold;
-}
-
-.blur{
-    -webkit-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
+    scrollbar-color: lighten(@background-color, 10%) lighten(@background-color, 30%);
 }
 
 body{
-    background-color: #222222;
-    color: white;
-    font-family: sans-serif;
+    background-color: @background-color;
+    color: @color;
+    font-family: @font;
     height:100vh;
 }
 
@@ -144,7 +138,7 @@ div#welcome{
 .blur-background > *:not(#body):not(#welcome) {
     filter: blur(3px);
     pointer-events: none;
-  }
+}
 
 /******************\
 |   Report Issue   |
@@ -166,6 +160,36 @@ div#welcome{
     border-radius: 20px;
     border: 1px solid forestgreen;
     box-shadow: forestgreen 0 0 10px;
+    display: none;
+
+    h3{
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    textarea{
+        width: 96%;
+        height: 300px;
+        padding: 2%;
+        resize: none;
+        color: contrast(@color);
+        background-color: contrast(@background-color);
+        font: @font;
+    }
+
+    p{
+        margin: 10px;
+    }
+
+    input[type=submit]{
+        float: right;
+    }
+}
+
+.blur-background > *:not(#body):not(#report-issue) {
+    filter: blur(3px);
+    pointer-events: none;
 }
 
 /******************\

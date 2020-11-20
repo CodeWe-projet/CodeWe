@@ -1,3 +1,12 @@
 <div id="report-issue">
-    Test
+    <h3>Which problem do you want to report ?</h3>
+    <iframe name="dummyframe" style="display: none;"></iframe>
+    <form action="/report-issue" method="post" target="dummyframe">
+        <textarea spellcheck="false" name="report"></textarea>
+        <p>
+            <input type="checkbox" checked name="agree"/><label>I agree to anonymously share certain browser-related information with the development team.</label>
+        </p>
+            <input type="submit" id="reported" value="Send" />
+        </p>
+    </form>
 </div>
