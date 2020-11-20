@@ -50,25 +50,23 @@ router.get('/', (req, res) => {
  * @memberof modules:routes/index
  * @inner
  */
-router.post('/create_document', async (req, res) => {
+router.post('/create_document', async (req, res, next) => {
     try {
         let documentId = await db.createDocument();
         res.redirect(`/editor/${documentId}`);
     } catch (err) {
-        console.log(err);
-        throw new Error(err);
+        next(err);
     }
 });
 
-router.post('/report-issue', async (req, res) => {
+router.post('/report-issue', async (req, res, next) => {
     try{
         const report = req.body.report;
         const agree = Boolean(req.body.agree);
         hook.info('Report', `***Share data:*** ${agree}\n***Report:***\n${report}`);
     } catch (err) {
-    console.log(err);
-    throw new Error(err);
-}
+        next(err);
+    }
 });
 
 module.exports = router;

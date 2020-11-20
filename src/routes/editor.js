@@ -38,11 +38,10 @@ const router = express.Router();
  * @memberof modules:routes/editor
  * @inner
  */
-router.get('/:docId', async (req, res) => {
+router.get('/:docId', async (req, res, next) => {
     try {
         let document = (await db.getDocument(req.params.docId));
         if (document) {
-            document['content'] = document.content;
             document.document_id = req.params.docId;
             res.render('editor.html', {document: document, production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
         }
@@ -50,7 +49,7 @@ router.get('/:docId', async (req, res) => {
             res.status(404).render('404.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE})
         }
     } catch (err) {
-        throw new Error(err);
+        next(err);
     }
 });
 

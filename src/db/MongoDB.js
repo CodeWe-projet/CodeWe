@@ -12,17 +12,20 @@ const baseCode = [
 
 
 class MongoDB {
-    // TODO handle error
-    // TODO change using BULK write
     constructor (username, password, host, database, port) {
         const url = `mongodb://${username}:${password}@${host}:${port}/?retryWrites=true&w=majority`;
         this.client = new MongoClient(url);
     }
 
     async connect () {
-        this.db = await this.client.connect();
-        this.codeWe = await this.db.db('codewe');
-        this.documentsCollection = await this.codeWe.collection('codewe');
+        try {
+            this.db = await this.client.connect();
+            this.codeWe = await this.db.db('codewe');
+            this.documentsCollection = await this.codeWe.collection('codewe');
+        } catch (err) {
+            console.error('Error with db connection');
+            throw new Error(err);
+        }
     }
 
     async createDocument () {
@@ -38,61 +41,92 @@ class MongoDB {
             language: '',
             tab: 4
         };
-        // TODO check if inseted etc
-        let results = (await this.documentsCollection.insertOne(doc));
-        return results.insertedId.toString();
+        try {
+            let results = (await this.documentsCollection.insertOne(doc));
+            const documentLink = utils.uuid(results.insertedId.toString());
+            this.documentsCollection.updateOne({_id: results.insertedId}, {$set: {documentLink: documentLink}})
+            return documentLink;
+        } catch (err) {
+            console.error('Error when creating a new document');
+            throw new Error(err);
+        }
 
     }
 
-    async getDocument (id) {
-        return await this.documentsCollection.findOne({_id: ObjectID(id)});
+    async getDocument (documentLink) {
+        try {
+            return await this.documentsCollection.findOne({documentLink: documentLink});
+        } catch (err) {
+            console.error('Error when fetching document');
+            throw new Error(err);
+        }
     }
 
-    async setLine (documentId, uuid, content) {
-        await this.documentsCollection.updateOne({_id: ObjectID(documentId), 'content.uuid': uuid}, {$set: {'content.$.content': content}});
+    async setLine (documentLink, uuid, content) {
+        try {
+            await this.documentsCollection.updateOne({documentLink: documentLink, 'content.uuid': uuid}, {$set: {'content.$.content': content}});
+        } catch (err) {
+            console.error('Error when changing line content');
+            throw new Error(err);
+        }
     }
 
-    async newLine (documentId, previousUuid, uuid, content) {
+    async newLine (documentLink, previousUuid, uuid, content) {
         // Insert a line at the right place
         //TODO is it possible in one operation ? 
         // TODO is it possible to implement with bulk?
-        let doc = await this.documentsCollection.findOne({_id: ObjectID(documentId)});
-        let index = doc.content.findIndex(line => {
-            return line.uuid == previousUuid;
-        });
-        this.documentsCollection.updateOne({_id: ObjectID(documentId)}, {
-            $push: {
-                content: {
-                    $each : [{uuid: uuid, content: content}],
-                    $position : index + 1
+        try {
+            let doc = await this.documentsCollection.findOne({documentLink: documentLink});
+            let index = doc.content.findIndex(line => {
+                return line.uuid == previousUuid;
+            });
+            this.documentsCollection.updateOne({documentLink: documentLink}, {
+                $push: {
+                    content: {
+                        $each : [{uuid: uuid, content: content}],
+                        $position : index + 1
+                    }
+                }
+            });
+        } catch (err) {
+            console.error('Error when adding a new line to document');
+            throw new Error(err);
+        }
+    }
+
+    async deleteLine (documentLink, uuid) {
+        try {
+            // Delete line at the right place
+            await this.documentsCollection.updateOne({documentLink: documentLink}, {$pull: {content: {uuid: uuid}}});
+        } catch (err) {
+            console.error('Error when deleting a line in document');
+            throw new Error(err);
+        }
+
+    }
+
+    async applyRequests (documentLink, requests) {
+        // TODO look to use bulk write
+        try {
+            for (let request of requests) {
+                let requestType = request.type;
+                let data = request.data;
+                switch (requestType) {
+                    case 'set-line':
+                        await this.setLine(documentLink, data.id, data.content);
+                        break;
+                    case 'new-line':
+                        await this.newLine(documentLink, data.previous, data.id, data.content);
+                        break;
+                    case 'delete-line':
+                        await this.deleteLine(documentLink, data.id);
+                        break;
                 }
             }
-        });
-    }
-
-    async deleteLine (documentId, uuid) {
-        // Delete line at the right place
-        await this.documentsCollection.updateOne({_id: ObjectID(documentId)}, {$pull: {content: {uuid: uuid}}});
-
-    }
-
-    async applyRequests (documentId, requests) {
-        // TODO use bulk write instead of this slow methods
-        for (let request of requests) {
-            let requestType = request.type;
-            let data = request.data;
-            switch (requestType) {
-                case 'set-line':
-                    await this.setLine(documentId, data.id, data.content);
-                    break;
-                case 'new-line':
-                    await this.newLine(documentId, data.previous, data.id, data.content);
-                    break;
-                case 'delete-line':
-                    await this.deleteLine(documentId, data.id);
-                    break;
-            }
-        };
+        } catch (err) {
+            console.error('Error when applying requests');
+            throw new Error(err);
+        }
     }
 }
 
@@ -105,7 +139,7 @@ function getDB () {
         configs.DB_CONFIG.DB_PORT
     );
     db.connect();
-    return db
+    return db;
 }
 
 module.exports = getDB();
