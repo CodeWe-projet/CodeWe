@@ -15,7 +15,7 @@ class MongoDB {
     // TODO handle error
     // TODO change using BULK write
     constructor (username, password, host, database, port) {
-        this.client = new MongoClient(`mongodb://127.0.0.1:36175/51a8b34f-d253-4cc3-8ed6-96d0ce9c03d5?`);
+        this.client = new MongoClient(`mongodb://${username}:${password}@${host}:${port}/?retryWrites=true&w=majority`);
     }
 
     async connect () {
@@ -50,7 +50,7 @@ class MongoDB {
     async setLine (documentId, uuid, content) {
         await this.documentsCollection.updateOne({_id: ObjectID(documentId), 'content.uuid': uuid}, {$set: {'content.$.content': content}});
     }
-    
+
     async newLine (documentId, previousUuid, uuid, content) {
         // Insert a line at the right place
         //TODO is it possible in one operation
@@ -94,7 +94,13 @@ class MongoDB {
 }
 
 function getDB () {
-    db = new MongoDB(configs.DB_USERNAME, configs.DB_PASSWORD, configs.DB_HOST, configs.DB_DATABASE, configs.DB_PORT);
+    db = new MongoDB(
+        configs.DB_CONFIG.DB_USERNAME,
+        configs.DB_CONFIG.DB_PASSWORD,
+        configs.DB_CONFIG.DB_HOST,
+        configs.DB_CONFIG.DB_DATABASE,
+        configs.DB_CONFIG.DB_PORT
+    );
     db.connect();
     return db
 }
