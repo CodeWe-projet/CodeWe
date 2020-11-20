@@ -14,7 +14,6 @@ const baseCode = [
 class MongoDB {
     constructor (username, password, host, database, port) {
         let url = `mongodb://${username}:${password}@${host}:${port}/?retryWrites=true&w=majority`;
-        url = 'mongodb://127.0.0.1:34919/7fd02636-cfe2-4691-980b-8fd1090347c3?';
         this.client = new MongoClient(url);
     }
 

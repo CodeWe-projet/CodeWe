@@ -11,7 +11,7 @@ export default class EditorSocket{
         this.ws = new Socket({
             secure: false,
             port: window.location.port,
-            hostname: 'localhost',
+            hostname: window.location.host,
         });
 
         this.stack = {UPDATE_EVENT: []};
