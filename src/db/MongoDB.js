@@ -15,7 +15,8 @@ class MongoDB {
     // TODO handle error
     // TODO change using BULK write
     constructor (username, password, host, database, port) {
-        this.client = new MongoClient(`mongodb://${username}:${password}@${host}:${port}/?retryWrites=true&w=majority`);
+        const url = `mongodb://${username}:${password}@${host}:${port}/?retryWrites=true&w=majority`;
+        this.client = new MongoClient(url);
     }
 
     async connect () {
@@ -53,15 +54,17 @@ class MongoDB {
 
     async newLine (documentId, previousUuid, uuid, content) {
         // Insert a line at the right place
-        //TODO is it possible in one operation
-        // TODO find index
-        let index = -1
-        console.log(index)
+        //TODO is it possible in one operation ? 
+        // TODO is it possible to implement with bulk?
+        let doc = await this.documentsCollection.findOne({_id: ObjectID(documentId)});
+        let index = doc.content.findIndex(line => {
+            return line.uuid == previousUuid;
+        });
         this.documentsCollection.updateOne({_id: ObjectID(documentId)}, {
             $push: {
                 content: {
                     $each : [{uuid: uuid, content: content}],
-                    $position : index
+                    $position : index + 1
                 }
             }
         });
