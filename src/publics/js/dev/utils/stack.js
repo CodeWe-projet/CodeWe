@@ -89,6 +89,7 @@ export class WaitingStack{
         content['server'] = server_time;
         content['received'] = time ? time: Date.now();
         this.old.push(content);
+        return content;
     }
 
     /**
