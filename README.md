@@ -4,8 +4,6 @@ CodeWe is an open-source live code-sharing website developed in Javascript with 
 
 ![codeWe](https://github.com/allEyezOnCode/CodeWe/blob/master/imgs/ex.gif?raw=True "codeWe - exemple")
 
-<img src="https://github.com/allEyezOnCode/CodeWe/blob/master/imgs/codewe.png?raw=True " height="300"/>
-
 ## Installation
 
 ### Classic installation
