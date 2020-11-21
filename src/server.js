@@ -23,7 +23,14 @@ const options = ssl ? {
 } : null;
 
 const app = require('./app');
-const server = ssl ? require('https').createServer(options, app) : require('http').createServer(app);
+const config = require('./config/config');
+
+const http = ssl ? require('https') : require('http');
+const server = http.createServer(options, app);
+if (configs.METRICS) {
+    const {metricsApp} = require('./metricsApp');
+    var metricsServer = http.createServer(metricsApp);
+}
 
 // config websockets
 const wss = new WebSocket.Server({ server });
@@ -34,3 +41,7 @@ require('./socket/socket')(wss);
 server.listen(port, host, () => {
     console.log('Server Started!');
 });
+
+if (config.METRICS) {
+    metricsServer.listen(config.METRICS_PORT);
+}

@@ -16,5 +16,6 @@
         "DB_DATABASE": "codewe",
         "DB_PORT": "3306"
     },
-    "METRICS": false
+    "METRICS": false,
+    "METRICS_PORT": 8000
 }

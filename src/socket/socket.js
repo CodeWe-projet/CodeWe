@@ -26,7 +26,6 @@ const rooms = {};
 const hook = config.DISCORD_WEBHOOK ? new discordWebhook.Webhook(config.DISCORD_WEBHOOK) : null;
 
 module.exports = function (wss) {
-	// TODO catch error handle disconnection etc
 	// Based on https://stackoverflow.com/a/62867363
   	wss.on('connection', socket => {
   		prom.connexions.inc();

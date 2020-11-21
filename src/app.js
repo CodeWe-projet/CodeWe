@@ -16,7 +16,6 @@ const index = require('./routes/index');
 const editor = require('./routes/editor');
 const legal = require('./routes/legal');
 const config = require('./config/config');
-const promBundle = require("express-prom-bundle");
 
 const app = express();
 app.disable("x-powered-by");
@@ -40,14 +39,6 @@ else {
 }
 app.use(minify({ jsMatch: false }));
 
-// Prometheus middleware
-// TODO new middleware
-if(config.METRICS){
-    app.use(promBundle({
-        includeMethod: true,
-        includePath: true,
-    }));
-}
 
 //app.use(secure);
 app.use(express.json());
