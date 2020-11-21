@@ -1,0 +1,14 @@
+<div id="report-issue">
+    <h3>Which problem do you want to report ?</h3>
+    <iframe name="dummyframe" style="display: none;"></iframe>
+    <form action="/report-issue" method="post" target="dummyframe">
+        <textarea spellcheck="false" name="report"></textarea>
+        <p>
+            <input type="checkbox" checked name="agree"/><label>I agree to anonymously share certain browser-related information with the development team.</label>
+        </p>
+            <span onclick="k()">Cancel</span>
+            <input type="submit" id="reported" value="Send" onclick="k()"/>
+        </p>
+    </form>
+</div>
+<script type="application/javascript">const k=()=>{document.getElementById('report-issue').style.display="none";document.getElementById('main').classList.remove("blur-background");};</script>
