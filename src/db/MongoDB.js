@@ -158,6 +158,11 @@ class MongoDB {
         this.changeParam(documentLink, 'lastViewedDate', Date.now());
     }
 
+    async deleteOldDocuments(days=2) {
+        const oldTimestamp = Date.now() - 1000 * 60 * 60 * 24 * days;
+        this.documentsCollection.deleteMany({'lastViewedDate': {$lt : oldTimestamp} });
+    }
+
     async applyRequests (documentLink, requests) {
         // TODO look to use bulk write
         try {

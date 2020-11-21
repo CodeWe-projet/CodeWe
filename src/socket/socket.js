@@ -156,5 +156,10 @@ module.exports = function (wss) {
 		prom.connected.set(wss.clients.size);
 	}, 5000);
 
+	// delete old documents
+	setInterval(() => {
+		db.deleteOldDocuments();
+	}, 1000 * 60 * 60 * 24);
+
 
 }
