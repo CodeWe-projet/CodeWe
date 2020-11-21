@@ -158,7 +158,7 @@ module.exports = function (wss) {
 
 	// delete old documents
 	setInterval(() => {
-		db.deleteOldDocuments();
+		db.deleteOldDocuments(config.DAYS_TO_DELETE_DOCUMENT);
 	}, 1000 * 60 * 60 * 24);
 
 

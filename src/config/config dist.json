@@ -5,6 +5,7 @@
     "HOST": "localhost",
     "PORT": 5000,
     "DB_URL": "mongodb://host:port/?retryWrites=true&w=majority",
+    "DAYS_TO_DELETE_DOCUMENT": 7,
     "DISCORD_WEBHOOK": null,
     "SSL": false,
     "KEY_FILE_SSL": null,
