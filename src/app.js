@@ -17,6 +17,7 @@ const editor = require('./routes/editor');
 const legal = require('./routes/legal');
 const config = require('./config/config');
 const promBundle = require("express-prom-bundle");
+//const secure = require('express-force-https');
 
 const app = express();
 app.disable("x-powered-by");
@@ -49,6 +50,7 @@ if(config.METRICS){
     }));
 }
 
+//app.use(secure);
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 // Set static folder

@@ -9,7 +9,7 @@ export default class EditorSocket{
         this.doc_id = doc_id;
 
         this.ws = new Socket({
-            secure: false,
+            secure: document.location.protocol === 'https:' ? true : false,
             port: window.location.port,
             hostname: window.location.host,
         });

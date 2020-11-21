@@ -18,8 +18,8 @@ const sslKeyPath = configs.KEY_FILE_SSL;
 const sslCertPath = configs.CERT_FILE_SSL; 
 
 const options = ssl ? {
-    key: fs.readFileSync(path.join(__dirname, sslKeyPath), 'utf8'),
-    cert: fs.readFileSync(path.join(__dirname, sslCertPath), 'utf8')
+    key: fs.readFileSync(sslKeyPath.startsWith('/') ? sslKeyPath : path.join(__dirname, sslKeyPath), 'utf8'),
+    cert: fs.readFileSync(sslCertPath.startsWith('/') ? sslCertPath : path.join(__dirname, sslCertPath), 'utf8')
 } : null;
 
 const app = require('./app');
