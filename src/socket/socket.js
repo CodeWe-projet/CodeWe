@@ -32,13 +32,15 @@ module.exports = function (wss) {
 		socket.isAlive = true;
 		const uuid = utils.uuid(Math.random().toString());
 
-		const broadcastRoomExceptSender = (data) => {
+		const broadcastRoomExceptSender = (data, event, valueEvent) => {
 			Object.entries(rooms[data.room]).forEach(([, sock]) => {
 				if(sock === socket) {
-					sock.send(JSON.stringify({
+					const backValue = {
 						code: "OK",
 						time: Date.now(),
-					}));
+					};
+					backValue[event] = valueEvent;
+					sock.send(JSON.stringify(backValue));
 				}else sock.send(JSON.stringify(data));
 			});
 		}
@@ -59,7 +61,7 @@ module.exports = function (wss) {
 			switch (data.event) {
 				case 'update':
 					try {
-						broadcastRoomExceptSender(data);
+						broadcastRoomExceptSender(data, 'uuid', data.uuid);
 						db.updateLastViewedDate(data.room);
 						db.applyRequests(data.room, data.data);
 					} catch (err) {
@@ -80,7 +82,7 @@ module.exports = function (wss) {
 				
 				case 'language':
 					try {
-						broadcastRoomExceptSender(data);
+						broadcastRoomExceptSender(data, 'language', data.language);
 						db.changeLanguage(data.room, data.language);
 					} catch (err) {
 						if (config.DEBUG) {
@@ -90,7 +92,7 @@ module.exports = function (wss) {
 					break;
 				case 'changeTabSize':
 					try {
-						broadcastRoomExceptSender(data);
+						broadcastRoomExceptSender(data, 'tabSize', data.tabSize);
 						db.changeTabSize(data.room, data.tabSize);
 					} catch (err) {
 						if (config.DEBUG) {
@@ -100,7 +102,7 @@ module.exports = function (wss) {
 					break;
 				case 'changeCustomName':
 					try {
-						broadcastRoomExceptSender(data);
+						broadcastRoomExceptSender(data, 'customName', data.customName);
 						db.changeCustomName(data.customName);
 					} catch (err) {
 						if (config.DEBUG) {
