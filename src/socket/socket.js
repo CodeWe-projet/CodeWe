@@ -57,6 +57,7 @@ module.exports = function (wss) {
 								}));
 							}else sock.send(JSON.stringify(data));
 						});
+						db.updateLastViewedDate(data.room);
 						db.applyRequests(data.room, data.data);
 					} catch (err) {
 						throw new Error(err);
@@ -79,7 +80,7 @@ module.exports = function (wss) {
 					break;
 				case 'report': // Send issue to hook
 					if (hook) {
-						hook.warn('Report', data.data.content);
+						hook.warn('Report', data.data.content.slice(0, 5000));
 					}
 
 			}

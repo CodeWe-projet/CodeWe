@@ -12,9 +12,11 @@ const baseCode = [
 
 
 class MongoDB {
-    constructor (username, password, host, database, port) {
-        let url = `mongodb://${username}:${password}@${host}:${port}/?retryWrites=true&w=majority`;
-        this.client = new MongoClient(url);
+    constructor (url) {
+        this.client = new MongoClient(url, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
     }
 
     async connect () {
@@ -26,7 +28,6 @@ class MongoDB {
             if (configs.DEBUG) {
                 console.error('Error with db connection');
             }
-            throw new Error(err);
         }
     }
 
@@ -38,21 +39,21 @@ class MongoDB {
             customDocumentName: '',
             documentOwner: '',
             editors: [],
-            linkEdit: '',
+            documentLink: '',
             linkView: '',
-            language: '',
+            language: 'python',
             tab: 4
         };
         try {
             let results = (await this.documentsCollection.insertOne(doc));
             const documentLink = utils.uuid(results.insertedId.toString());
-            this.documentsCollection.updateOne({_id: results.insertedId}, {$set: {documentLink: documentLink}})
+            const linkView = utils.uuid(documentLink);
+            this.documentsCollection.updateOne({_id: results.insertedId}, {$set: {documentLink: documentLink, linkView: linkView}});
             return documentLink;
         } catch (err) {
             if (configs.DEBUG) {
                 console.error('Error when creating a new document');
             }
-            throw new Error(err);
         }
 
     }
@@ -64,18 +65,16 @@ class MongoDB {
             if (configs.DEBUG) {
                 console.error('Error when fetching document');
             }
-            throw new Error(err);
         }
     }
 
     async setLine (documentLink, uuid, content) {
         try {
-            await this.documentsCollection.updateOne({documentLink: documentLink, 'content.uuid': uuid}, {$set: {'content.$.content': content}});
+            await this.documentsCollection.updateOne({documentLink: documentLink, 'content.uuid': uuid}, {$set: {'content.$.content': content.slice(0, 5000)}});
         } catch (err) {
             if (configs.DEBUG) {
                 console.error('Error when changing line content');
             }
-            throw new Error(err);
         }
     }
 
@@ -88,19 +87,20 @@ class MongoDB {
             let index = doc.content.findIndex(line => {
                 return line.uuid == previousUuid;
             });
-            this.documentsCollection.updateOne({documentLink: documentLink}, {
-                $push: {
-                    content: {
-                        $each : [{uuid: uuid, content: content}],
-                        $position : index + 1
+            if (index) {
+                this.documentsCollection.updateOne({documentLink: documentLink}, {
+                    $push: {
+                        content: {
+                            $each : [{uuid: uuid, content: content.slice(0, 5000)}],
+                            $position : index + 1
+                        }
                     }
-                }
-            });
+                });
+            }
         } catch (err) {
             if (configs.DEBUG) {
                 console.error('Error when adding a new line to document');
             }
-            throw new Error(err);
         }
     }
 
@@ -112,14 +112,57 @@ class MongoDB {
             if (configs.DEBUG) {
                 console.error('Error when deleting a line in document');
             }
-            throw new Error(err);
         }
 
+    }
+
+    async changeParam(documentLink, param, newValue) {
+        try {
+            const update = {};
+            update[param] = newValue;
+            await this.documentsCollection.updateOne({documentLink: documentLink}, {$set: update});
+        } catch (err) {
+            if (configs.DEBUG) {
+                console.error(err);
+            }
+        }
+    }
+
+    async changeCustomName(documentLink, newName) {
+        this.changeParam(documentLink, 'customDocumentName', newName);
+    }
+
+    async changeTabSize(documentLink, newTabSize) {
+        if (Number.isInteger(newTabSize)) {
+            this.changeParam(documentLink, 'tab', newTabSize);
+        }
+    }
+
+    async changeLanguage(documentLink, newLanguage) {
+        if (["python"].includes(newLanguage)) {
+            this.changeParam(documentLink, 'language', newLanguage);
+        }
+    }
+
+    async addNewEditors(documentLink, newEditorsId) {
+        try {
+            await this.documentsCollection.updateOne({documentLink: documentLink}, {$addToSet: {editors: newEditorsId}});
+        } catch (err) {
+            if (configs.DEBUG) {
+                console.error(error);
+            }
+        }
+    }
+
+    async updateLastViewedDate(documentLink) {
+        this.changeParam(documentLink, 'lastViewedDate', Date.now());
     }
 
     async applyRequests (documentLink, requests) {
         // TODO look to use bulk write
         try {
+            // Avoid too many requests
+            requests = requests.slice(0, 50);
             for (let request of requests) {
                 let requestType = request.type;
                 let data = request.data;
@@ -139,19 +182,12 @@ class MongoDB {
             if (configs.DEBUG) {
                 console.error('Error when applying requests');
             }
-            throw new Error(err);
         }
     }
 }
 
 function getDB () {
-    db = new MongoDB(
-        configs.DB_CONFIG.DB_USERNAME,
-        configs.DB_CONFIG.DB_PASSWORD,
-        configs.DB_CONFIG.DB_HOST,
-        configs.DB_CONFIG.DB_DATABASE,
-        configs.DB_CONFIG.DB_PORT
-    );
+    db = new MongoDB(configs.DB_URL);
     db.connect();
     return db;
 }
