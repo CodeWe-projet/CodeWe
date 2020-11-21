@@ -1,0 +1,34 @@
+{% extends 'component/base.html' %}
+
+{% block title %}CodeWe - {{ document['document_id'] }}{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/css/editor.less">
+    <link rel="stylesheet" type="text/css" href="/css/rainbow.less">
+{% endblock %}
+
+{% block header %}
+    <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span> - {{ document['document_id'] }}</h1>
+    <div id="actions">
+        <a id="download" target="iframe" download="{{ document['document_id'] }}.py" href="#">Download</a>
+    </div>
+{% endblock %}
+
+{% block corps %}
+    <section id="editor" contenteditable="true" spellcheck="false">
+        {% for line in document['content'] %}
+            <div uuid="{{ line['uuid'] }}">{{ line['content'] }}<br></div>
+        {% endfor %}
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+      let doc_id = "{{ document['document_id'] }}" ;
+    </script>
+    {% if production %}
+        <script type="application/javascript" src="/js/dist/editor.min.js"></script>
+    {% else %}
+        <script type="module" src="/js/dev/page/editor.js"></script>
+    {% endif %}
+{% endblock %}

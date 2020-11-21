@@ -1,5 +1,0 @@
-DB_HOST = "db"
-DB_USERNAME = "root"
-DB_PASSWORD = "root"
-DB_DATABASE = "codewe"
-DB_PORT = "3306"

@@ -1,6 +1,8 @@
 # CodeWe
 
-CodeWe is an open-source live code-sharing website developed in python with flask.
+[CodeWe](https://codewe.org/) is an open-source live code-sharing website developed in Javascript with [express](https://expressjs.com/) and [MongoDB](https://www.mongodb.com/).
+
+![codeWe](https://github.com/allEyezOnCode/CodeWe/blob/master/imgs/ex.gif?raw=True "codeWe - exemple")
 
 ## Installation
 
@@ -8,80 +10,53 @@ CodeWe is an open-source live code-sharing website developed in python with flas
 
 #### Requirements
 
-* [python](https://www.python.org/downloads/) 3.7 or newer (this project is developed in python 3.8.3 and up)
-* pip
+* [Node.js](https://nodejs.org/en/download/) 14.15.1 or newer (this project is developed with the 14.15.1v)
 * [git](https://git-scm.com/downloads)
-* MySQL, MariaDB or sqlite (include in python standard library)
+* [MongoDB](https://www.mongodb.com/)
 
-The first step is to clone this repository, so open a terminal and run:
+The first step is to clone this repository.
+
+Open a terminal and run:
 
 ```bash
 git clone https://github.com/allEyezOnCode/CodeWe.git
 ```
 
-Install project requirements and dependencies
+Next step is to install depedencies
 
 ```bash
 cd CodeWe
-pip install -Ur requirements.txt
-# or on debian
-pip3 install -Ur requirements.txt
+npm install
 ```
 
 #### Databases
 
-CodeWe runs by default with a mysql database, so you need to host one, but if you do not have such a database, fear not my friend! You can use Sqlite.
+Codewe uses MongoDB to store the documents. So install it from the official [MongoDB](https://www.mongodb.com/) site
 
-#### Mysql or MariaDB
+### Configuration file
 
-Should you have a MySQL or MariaDB database server, execute the following in your sql shell to create the database.
+Before running the project you need to create the configuration file `config/config.json` from the `config/config dist.json` with your informations, like the host, the port, your database credentials, etc.
 
-```mysql
-mysql> source /src/db/sql_files/create_db.sql;
-```
-
-Fill out (chage `[**redacted**]` to real passwords (do not share)) and then run `/src/db/sql_files/users.sql` in your sql shell to create the users.
-
-The last step is to modify the /src/config/db_config.dist.py, with your credentials
-
-Using `cp /src/config/db_config.dist.py /src/config/db_config.py`, copy the database configuration file and fill it with the info needed.
-
-#### Sqlite
-
-(skip this if you use mysql/MariaDB)
-
-Simply execute
-
-```shell
-python[3] /src/db/create_sqlite_db.py
-```
-
- and change `DB_TYPE` to `"sqlite"` in `/src/config/config.py`.
-
-### Build with docker *(instable)*
-
-```bash
-sudo docker-compose up -d --no-deps --build
-```
-
-Help wanted configuring it correctly!
-
-## Rununing `CodeWe`
+## Running `CodeWe`
 
 ### With classic installation
 
 To run the server, run a shell in the `CodeWe/src` folder and run:
 
 ```bash
-python main.py [ip [port]]
-# or on debian
-python3 main.py [ip [port]]
+node ./src/server.js
 ```
 
-## Plan vor V2
+## Next features
 
-* Migration to Nodejs (instead of flask)
-* Store document as json or an array in Database
+* Document with privileges (anon auth, and jwt usage)
+* New programming langages
+* More options
+* Server montioring with prometheus and grafana
+
+## Contribution
+
+Feel free to contribute, open an issue, then fork the repo and submit a PR.
 
 ## Licence
 

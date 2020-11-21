@@ -1,5 +1,0 @@
-Flask
-flask-socketio
-eventlet
-mysql-connector-python
-

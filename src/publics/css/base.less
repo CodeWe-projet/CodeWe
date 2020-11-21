@@ -1,0 +1,260 @@
+/*******************\
+|      Generic      |
+\*******************/
+
+@background-color: #222;
+@color: #fff;
+@font: sans-serif;
+@absolute-color: #d5e6ed;
+
+*{
+    margin: 0;
+    padding: 0;
+    scrollbar-color: lighten(@background-color, 10%) lighten(@background-color, 30%);
+}
+
+body{
+    background-color: @background-color;
+    color: @color;
+    font-family: @font;
+    height:100vh;
+}
+
+#body{
+    padding: 70px 10px 10px 10px;
+}
+
+/******************\
+|    AlertCards    |
+\******************/
+
+.alertCard{
+    height: 100px;
+    width: 200px;
+    background-color: #1e90ff;
+    position: fixed;
+    top: 80px ;
+    right: 20px ;
+    border-radius: 20px;
+    padding: 5px;
+    border: 1px solid royalblue;
+    size: 8px;
+    text-align: center;
+
+    h3{
+        display: block;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+    }
+}
+
+/******************\
+|      Header      |
+\******************/
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #477A14;
+    padding: 5px 10px;
+    height: 60px;
+    width: 100vw;
+    box-sizing: border-box;
+    z-index: 200;
+    background-image: url("/img/SVG/Header.svg");
+    box-shadow: 0 3px 3px #477A14; //mix(@background-color, #477A14, 50%);
+    //border-bottom: 2px solid mix(@background-color, #477A14, 50%);
+
+    h1{
+        float: left;
+    }
+
+    .title-1{
+        font-size: 40px;
+    }
+
+    a{
+        color: inherit;
+        text-decoration: inherit;
+    }
+}
+
+/*******************\
+|      Welcome      |
+\*******************/
+
+div#welcome{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 10, 10, 0.5);
+    display: none;
+    z-index: 4;
+
+    div#welcome-text{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 350px;
+        max-width: 500px;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        color: #111111;
+        background-color: #d5e6ed;
+        margin: 0 auto;
+        padding: 1em;
+        border-radius: 20px;
+        border: 1px solid forestgreen;
+        box-shadow: forestgreen 0 0 10px;
+    }
+
+    .welcome-content{
+        text-align: justify;
+        padding: 10px 0;
+        letter-spacing: 0.9px;
+        line-height: 25px;
+    }
+
+    .welcome-enjoy{
+        float: left;
+    }
+
+    button{
+        float: right;
+        width: 150px;
+        height: 45px;
+        background-color: forestgreen;
+        border: none;
+        border-radius: 10px;
+        letter-spacing: 2px;
+        color: white;
+    }
+
+    button:hover{
+        cursor: pointer;
+    }
+}
+
+.blur-background > *:not(#body):not(#welcome) {
+    filter: blur(3px);
+    pointer-events: none;
+}
+
+/******************\
+|   Report Issue   |
+\******************/
+
+#report-issue{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 350px;
+    max-width: 500px;
+    height: 500px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: #111111;
+    background-color: @absolute-color;
+    margin: 0 auto;
+    padding: 1em;
+    border-radius: 20px;
+    border: 1px solid forestgreen;
+    box-shadow: forestgreen 0 0 10px;
+    display: none;
+
+    h3{
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    textarea{
+        width: 96%;
+        height: 300px;
+        padding: 2%;
+        resize: none;
+        color: contrast(@color);
+        background-color: contrast(@background-color);
+        font: @font;
+    }
+
+    p{
+        margin: 10px;
+    }
+
+    input[type=submit]{
+        float: right;
+    }
+
+    span{
+        float: left;
+    }
+
+    input[type=submit],
+    span{
+        background-color: darken(@absolute-color, 10%);
+        border: 1px solid darken(@absolute-color, 20%);
+        border-radius: 5px;
+        padding: 5px 10px;
+        size: 50px;
+        cursor: pointer;
+    }
+}
+
+.blur-background > *:not(#body):not(#report-issue) {
+    filter: blur(3px);
+    pointer-events: none;
+}
+
+/******************\
+|      Footer      |
+\******************/
+
+#main{
+    min-height:100%;
+    position:relative;
+}
+
+#body{
+    padding-bottom: 130px;
+}
+
+#footer{
+    position:absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 80px;
+    width: 80%;
+    padding: 15px 0 5px 0;
+    border-top: 1px solid rgb(53, 58, 60);
+    text-align: center;
+
+    #links{
+        margin-bottom: 20px;
+
+        a{
+            margin: 0 25px;
+            font-size: 12px;
+            color: lightgray;
+            text-decoration: none;
+        }
+
+        a[href="#"]{
+            color: #555;
+            text-decoration: line-through;
+            font-style: italic;
+        }
+
+        #link-welcome[id]{
+            color: lightgray;
+            text-decoration: none;
+            font-style: normal;
+        }
+    }
+}

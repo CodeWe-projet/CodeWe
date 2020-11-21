@@ -1,0 +1,15 @@
+{% extends 'component/base.html' %}
+
+{% block title %}CodeWe{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="/css/index.less">
+{% endblock %}
+
+{% block corps %}
+<div id="section">
+  <form action="/create_document" method="post">
+    <button type="submit" id="new_document_button">Create Document</button>
+  </form>
+</div>
+{% endblock %}

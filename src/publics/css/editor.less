@@ -1,0 +1,59 @@
+/******************\
+|      Header      |
+\******************/
+
+header{
+    #actions{
+        float: right;
+        padding: 5px 20px;
+    }
+
+    header #download{
+        display: inline-block;
+        background-color: #333333;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+}
+
+/*******************\
+|      Section      |
+\*******************/
+
+section#editor{
+    counter-reset: thecodenumbering;
+    line-height: 22px;
+
+    div{
+        font-family: "Courier New", monospace;
+        counter-increment: thecodenumbering;
+        width: 100%;
+        white-space: pre-wrap;
+    }
+
+    div:before{
+        padding-right:10px;
+        content: counter(thecodenumbering);
+        display:inline-block;
+        width:3em;
+        text-align: center;
+    }
+
+    .noteditable{
+        background-color: #181818;
+        opacity: 50%;
+    }
+}
+
+.pointer{
+    position: absolute;
+    left: 0;
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 10px;
+}
