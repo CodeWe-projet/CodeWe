@@ -1,6 +1,6 @@
 # CodeWe
 
-CodeWe is an open-source live code-sharing website developed in Javascript with [express](https://expressjs.com/) and [MongoDB](https://www.mongodb.com/).
+[CodeWe](https://codewe.org/) is an open-source live code-sharing website developed in Javascript with [express](https://expressjs.com/) and [MongoDB](https://www.mongodb.com/).
 
 ![codeWe](https://github.com/allEyezOnCode/CodeWe/blob/master/imgs/ex.gif?raw=True "codeWe - exemple")
 
