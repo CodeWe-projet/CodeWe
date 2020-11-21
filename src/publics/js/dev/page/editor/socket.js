@@ -9,9 +9,9 @@ export default class EditorSocket{
         this.doc_id = doc_id;
 
         this.ws = new Socket({
-            secure: document.location.protocol === 'https:' ? true : false,
+            secure: document.location.protocol === 'https:',
             port: window.location.port,
-            hostname: window.location.host,
+            hostname: window.location.host.includes(':') ? window.location.host.split(':')[0] : window.location.host,
         });
 
         this.stack = {UPDATE_EVENT: []};

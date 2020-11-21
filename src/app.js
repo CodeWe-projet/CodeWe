@@ -17,7 +17,6 @@ const editor = require('./routes/editor');
 const legal = require('./routes/legal');
 const config = require('./config/config');
 const promBundle = require("express-prom-bundle");
-//const secure = require('express-force-https');
 
 const app = express();
 app.disable("x-powered-by");
@@ -29,7 +28,7 @@ nunjucks.configure(path.join(__dirname, 'views'), {
 });
 
 // logger files
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 
 // Adding middleware
 if (config.PRODUCTION) {

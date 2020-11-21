@@ -10,6 +10,8 @@ const discordWebhook = require('webhook-discord');
 const debug = require('debug');
 const config = require('../config/config');
 
+const prom = require('./prom');
+
  /**
  * MongoDB module
  * @type {object}
@@ -27,6 +29,7 @@ module.exports = function (wss) {
 	// TODO catch error handle disconnection etc
 	// Based on https://stackoverflow.com/a/62867363
   	wss.on('connection', socket => {
+  		prom.connexions.inc();
 		socket.isAlive = true;
 		const uuid = utils.uuid(Math.random().toString());
 
@@ -40,6 +43,7 @@ module.exports = function (wss) {
 
 
 		socket.on('message', async data => {
+			prom.total_packets.inc();
 			data = JSON.parse(data);
 			if(!('uuid' in data)) data['uuid'] = 'None';
 			switch (data.event) {
@@ -109,6 +113,10 @@ module.exports = function (wss) {
 	  wss.on('close', function close() {
 		clearInterval(interval);
 	  });
+
+	setInterval(() => {
+		prom.connected.set(wss.clients.size);
+	}, 5000);
 
 
 }
