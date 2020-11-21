@@ -51,6 +51,12 @@ app.use('/', index);
 app.use('/editor', editor);
 app.use('/legal', legal);
 
+// redirect to https when ssl is active
+if (config.SSL) {
+    app.get('*', function(req, res) {  
+        res.redirect('https://' + req.headers.host + req.url);
+    });
+}
 
 // 404 error
 app.all('*', (req, res) => {
