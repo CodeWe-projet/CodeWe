@@ -32,6 +32,17 @@ module.exports = function (wss) {
 		socket.isAlive = true;
 		const uuid = utils.uuid(Math.random().toString());
 
+		const broadcastRoomExceptSender = (data) => {
+			Object.entries(rooms[data.room]).forEach(([, sock]) => {
+				if(sock === socket) {
+					sock.send(JSON.stringify({
+						code: "OK",
+						time: Date.now(),
+					}));
+				}else sock.send(JSON.stringify(data));
+			});
+		}
+
 		const leave = room => {
 			if(! rooms[room][uuid]) return;
 			// if the one exiting is the last one, destroy the room
@@ -48,19 +59,13 @@ module.exports = function (wss) {
 			switch (data.event) {
 				case 'update':
 					try {
-						Object.entries(rooms[data.room]).forEach(([, sock]) => {
-							if(sock === socket) {
-								sock.send(JSON.stringify({
-									code: "OK",
-									uuid: data['uuid'],
-									time: Date.now(),
-								}));
-							}else sock.send(JSON.stringify(data));
-						});
+						broadcastRoomExceptSender(data);
 						db.updateLastViewedDate(data.room);
 						db.applyRequests(data.room, data.data);
 					} catch (err) {
-						throw new Error(err);
+						if (config.DEBUG) {
+							console.error(err);
+						}
 					}
 					break;
 				case 'join':
@@ -70,6 +75,37 @@ module.exports = function (wss) {
 					else {
 						rooms[data.room] = {};
 						rooms[data.room][uuid] = socket;
+					}
+					break;
+				
+				case 'language':
+					try {
+						broadcastRoomExceptSender(data);
+						db.changeLanguage(data.room, data.language);
+					} catch (err) {
+						if (config.DEBUG) {
+							console.error(err);
+						}
+					}
+					break;
+				case 'changeTabSize':
+					try {
+						broadcastRoomExceptSender(data);
+						db.changeTabSize(data.room, data.tabSize);
+					} catch (err) {
+						if (config.DEBUG) {
+							console.error(err);
+						}
+					}
+					break;
+				case 'changeCustomName':
+					try {
+						broadcastRoomExceptSender(data);
+						db.changeCustomName(data.customName);
+					} catch (err) {
+						if (config.DEBUG) {
+							console.error(err);
+						}
 					}
 					break;
 				case 'ping':
