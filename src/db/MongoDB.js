@@ -1,4 +1,5 @@
 const { MongoClient, ObjectID } = require("mongodb");
+var crypto = require('crypto');
 const configs = require('../config/config');
 const utils = require('../utils');
 
@@ -24,14 +25,16 @@ class MongoDB {
             this.db = await this.client.connect();
             this.codeWe = await this.db.db('codewe');
             this.documentsCollection = await this.codeWe.collection('codewe');
+            this.usersCollection = await this.codeWe.collection('users');
         } catch (err) {
             if (configs.DEBUG) {
                 console.error('Error with db connection');
             }
+            throw new Error(err);
         }
     }
 
-    async createDocument () {
+    async createDocument (language) {
         let doc = {
             content: baseCode,
             creationDate: Date.now(),
@@ -41,7 +44,7 @@ class MongoDB {
             editors: [],
             documentLink: '',
             linkView: '',
-            language: 'python',
+            language: language,
             tab: 4
         };
         try {
@@ -68,9 +71,36 @@ class MongoDB {
         }
     }
 
+    async createUser(userId, secretToken) {
+        try {
+            await this.usersCollection.insertOne({
+                    userId: userId,
+                    secretToken: crypto.createHash('sha256').update(secretToken).digest('base64')
+            });
+            return 'Success';
+        } catch (err) {
+            if (configs.DEBUG) {
+                console.error('Error when creating user');
+            }
+        }
+    }
+
+    async checkUserSecretToken(userId, secretToken) {
+        try {
+            const user = await this.usersCollection.findOne({userId: userId});
+            return (user.secretToken == crypto.createHash('sha256').update(secretToken).digest('base64'));
+        } catch (err) {
+            if (configs.DEBUG) {
+                console.error('Error when checking user secret token');
+            }
+            return 'Error';
+        }
+    }
+
     async setLine (documentLink, uuid, content) {
         try {
             await this.documentsCollection.updateOne({documentLink: documentLink, 'content.uuid': uuid}, {$set: {'content.$.content': content.slice(0, 5000)}});
+            return 'Succes';
         } catch (err) {
             if (configs.DEBUG) {
                 console.error('Error when changing line content');
@@ -97,6 +127,7 @@ class MongoDB {
                     }
                 });
             }
+            return 'Succes';
         } catch (err) {
             if (configs.DEBUG) {
                 console.error('Error when adding a new line to document');
@@ -108,6 +139,7 @@ class MongoDB {
         try {
             // Delete line at the right place
             await this.documentsCollection.updateOne({documentLink: documentLink}, {$pull: {content: {uuid: uuid}}});
+            return 'Succes';
         } catch (err) {
             if (configs.DEBUG) {
                 console.error('Error when deleting a line in document');
@@ -121,6 +153,7 @@ class MongoDB {
             const update = {};
             update[param] = newValue;
             await this.documentsCollection.updateOne({documentLink: documentLink}, {$set: update});
+            return 'Succes';
         } catch (err) {
             if (configs.DEBUG) {
                 console.error(err);
@@ -129,24 +162,25 @@ class MongoDB {
     }
 
     async changeCustomName(documentLink, newName) {
-        this.changeParam(documentLink, 'customDocumentName', newName);
+        return this.changeParam(documentLink, 'customDocumentName', newName);
     }
 
     async changeTabSize(documentLink, newTabSize) {
         if (Number.isInteger(newTabSize)) {
-            this.changeParam(documentLink, 'tab', newTabSize);
+            return this.changeParam(documentLink, 'tab', newTabSize);
         }
     }
 
     async changeLanguage(documentLink, newLanguage) {
         if (["python"].includes(newLanguage)) {
-            this.changeParam(documentLink, 'language', newLanguage);
+            return this.changeParam(documentLink, 'language', newLanguage);
         }
     }
 
     async addNewEditors(documentLink, newEditorsId) {
         try {
             await this.documentsCollection.updateOne({documentLink: documentLink}, {$addToSet: {editors: newEditorsId}});
+            return 'Success';
         } catch (err) {
             if (configs.DEBUG) {
                 console.error(error);
@@ -155,16 +189,17 @@ class MongoDB {
     }
 
     async updateLastViewedDate(documentLink) {
-        this.changeParam(documentLink, 'lastViewedDate', Date.now());
+        return this.changeParam(documentLink, 'lastViewedDate', Date.now());
     }
 
     async deleteOldDocuments(days) {
         const oldTimestamp = Date.now() - 1000 * 60 * 60 * 24 * days;
-        this.documentsCollection.deleteMany({'lastViewedDate': {$lt : oldTimestamp} });
+        return this.documentsCollection.deleteMany({'lastViewedDate': {$lt : oldTimestamp} });
     }
 
     async applyRequests (documentLink, requests) {
         // TODO look to use bulk write
+        let success = true;
         try {
             // Avoid too many requests
             requests = requests.slice(0, 50);
@@ -173,16 +208,20 @@ class MongoDB {
                 let data = request.data;
                 switch (requestType) {
                     case 'set-line':
-                        await this.setLine(documentLink, data.id, data.content);
+                        let results = await this.setLine(documentLink, data.id, data.content);
+                        if (!results) success = false;
                         break;
                     case 'new-line':
-                        await this.newLine(documentLink, data.previous, data.id, data.content);
+                        let results = await this.newLine(documentLink, data.previous, data.id, data.content);
+                        if (!results) success = false;
                         break;
                     case 'delete-line':
-                        await this.deleteLine(documentLink, data.id);
+                        let results = await this.deleteLine(documentLink, data.id);
+                        if (!results) success = false;
                         break;
                 }
             }
+            return success;
         } catch (err) {
             if (configs.DEBUG) {
                 console.error('Error when applying requests');

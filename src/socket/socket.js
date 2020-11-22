@@ -61,9 +61,12 @@ module.exports = function (wss) {
 			switch (data.event) {
 				case 'update':
 					try {
+						// let document = db.getDocument(data.room);
+						// if (document.public || (document.editors.include(userId) and db.checkUsersSecretToken(userId, secretToken)))
 						broadcastRoomExceptSender(data, 'uuid', data.uuid);
-						db.updateLastViewedDate(data.room);
-						db.applyRequests(data.room, data.data);
+						const succesUpdatingDate = db.updateLastViewedDate(data.room);
+						const succesUpdate = db.applyRequests(data.room, data.data);
+						if (!succesUpdatingDate || !succesUpdate) socket.send(JSON.stringify({event: 'update', success: false}));
 					} catch (err) {
 						if (config.DEBUG) {
 							console.error(err);
@@ -83,7 +86,8 @@ module.exports = function (wss) {
 				case 'language':
 					try {
 						broadcastRoomExceptSender(data, 'language', data.language);
-						db.changeLanguage(data.room, data.language);
+						const success = db.changeLanguage(data.room, data.language);
+						if (!success) socket.send(JSON.stringify({event: 'language', success: false}));
 					} catch (err) {
 						if (config.DEBUG) {
 							console.error(err);
@@ -93,7 +97,8 @@ module.exports = function (wss) {
 				case 'changeTabSize':
 					try {
 						broadcastRoomExceptSender(data, 'tabSize', data.tabSize);
-						db.changeTabSize(data.room, data.tabSize);
+						const success = db.changeTabSize(data.room, data.tabSize);
+						if (!success) socket.send(JSON.stringify({event: 'changeTabSize', success: false}));
 					} catch (err) {
 						if (config.DEBUG) {
 							console.error(err);
@@ -103,7 +108,8 @@ module.exports = function (wss) {
 				case 'changeCustomName':
 					try {
 						broadcastRoomExceptSender(data, 'customName', data.customName);
-						db.changeCustomName(data.customName);
+						let success = db.changeCustomName(data.customName);
+						if (!success) socket.send(JSON.stringify({event: 'changeCustomName', success: false}));
 					} catch (err) {
 						if (config.DEBUG) {
 							console.error(err);

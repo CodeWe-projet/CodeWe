@@ -41,10 +41,11 @@ const router = express.Router();
 router.get('/:docId', async (req, res, next) => {
     try {
         let document = (await db.getDocument(req.params.docId));
-        if (document) {
+        if (document) { // && (document.public || (document.editors.includes(req.body.userId) && db.checkUserSecretToken(req.body.userId, secretkey)))
             document.document_id = req.params.docId;
             res.render('editor.html', {document: document, production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
         }
+        // else if (!document.public)
         else {
             res.status(404).render('404.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE})
         }

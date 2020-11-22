@@ -52,8 +52,14 @@ router.get('/', (req, res) => {
  */
 router.post('/create_document', async (req, res, next) => {
     try {
-        let documentId = await db.createDocument();
-        res.redirect(`/editor/${documentId}`);
+        //const language = req.body.language
+        let documentId = await db.createDocument('python');
+        if (documentId) {
+            res.redirect(`/editor/${documentId}`);
+        }
+        else {
+            res.status(500);
+        }
     } catch (err) {
         next(err);
     }
