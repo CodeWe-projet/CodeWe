@@ -33,6 +33,17 @@ router.get(['/tos', '/tac', '/termsofservice', '/terms-of-service'], (req, res) 
 });
 
 /**
+* Route serving termsofservice PDF
+* @name get/termsofservice
+* @function
+* @memberof modules:routes/legal
+* @inner
+*/
+router.get(['/tos-pdf', '/tac-pdf', '/termsofservice-pdf', '/terms-of-service-pdf'], (req, res) => {
+  res.download("./views/legal/tos-pdf.pdf")
+});
+
+/**
  * Route serving termsofservice archive
  * @name get/termsofservice
  * @function
@@ -60,6 +71,17 @@ router.get([
  */
 router.get(['/privacy', '/privacy-policy', '/privacypolicy'], (req, res) => {
     res.render('legal/privacy.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
+});
+
+/**
+ * Route serving privacy policy PDF
+ * @name get/privacy
+ * @function
+ * @memberof modules:routes/legal
+ * @inner
+ */
+router.get(['/privacy-pdf', '/privacy-policy-pdf', '/privacypolicy-pdf'], (req, res) => {
+  res.download("./views/legal/privacy-pdf.pdf")
 });
 
 /**
