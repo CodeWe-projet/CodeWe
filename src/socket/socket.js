@@ -66,7 +66,8 @@ module.exports = function (wss) {
 						broadcastRoomExceptSender(data, 'uuid', data.uuid);
 						const succesUpdatingDate = db.updateLastViewedDate(data.room);
 						const succesUpdate = db.applyRequests(data.room, data.data);
-						if (!succesUpdatingDate || !succesUpdate) socket.send(JSON.stringify({event: 'update', success: false}));
+						// /!\ Bad event
+						// if (!succesUpdatingDate || !succesUpdate) socket.send(JSON.stringify({event: 'update', success: false}));
 					} catch (err) {
 						if (config.DEBUG) {
 							console.error(err);
@@ -82,7 +83,7 @@ module.exports = function (wss) {
 						rooms[data.room][uuid] = socket;
 					}
 					break;
-				
+
 				case 'language':
 					try {
 						broadcastRoomExceptSender(data, 'language', data.language);

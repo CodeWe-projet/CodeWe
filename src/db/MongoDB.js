@@ -110,7 +110,7 @@ class MongoDB {
 
     async newLine (documentLink, previousUuid, uuid, content) {
         // Insert a line at the right place
-        //TODO is it possible in one operation ? 
+        //TODO is it possible in one operation ?
         // TODO is it possible to implement with bulk?
         try {
             let doc = await this.documentsCollection.findOne({documentLink: documentLink});
@@ -206,17 +206,18 @@ class MongoDB {
             for (let request of requests) {
                 let requestType = request.type;
                 let data = request.data;
+                let results = ""
                 switch (requestType) {
                     case 'set-line':
-                        let results = await this.setLine(documentLink, data.id, data.content);
+                        results = await this.setLine(documentLink, data.id, data.content);
                         if (!results) success = false;
                         break;
                     case 'new-line':
-                        let results = await this.newLine(documentLink, data.previous, data.id, data.content);
+                        results = await this.newLine(documentLink, data.previous, data.id, data.content);
                         if (!results) success = false;
                         break;
                     case 'delete-line':
-                        let results = await this.deleteLine(documentLink, data.id);
+                        results = await this.deleteLine(documentLink, data.id);
                         if (!results) success = false;
                         break;
                 }
