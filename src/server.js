@@ -31,7 +31,7 @@ const server = http.createServer(options, app);
 
 if (ssl) {
     require('http').createServer(app).listen(configs.REDIRECT_PORT, host, () => {
-        console.log('http requests are redirected to https.')
+        console.log(`http requests from ${configs.REDIRECT_PORT} are redirected to https on ${configs.PORT}`)
     })
 }
 
