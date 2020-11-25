@@ -8,6 +8,7 @@
     "DAYS_TO_DELETE_DOCUMENT": 7,
     "DISCORD_WEBHOOK": null,
     "SSL": false,
+    "REDIRECT_PORT": null,
     "KEY_FILE_SSL": null,
     "CERT_FILE_SSL" : null,
     "METRICS": false,
