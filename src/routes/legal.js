@@ -8,7 +8,7 @@
  *
  */
 
- /**
+/**
  * express module
  * @const
  */
@@ -22,23 +22,26 @@ const config = require('../config/config');
 const router = express.Router();
 
 /**
-* Route serving termsofservice
-* @name get/termsofservice
-* @function
-* @memberof modules:routes/legal
-* @inner
-*/
+ * Route serving termsofservice
+ * @name get/termsofservice
+ * @function
+ * @memberof modules:routes/legal
+ * @inner
+ */
 router.get(['/tos', '/tac', '/termsofservice', '/terms-of-service'], (req, res) => {
-  res.render('legal/tos.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
+  res.render('legal/tos.html', {
+    production: config.PRODUCTION,
+    client_versobe: config.CLIENT_VERBOSE
+  });
 });
 
 /**
-* Route serving termsofservice PDF
-* @name get/termsofservice
-* @function
-* @memberof modules:routes/legal
-* @inner
-*/
+ * Route serving termsofservice PDF
+ * @name get/termsofservice
+ * @function
+ * @memberof modules:routes/legal
+ * @inner
+ */
 router.get(['/tos-pdf', '/tac-pdf', '/termsofservice-pdf', '/terms-of-service-pdf'], (req, res) => {
   res.download("./views/legal/tos-pdf.pdf")
 });
@@ -70,7 +73,10 @@ router.get([
  * @inner
  */
 router.get(['/privacy', '/privacy-policy', '/privacypolicy'], (req, res) => {
-    res.render('legal/privacy.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
+  res.render('legal/privacy.html', {
+    production: config.PRODUCTION,
+    client_versobe: config.CLIENT_VERBOSE
+  });
 });
 
 /**
@@ -92,7 +98,10 @@ router.get(['/privacy-pdf', '/privacy-policy-pdf', '/privacypolicy-pdf'], (req, 
  * @inner
  */
 router.get(['/privacy/archive/:date', '/privacy-policy/archive/:date', '/privacypolicy/archive/:date'], (req, res) => {
-    res.render(`legal/archive/privacy-${req.params.date}.html`, {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
+  res.render(`legal/archive/privacy-${req.params.date}.html`, {
+    production: config.PRODUCTION,
+    client_versobe: config.CLIENT_VERBOSE
+  });
 });
 
 /**
@@ -102,8 +111,11 @@ router.get(['/privacy/archive/:date', '/privacy-policy/archive/:date', '/privacy
  * @memberof modules:routes/legal
  * @inner
  */
-router.get('/license', (req, res) => {
-    res.render('legal/licence.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
+router.get('/licence', (req, res) => {
+  res.render('legal/licence.html', {
+    production: config.PRODUCTION,
+    client_versobe: config.CLIENT_VERBOSE
+  });
 });
 
 module.exports = router;
