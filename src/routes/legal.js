@@ -5,10 +5,10 @@
  * @date 16/11/2020
  * @version 1.0.0
  * @requires express
- * 
+ *
  */
 
- /**
+/**
  * express module
  * @const
  */
@@ -29,7 +29,40 @@ const router = express.Router();
  * @inner
  */
 router.get(['/tos', '/tac', '/termsofservice', '/terms-of-service'], (req, res) => {
-    res.render('legal/tos.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
+  res.render('legal/tos.html', {
+    production: config.PRODUCTION,
+    client_versobe: config.CLIENT_VERBOSE
+  });
+});
+
+/**
+ * Route serving termsofservice PDF
+ * @name get/termsofservice
+ * @function
+ * @memberof modules:routes/legal
+ * @inner
+ */
+router.get(['/tos-pdf', '/tac-pdf', '/termsofservice-pdf', '/terms-of-service-pdf'], (req, res) => {
+  res.download("./views/legal/tos-pdf.pdf")
+});
+
+/**
+ * Route serving termsofservice archive
+ * @name get/termsofservice
+ * @function
+ * @memberof modules:routes/legal
+ * @inner
+ */
+router.get([
+  '/tos/archive/:date',
+  '/tac/archive/:date',
+  '/termsofservice/archive/:date',
+  '/terms-of-service/archive/:date'
+], (req, res) => {
+  res.render(`legal/archive/tos-${req.params.date}.html`, {
+    production: config.PRODUCTION,
+    client_versobe: config.CLIENT_VERBOSE
+  });
 });
 
 /**
@@ -40,7 +73,35 @@ router.get(['/tos', '/tac', '/termsofservice', '/terms-of-service'], (req, res) 
  * @inner
  */
 router.get(['/privacy', '/privacy-policy', '/privacypolicy'], (req, res) => {
-    res.render('legal/privacy.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
+  res.render('legal/privacy.html', {
+    production: config.PRODUCTION,
+    client_versobe: config.CLIENT_VERBOSE
+  });
+});
+
+/**
+ * Route serving privacy policy PDF
+ * @name get/privacy
+ * @function
+ * @memberof modules:routes/legal
+ * @inner
+ */
+router.get(['/privacy-pdf', '/privacy-policy-pdf', '/privacypolicy-pdf'], (req, res) => {
+  res.download("./views/legal/privacy-pdf.pdf")
+});
+
+/**
+ * Route serving privacy policy archive
+ * @name get/privacy
+ * @function
+ * @memberof modules:routes/legal
+ * @inner
+ */
+router.get(['/privacy/archive/:date', '/privacy-policy/archive/:date', '/privacypolicy/archive/:date'], (req, res) => {
+  res.render(`legal/archive/privacy-${req.params.date}.html`, {
+    production: config.PRODUCTION,
+    client_versobe: config.CLIENT_VERBOSE
+  });
 });
 
 /**
@@ -50,8 +111,11 @@ router.get(['/privacy', '/privacy-policy', '/privacypolicy'], (req, res) => {
  * @memberof modules:routes/legal
  * @inner
  */
-router.get('/license', (req, res) => {
-    res.render('legal/licence.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
+router.get('/licence', (req, res) => {
+  res.render('legal/licence.html', {
+    production: config.PRODUCTION,
+    client_versobe: config.CLIENT_VERBOSE
+  });
 });
 
 module.exports = router;
