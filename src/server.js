@@ -14,6 +14,7 @@ const host = configs.HOST;
 const port = configs.PORT;
 const DEBUG = configs.DEBUG;
 const ssl = configs.SSL;
+const metrics = configs.METRICS;
 const sslKeyPath = configs.KEY_FILE_SSL;
 const sslCertPath = configs.CERT_FILE_SSL;
 
@@ -27,9 +28,11 @@ const config = require('./config/config');
 
 const http = ssl ? require('https') : require('http');
 const server = http.createServer(options, app);
-if (configs.METRICS) {
-    const {metricsApp} = require('./metricsApp');
-    var metricsServer = require('http').createServer(metricsApp);
+
+if (ssl && configs.REDIRECT_PORT !== null) {
+    require('http').createServer(app).listen(configs.REDIRECT_PORT, host, () => {
+        console.log(`http requests from ${configs.REDIRECT_PORT} are redirected to https on ${configs.PORT}`)
+    })
 }
 
 // config websockets
@@ -39,9 +42,11 @@ require('./socket/socket')(wss);
 
 
 server.listen(port, host, () => {
-    console.log('Server Started!');
+    console.log(`Server Started on ${host}:${port}`);
 });
 
-if (config.METRICS) {
+if (metrics) {
+    const {metricsApp} = require('./metricsApp');
+    const metricsServer = require('http').createServer(metricsApp);
     metricsServer.listen(config.METRICS_PORT);
 }
