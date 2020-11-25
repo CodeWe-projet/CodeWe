@@ -29,7 +29,7 @@ const config = require('./config/config');
 const http = ssl ? require('https') : require('http');
 const server = http.createServer(options, app);
 
-if (ssl) {
+if (ssl && configs.REDIRECT_PORT !== null) {
     require('http').createServer(app).listen(configs.REDIRECT_PORT, host, () => {
         console.log(`http requests from ${configs.REDIRECT_PORT} are redirected to https on ${configs.PORT}`)
     })
