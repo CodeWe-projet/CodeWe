@@ -182,6 +182,7 @@ Procfile          text
 *.*ignore         text
 
 # Ignoring files and dirs
-/imgs                                   linguist-generated
-/src/publics/img                        linguist-generated
-/src/views/legal/archive                linguist-generated
+/imgs                                       linguist-generated=true
+/src/publics/img                            linguist-generated=true
+/src/views/legal/archive                    linguist-generated=true
+/src/views/legal/archive/tos-20201122.html  linguist-generated=true
