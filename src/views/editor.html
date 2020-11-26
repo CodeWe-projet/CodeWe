@@ -20,6 +20,22 @@
             <div uuid="{{ line['uuid'] }}">{{ line['content'] }}<br></div>
         {% endfor %}
     </section>
+    <nav id="customise">
+        <ul>
+            <li>
+                <h3>Language</h3>
+                <select name="language" id="option-language">
+                    <option selected>Python</option>
+                    <option>Javascript</option>
+                    <option>Java</option>
+                </select>
+            </li>
+            <li>
+                <h3>Space Size</h3>
+                <input type="number" value="4" min="1" max="32" />
+            </li>
+        </ul>
+    </nav>
 {% endblock %}
 
 {% block scripts %}
