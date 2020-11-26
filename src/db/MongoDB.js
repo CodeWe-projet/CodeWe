@@ -118,7 +118,7 @@ class MongoDB {
             let index = doc.content.findIndex(line => {
                 return line.uuid == previousUuid;
             });
-            if (index) {
+            if (index || index == 0) {
                 this.documentsCollection.updateOne({documentLink: documentLink}, {
                     $push: {
                         content: {
