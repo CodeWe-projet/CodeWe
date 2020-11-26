@@ -1,5 +1,6 @@
 const { MongoClient, ObjectID } = require("mongodb");
 var crypto = require('crypto');
+const { nanoid } = require('nanoid');
 const configs = require('../config/config');
 const utils = require('../utils');
 
@@ -50,7 +51,7 @@ class MongoDB {
         try {
             let results = (await this.documentsCollection.insertOne(doc));
             const documentLink = utils.uuid(results.insertedId.toString());
-            const linkView = utils.uuid(documentLink);
+            const linkView = nanoid(5);
             this.documentsCollection.updateOne({_id: results.insertedId}, {$set: {documentLink: documentLink, linkView: linkView}});
             return documentLink;
         } catch (err) {
