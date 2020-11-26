@@ -12,6 +12,7 @@ const baseCode = [
     {uuid: utils.uuid(Math.random().toString(), 10), content: '    main(\'Hello World !\')'}
 ];
 
+const languages = ["python", "c", "c++", "c#", "javascript", "java", "haskell", "smalltalk", "coffescript", "css", "d", "go", "haskell", "html", "json", "lua", "php", "r", "ruby", "scheme", "shell", "sql"];
 
 class MongoDB {
     constructor (url) {
@@ -35,7 +36,7 @@ class MongoDB {
         }
     }
 
-    async createDocument (language) {
+    async createDocument (documentLanguage) {
         let doc = {
             content: baseCode,
             creationDate: Date.now(),
@@ -45,7 +46,7 @@ class MongoDB {
             editors: [],
             documentLink: '',
             linkView: '',
-            language: language,
+            language: documentLanguage,
             tab: 4
         };
         try {
@@ -173,7 +174,7 @@ class MongoDB {
     }
 
     async changeLanguage(documentLink, newLanguage) {
-        if (["python"].includes(newLanguage)) {
+        if (languages.includes(newLanguage)) {
             return this.changeParam(documentLink, 'language', newLanguage);
         }
     }
