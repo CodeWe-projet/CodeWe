@@ -67,6 +67,22 @@ export default class Caret{
         }
     }
 
+
+    /**
+     * Set the start range of the user caret on specified position in element or children
+     * @param {HTMLElement|Node} element
+     * @param {number} position
+     */
+    static setRangeStart(element, position) {
+        if (position >= 0) {
+            let selection = document.getSelection();
+
+            let range = Caret.createRange(element, {count: position});
+            selection.getRangeAt(0).setStart(range.endContainer, range.endOffset);
+
+        }
+    }
+
     /**
      * Get the position of the end of the user selection
      * Based on https://stackoverflow.com/a/4812022/11247647

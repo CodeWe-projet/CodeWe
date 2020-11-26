@@ -137,16 +137,18 @@ export default class Editable{
 
             const line = getNodeFromAttribute('uuid');
 
-            if(!line) return;
+            if(!line){
+                e.preventDefault();
+                temporaryCardAlert('Editor', 'Sorry, your action has been canceled because you are not on any line.', 5000);
+                return;
+            }
 
             if(!anchorParent.hasAttribute('uuid')
                 || !focusParent.hasAttribute('uuid')
                 || ((Caret.getBeginPosition(line) === 0
                     || Caret.getEndPosition(line) === 0)
                     ) && anchorParent !== focusParent){
-                e.preventDefault();
-                temporaryCardAlert('Override', 'Sorry, you can\'t override the first char of a line', 5000);
-                return;
+                Caret.setRangeStart(line, 1);
             }
 
             switch (e.keyCode) {
@@ -155,6 +157,11 @@ export default class Editable{
                     this.insertTab();
                     break;
                 case 13: // enter
+                    if(e.shiftKey){
+                        temporaryCardAlert('Shift+Enter', 'Please just use Enter to avoid any bugs.', 5000);
+                        e.preventDefault();
+                        return;
+                    }
                     if(this.keepSpace){
                         Debug.debug('Prevent action when trying to add new line (key is probably maintain).');
                         e.preventDefault();

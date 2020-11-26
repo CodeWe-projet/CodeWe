@@ -16,9 +16,21 @@ const index = require('./routes/index');
 const editor = require('./routes/editor');
 const legal = require('./routes/legal');
 const config = require('./config/config');
+const ssl = config.SSL;
 
 const app = express();
 app.disable("x-powered-by");
+
+if (ssl) {
+    app.use('*', function (req, res, next) {
+        if (req.secure) {
+            next();
+        } else {
+            const target = (req.headers.host.includes(':') ? req.headers.host.split(':')[0] : req.headers.host) + ':' + config.PORT;
+            res.redirect('https://' + target + req.url);
+        }
+    });
+}
 
 // Configure views folder
 nunjucks.configure(path.join(__dirname, 'views'), {
@@ -50,7 +62,6 @@ app.use(express.static(path.join(__dirname, 'publics/')));
 app.use('/', index);
 app.use('/editor', editor);
 app.use('/legal', legal);
-
 
 // 404 error
 app.all('*', (req, res) => {

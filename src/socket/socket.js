@@ -32,6 +32,19 @@ module.exports = function (wss) {
 		socket.isAlive = true;
 		const uuid = utils.uuid(Math.random().toString());
 
+		const broadcastRoomExceptSender = (data, event, valueEvent) => {
+			Object.entries(rooms[data.room]).forEach(([, sock]) => {
+				if(sock === socket) {
+					const backValue = {
+						code: "OK",
+						time: Date.now(),
+					};
+					backValue[event] = valueEvent;
+					sock.send(JSON.stringify(backValue));
+				}else sock.send(JSON.stringify(data));
+			});
+		}
+
 		const leave = room => {
 			if(! rooms[room][uuid]) return;
 			// if the one exiting is the last one, destroy the room
@@ -48,18 +61,17 @@ module.exports = function (wss) {
 			switch (data.event) {
 				case 'update':
 					try {
-						Object.entries(rooms[data.room]).forEach(([, sock]) => {
-							if(sock === socket) {
-								sock.send(JSON.stringify({
-									code: "OK",
-									uuid: data['uuid'],
-									time: Date.now(),
-								}));
-							}else sock.send(JSON.stringify(data));
-						});
-						db.applyRequests(data.room, data.data);
+						// let document = db.getDocument(data.room);
+						// if (document.public || (document.editors.include(userId) and db.checkUsersSecretToken(userId, secretToken)))
+						broadcastRoomExceptSender(data, 'uuid', data.uuid);
+						const succesUpdatingDate = db.updateLastViewedDate(data.room);
+						const succesUpdate = db.applyRequests(data.room, data.data);
+						// /!\ Bad event
+						// if (!succesUpdatingDate || !succesUpdate) socket.send(JSON.stringify({event: 'update', success: false}));
 					} catch (err) {
-						throw new Error(err);
+						if (config.DEBUG) {
+							console.error(err);
+						}
 					}
 					break;
 				case 'join':
@@ -71,6 +83,40 @@ module.exports = function (wss) {
 						rooms[data.room][uuid] = socket;
 					}
 					break;
+
+				case 'language':
+					try {
+						broadcastRoomExceptSender(data, 'language', data.language);
+						const success = db.changeLanguage(data.room, data.language);
+						if (!success) socket.send(JSON.stringify({event: 'language', success: false}));
+					} catch (err) {
+						if (config.DEBUG) {
+							console.error(err);
+						}
+					}
+					break;
+				case 'changeTabSize':
+					try {
+						broadcastRoomExceptSender(data, 'tabSize', data.tabSize);
+						const success = db.changeTabSize(data.room, data.tabSize);
+						if (!success) socket.send(JSON.stringify({event: 'changeTabSize', success: false}));
+					} catch (err) {
+						if (config.DEBUG) {
+							console.error(err);
+						}
+					}
+					break;
+				case 'changeCustomName':
+					try {
+						broadcastRoomExceptSender(data, 'customName', data.customName);
+						let success = db.changeCustomName(data.customName);
+						if (!success) socket.send(JSON.stringify({event: 'changeCustomName', success: false}));
+					} catch (err) {
+						if (config.DEBUG) {
+							console.error(err);
+						}
+					}
+					break;
 				case 'ping':
 					socket.send('pong');
 					break;
@@ -79,7 +125,7 @@ module.exports = function (wss) {
 					break;
 				case 'report': // Send issue to hook
 					if (hook) {
-						hook.warn('Report', data.data.content);
+						hook.warn('Report', data.data.content.slice(0, 5000));
 					}
 
 			}
@@ -116,6 +162,11 @@ module.exports = function (wss) {
 	setInterval(() => {
 		prom.connected.set(wss.clients.size);
 	}, 5000);
+
+	// delete old documents
+	setInterval(() => {
+		db.deleteOldDocuments(config.DAYS_TO_DELETE_DOCUMENT);
+	}, 1000 * 60 * 60 * 24);
 
 
 }
