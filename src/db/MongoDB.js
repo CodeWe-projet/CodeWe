@@ -1,6 +1,7 @@
 const { MongoClient, ObjectID } = require("mongodb");
 var crypto = require('crypto');
 const { nanoid } = require('nanoid');
+const languages = require('../config/langages');
 const configs = require('../config/config');
 const utils = require('../utils');
 
@@ -11,8 +12,6 @@ const baseCode = [
     {uuid: utils.uuid(Math.random().toString(), 10), content: 'if __name__ == \'__main__\':'},
     {uuid: utils.uuid(Math.random().toString(), 10), content: '    main(\'Hello World !\')'}
 ];
-
-const languages = ["python", "c", "c++", "c#", "javascript", "java", "haskell", "smalltalk", "coffescript", "css", "d", "go", "haskell", "html", "json", "lua", "php", "r", "ruby", "scheme", "shell", "sql"];
 
 class MongoDB {
     constructor (url) {
