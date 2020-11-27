@@ -240,6 +240,7 @@ export class Prism {
 
             regex = _cloneRegex(regex);
             const match = regex.exec(code);
+
             if (!match) {
                 return false;
             }

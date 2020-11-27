@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block header %}
-    <h1><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span> - {{ document['document_id'] }}</h1>
+    <h1><a href="/"><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span></a> - {{ document['document_id'] }}</h1>
     <div id="actions">
         <a id="download" target="iframe" download="{{ document['document_id'] }}.py" href="#">Download</a>
     </div>
@@ -28,7 +28,7 @@
                 </select>
             </li>
             <li>
-                <h3>Space Size</h3>
+                <h3>Tab Size</h3>
                 <input id="option-space-size" type="number" value="4" min="1" max="32" />
             </li>
             <li>
@@ -44,6 +44,7 @@
     <script>
       let doc_id = "{{ document['document_id'] }}" ;
       let language = "{{ document['language'] }}" || "generic" ;
+      let initial_size = parseInt("{{ document['tab'] }}") ;
     </script>
     {% if production %}
         <script type="application/javascript" src="/js/dist/editor.min.js"></script>

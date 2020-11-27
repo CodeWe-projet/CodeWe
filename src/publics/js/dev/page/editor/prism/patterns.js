@@ -191,7 +191,7 @@ export const patterns = {
             },
             pattern: /\.(getAttribute|replace|push|getElementById|getElementsByClassName|setTimeout|setInterval)(?=\()/g
         },
-    
+
         /**
          * matches any escaped characters inside of a js regex pattern
          *
@@ -216,7 +216,7 @@ export const patterns = {
             },
             pattern: /(\/)((?![*+?])(?:[^\r\n\[/\\]|\\.|\[(?:[^\r\n\]\\]|\\.)*\])+)(\/)(?!\/)([igm]{0,3})/g
         },
-    
+
         /**
          * matches runtime function declarations
          */
@@ -227,7 +227,7 @@ export const patterns = {
             },
             pattern: /(var)?(\s|^)(\S+)(?=\s?=\s?function\()/g
         },
-    
+
         /**
          * matches constructor call
          */
@@ -238,7 +238,7 @@ export const patterns = {
             },
             pattern: /(new)\s+(?!Promise)([^\(]*)(?=\()/g
         },
-    
+
         /**
          * matches any function call in the style functionName: function()
          */
@@ -412,7 +412,7 @@ export const patterns = {
             name: 'string.block',
             pattern: /('{3}|"{3})[\s\S]*\1/gm
         },
-    
+
         /**
          * multiline regex with comments
          */
@@ -444,7 +444,7 @@ export const patterns = {
             name: 'keyword.variable.coffee',
             pattern: /@(\w+)/gi
         },
-    
+
         /**
          * reset global keywards from generic
          */
@@ -452,7 +452,7 @@ export const patterns = {
             name: 'reset',
             pattern: /object|class|print/gi
         },
-    
+
         /**
          * named function
          */
@@ -468,7 +468,7 @@ export const patterns = {
             },
             pattern: /(\w+)\s{0,}(=|:)\s{0,}\((.*?)((-|=)&gt;)/gi
         },
-    
+
         /**
          * anonymous function
          */
@@ -482,7 +482,7 @@ export const patterns = {
             },
             pattern: /\s\((.*?)\)\s{0,}((-|=)&gt;)/gi
         },
-    
+
         /**
          * direct function no arguments
          */
@@ -494,7 +494,7 @@ export const patterns = {
             },
             pattern: /(\w+)\s{0,}(=|:)\s{0,}((-|=)&gt;)/gi
         },
-    
+
         /**
          * class definitions
          */
@@ -507,7 +507,7 @@ export const patterns = {
             },
             pattern: /\b(class)\s(\w+)(\sextends\s)?([\w\\]*)?\b/g
         },
-    
+
         /**
          * object instantiation
          */
@@ -575,7 +575,7 @@ export const patterns = {
                     name: 'support.class',
                     pattern: /\w+/g
                 }
-    
+
             },
             pattern: /\b(new)\s([^\$].*?)(?=\)|\(|;|&)/g
         },
@@ -795,7 +795,7 @@ export const patterns = {
                                 name: 'entity.tag.script',
                                 pattern: /^script/g
                             },
-    
+
                             {
                                 name: 'string',
                                 pattern: /('|")(.*?)(\1)/g
@@ -980,7 +980,7 @@ export const patterns = {
             },
             pattern: /(instanceof)\s([^\$].*?)(\)|;)/ig
         },
-    
+
         /**
          * these are the top 50 most used PHP functions
          * found from running a script and checking the frequency of each function
@@ -1271,7 +1271,7 @@ export const patterns = {
             },
             pattern: /[^\.]\b(and|not|or)\b/g
         },
-    
+
         /**
         * Functions
         *   1. No support for marking function parameters
@@ -1385,7 +1385,7 @@ export const patterns = {
             },
             pattern: /(\(|\s|\[|\=|:)(('|")([^\\\1]|\\.)*?(\3))/gm
         },
-    
+
         /**
          * Most of these are known via the Language Reference.
          * The built-in constant symbols are known via ?Constants.
@@ -1402,7 +1402,7 @@ export const patterns = {
             },
             pattern: /[^0-9a-zA-Z\._](LETTERS|letters|month\.(abb|name)|pi)/g
         },
-    
+
         /**
          * @todo: The list subsetting operator isn't quite working properly.
          *        It includes the previous variable when it should only match [[
@@ -1432,7 +1432,7 @@ export const patterns = {
             },
             pattern: /([a-zA-Z][a-zA-Z0-9._]+)([:]{2,3})([.a-zA-Z][a-zA-Z0-9._]*(?=\s*\())\b/g
         },
-    
+
         /*
          * Note that we would perhaps match more builtin functions and
          * variables, but there are so many that most are ommitted for now.
@@ -1460,7 +1460,7 @@ export const patterns = {
             // /\-\-\s(.+)$/gm [single]
         },
         ///- End Comments
-    
+
         ///- Namespace (module)
         {
             matches: {
@@ -1470,7 +1470,7 @@ export const patterns = {
             pattern: /\b(module)\s(\w+)\s[\(]?(\w+)?[\)?]\swhere/g
         },
         ///- End Namespace (module)
-    
+
         ///- Keywords and Operators
         {
             name: 'keyword.operator',
@@ -1485,8 +1485,8 @@ export const patterns = {
             pattern: /[\`][a-zA-Z_']*?[\`]/g
         },
         ///- End Keywords and Operators
-    
-    
+
+
         ///- Infix|Infixr|Infixl
         {
             matches: {
@@ -1496,12 +1496,12 @@ export const patterns = {
             pattern: /\b(infix|infixr|infixl)+\s\d+\s(\w+)*/g
         },
         ///- End Infix|Infixr|Infixl
-    
+
         {
             name: 'entity.class',
             pattern: /\b([A-Z][A-Za-z0-9_']*)/g
         },
-    
+
         // From c.js
         {
             name: 'meta.preprocessor',
@@ -1585,7 +1585,7 @@ export const patterns = {
                     name: 'support.class',
                     pattern: /\w+/gm
                 }
-    
+
             },
             pattern: /\b(new)\s([^\$].*?)(?=\)|\(|;|&)/gm
         },
@@ -1659,92 +1659,131 @@ export const patterns = {
         // TODO add missing css
         {
             name: "operator",
-            match: /(<:|:>|::|&|@|#|_|\\[\\]|\\.\\.\\.)/g
+            pattern: /(<:|:>|::|&|@|#|_|\[\]|\.\.\.)/g
         },
         {
             name: "operator.assignment",
-            match: /(\\=|\\:=)/g
+            pattern: /(\=|\:=)/g
         },
         {
             name: "operator.comparison",
-            match: /<|=<|==|\\=|>=|>/g
+            pattern: /<|=<|==|\=|>=|>/g
         },
         {
             name: "operator.list",
-            match: /\\b\\|\\b/g
+            pattern: /\b\|\b/g
         },
         {
             name: "constant.numeric",
-            match: /(\\d+\\.\\d+|\\d+)/g
+            pattern: /(\d+\.\d+|\d+)/g
         },
         {
             name: "constant.language",
-            match: /\\b(false|true|nil)\\b/g
+            pattern: /\b(false|true|nil)\b/g
         },
         {
             name: "variable",
-            match: /[A-Z][0-9A-z]*/g
+            pattern: /[A-Z][0-9A-z]*/g
         },
         {
             name: "keyword.control",
-            match: /(?<!'|\")\\b(then|andthen|at|attr|choice|class|cond|declare|define|dis|div|do|elsecase|export|fail|feat|finally|for|from|functor|import|in|lazy|lock|meth|mod|not|of|or|orelse|prepare|prop|require|self|skip|then|thread|unit|end|local)\\b/g
+            pattern: /(?<!'|\")\b(then|andthen|at|attr|choice|class|cond|declare|define|dis|div|do|elsecase|export|fail|feat|finally|for|from|functor|import|in|lazy|lock|meth|mod|not|of|or|orelse|prepare|prop|require|self|skip|then|thread|unit|end|local)\b/g
         },
         {
             name: "keyword.control.conditional",
-            match: /(?<!'|\")\\b(else|elseif|if)\\b/g
+            pattern: /(?<!'|\")\b(else|elseif|if)\b/g
         },
         {
             name: "keyword.control.function",
-            match: /(?<!'|\")\\b(fun|proc)\\b/g
+            pattern: /(?<!'|\")\b(fun|proc)\b/g
         },
         {
             name: "keyword.control.trycatch",
-            match: /(?<!'|\")\\b(catch|raise|try|finally)\\b/g
+            pattern: /(?<!'|\")\b(catch|raise|try|finally)\b/g
         },
         {
             name: "keyword.control.case",
-            match: /(?<!'|\")\\b(case|of|then)\\b/g
+            pattern: /(?<!'|\")\b(case|of|then)\b/g
         },
         {
             name: "entity.function",
-            match: /{([A-Z[A-z0-9]+\\.*]+|\\$)/g,
+            pattern: /{([A-Z[A-z0-9]+\.*]+|\$)/g,
         },
         {
             name: "string.quoted.double",
-            match: /(\")(.*?)(\")/g,
+            pattern: /(\")(.*?)(\")/g,
         },
         {
             name: "string.quoted.single",
-            match: /(')(.*?)(')/g,
+            pattern: /(')(.*?)(')/g,
         },
         {
             name: "string.unquoted",
-            match: /\\b([a-z][A-Za-z0-9]*?)\\b/g,
+            pattern: /\b([a-z][A-Za-z0-9]*?)\b/g,
 
         },
         {
             name: "meta.list.position",
-            match: /\\b[A-Z][A-Za-z0-9]*(\\.[\\d]+)\\b/g,
+            pattern: /\b[A-Z][A-Za-z0-9]*(\.[\d]+)\b/g,
         },
         {
             name: "comment.line.number-sign",
-            match: /%.*$\n?/g
+            pattern: /%.*/g,
         },
         {
             name: "invalid.illegal.incomplete-assigment",
-            match: /\\b[A-Z][0-9a-zA-Z]*\\s*=\\s*\\n/g
+            pattern: /\b[A-Z][0-9a-zA-Z]*\s*=\s*\n/g
         },
         {
             name: "keyword.control.arithmetic",
-            match: /(\\*|\\+|\\-|/|~)|\\b(div|mod)\\b/g
+            pattern: /(\*|\+|\-|\/|~)|\b(div|mod)\b/g
         },
         {
             name: "comment.block",
-            match: "^/\\* =(\\s*.*?)\\s*= \\*/$\\n?"
+            pattern: "^/\* =(\s*.*?)\s*= \*/$\n?"
         },
         {
-            match: "\\*/.*\\n",
-            name: "invalid.illegal.stray-comment-end"
+            name: "\*/.*\n",
+            pattern: "invalid.illegal.stray-comment-end"
         },
-    ]
+    ],
+    /*erlang: [
+        {
+            name: "variable.other.erlang",
+            pattern: /(_[a-zA-Z\d@_]+\+|[A-Z][a-zA-Z\d@_]*\+)|(_)/g
+        },
+        {
+            name: "keyword.operator.textual.erlang",
+            pattern: /\b(andalso|band|and|bxor|xor|bor|orelse|or|bnot|not|bsl|bsr|div|rem)\b/g
+        },
+        {
+            name: "keyword.operator.symbolic.erlang",
+            pattern: /\+\+|\+|--|-|\*|\/=|\/|=\/=|=:=|==|=&lt;|=|&lt;-|&lt;|&gt;=|&gt;|!|::/g
+        },
+        {
+            name: "constant.other.placeholder.erlang",
+            pattern: /(~)(\*)?(\d+\+)?[~du\-#fsacl]/g
+        },
+        {
+            name: "(~)((\\-)?\\d++|(\\*))?((\\.)(\\d++|(\\*)))?((\\.)((\\*)|.))?[~cfegswpWPBX#bx\\+ni]",
+            pattern: /constant.other.placeholder.erlang/g
+        },
+        {
+            name: "constant.character.escape.erlang",
+            pattern: /(\\)([bdefnrstv\\'"]|(\^)[@-_]|[0-7]{1,3})/g
+        },
+        {
+            name: "keyword.operator.record.erlang",
+            pattern: /(#)\s*\+([a-z][a-zA-Z\d@_]*\+|'[^']*\+')/g
+        },
+        {
+            name: "meta.record-usage.erlang",
+            pattern: /(#)\s*\+([a-z][a-zA-Z\d@_]*\+|'[^']*\+')\s*\+(\.)\s*\+([a-z][a-zA-Z\d@_]*\+|'[^']*\+')/g
+        },
+        {
+            name: "keyword.control.directive.import.erlang",
+            pattern: /^(\s*|(-)\s*|(record)\s*|(\()\s*|([a-z][a-zA-Z\d@_]*||'[^']*|')\s*|(,))/g
+        },
+    ]*/
 };
+

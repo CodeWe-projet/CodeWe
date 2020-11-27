@@ -19,9 +19,9 @@ import Random from "/js/dev/utils/random.js";
 import {insertInText} from "/js/dev/utils/string.js";
 
 export default class Editable{
-    constructor(element) {
+    constructor(element, tabSize=initial_size) {
         this.editable = element;
-        this.tab = new Tab(element, TabType.SPACES, 4);
+        this.tab = Number.isInteger(tabSize) ? new Tab(element, TabType.SPACES, tabSize) : 4;
         this.linesManager = new LinesManager(element);
         this.last_request = {};
 
@@ -301,5 +301,17 @@ export default class Editable{
 
         }
         return requests;
+    }
+
+    /**
+     * Update all syntax highlighting
+     */
+    updateAllHighlighting(){
+        const current = getNodeFromAttribute('uuid')
+        for(const child of this.editable.children){
+            if(current === child) new PrismCustom(child, language).ApplyWithCaret();
+            else new PrismCustom(child, language).apply();
+
+        }
     }
 }

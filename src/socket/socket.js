@@ -104,9 +104,10 @@ module.exports = function (wss) {
 				case 'changeTabSize':
 					try {
 						let success = false;
-						if (Number.isInteger(newTabSize)) {
-							broadcastRoomExceptSender(data, 'tabSize', data.tabSize);
-							success = db.changeTabSize(data.room, data.tabSize);
+						data.data.size = parseInt(data.data.size);
+						if (Number.isInteger(data.data.size)) {
+							broadcastRoomExceptSender(data, 'uuid', data.uuid);
+							success = db.changeTabSize(data.room, data.data.size);
 						}
 						if (!success) socket.send(JSON.stringify({event: 'changeTabSize', success: false}));
 					} catch (err) {
