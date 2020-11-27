@@ -1,5 +1,6 @@
 // Those regex are based on https://github.com/ccampbell/rainbow/tree/master/src/language made by Craig Campbell
-// Big love to them <
+// Big love to them <3
+// For oz it's base on vscode extension : https://github.com/mozart/vscode-oz/blob/master/syntaxes/oz.tmLanguage.json
 
 export const patterns = {
     generic: [
@@ -1652,5 +1653,98 @@ export const patterns = {
             name: 'operator.delimiter',
             pattern: /;[\(\)\[\]\{\}]|#\[|#\(^\./g
         }
+    ],
+    oz : [
+        // https://github.com/mozart/vscode-oz/blob/master/syntaxes/oz.tmLanguage.json
+        // TODO add missing css
+        {
+            name: "operator",
+            match: /(<:|:>|::|&|@|#|_|\\[\\]|\\.\\.\\.)/g
+        },
+        {
+            name: "operator.assignment",
+            match: /(\\=|\\:=)/g
+        },
+        {
+            name: "operator.comparison",
+            match: /<|=<|==|\\=|>=|>/g
+        },
+        {
+            name: "operator.list",
+            match: /\\b\\|\\b/g
+        },
+        {
+            name: "constant.numeric",
+            match: /(\\d+\\.\\d+|\\d+)/g
+        },
+        {
+            name: "constant.language",
+            match: /\\b(false|true|nil)\\b/g
+        },
+        {
+            name: "variable",
+            match: /[A-Z][0-9A-z]*/g
+        },
+        {
+            name: "keyword.control",
+            match: /(?<!'|\")\\b(then|andthen|at|attr|choice|class|cond|declare|define|dis|div|do|elsecase|export|fail|feat|finally|for|from|functor|import|in|lazy|lock|meth|mod|not|of|or|orelse|prepare|prop|require|self|skip|then|thread|unit|end|local)\\b/g
+        },
+        {
+            name: "keyword.control.conditional",
+            match: /(?<!'|\")\\b(else|elseif|if)\\b/g
+        },
+        {
+            name: "keyword.control.function",
+            match: /(?<!'|\")\\b(fun|proc)\\b/g
+        },
+        {
+            name: "keyword.control.trycatch",
+            match: /(?<!'|\")\\b(catch|raise|try|finally)\\b/g
+        },
+        {
+            name: "keyword.control.case",
+            match: /(?<!'|\")\\b(case|of|then)\\b/g
+        },
+        {
+            name: "entity.function",
+            match: /{([A-Z[A-z0-9]+\\.*]+|\\$)/g,
+        },
+        {
+            name: "string.quoted.double",
+            match: /(\")(.*?)(\")/g,
+        },
+        {
+            name: "string.quoted.single",
+            match: /(')(.*?)(')/g,
+        },
+        {
+            name: "string.unquoted",
+            match: /\\b([a-z][A-Za-z0-9]*?)\\b/g,
+
+        },
+        {
+            name: "meta.list.position",
+            match: /\\b[A-Z][A-Za-z0-9]*(\\.[\\d]+)\\b/g,
+        },
+        {
+            name: "comment.line.number-sign",
+            match: /%.*$\n?/g
+        },
+        {
+            name: "invalid.illegal.incomplete-assigment",
+            match: /\\b[A-Z][0-9a-zA-Z]*\\s*=\\s*\\n/g
+        },
+        {
+            name: "keyword.control.arithmetic",
+            match: /(\\*|\\+|\\-|/|~)|\\b(div|mod)\\b/g
+        },
+        {
+            name: "comment.block",
+            match: "^/\\* =(\\s*.*?)\\s*= \\*/$\\n?"
+        },
+        {
+            match: "\\*/.*\\n",
+            name: "invalid.illegal.stray-comment-end"
+        },
     ]
 };
