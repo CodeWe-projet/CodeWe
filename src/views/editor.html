@@ -25,14 +25,16 @@
             <li>
                 <h3>Language</h3>
                 <select name="language" id="option-language">
-                    <option selected>Python</option>
-                    <option>Javascript</option>
-                    <option>Java</option>
                 </select>
             </li>
             <li>
                 <h3>Space Size</h3>
-                <input type="number" value="4" min="1" max="32" />
+                <input id="option-space-size" type="number" value="4" min="1" max="32" />
+            </li>
+            <li>
+                <h3>QR Code</h3>
+                <br />
+                <div id="qrcode"></div>
             </li>
         </ul>
     </nav>
@@ -41,10 +43,23 @@
 {% block scripts %}
     <script>
       let doc_id = "{{ document['document_id'] }}" ;
+      let language = "{{ document['language'] }}" || "generic" ;
     </script>
     {% if production %}
         <script type="application/javascript" src="/js/dist/editor.min.js"></script>
     {% else %}
         <script type="module" src="/js/dev/page/editor.js"></script>
     {% endif %}
+    <script type="application/javascript" src = "/js/dev/lib/qrcode.min.js">
+    </script>
+    <script>
+        const qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: document.documentURI,
+            width: 128,
+            height: 128,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    </script>
 {% endblock %}

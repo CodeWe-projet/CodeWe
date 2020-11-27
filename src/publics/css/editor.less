@@ -29,7 +29,6 @@ header{
 section#editor{
     counter-reset: thecodenumbering;
     line-height: 22px;
-    float: left;
 
     div{
         font-family: "Courier New", monospace;
@@ -74,6 +73,7 @@ section#editor{
     width: 20%;
     height: 100%;
     max-width: 300px;
+    min-width: 200px;
     padding: 20px;
     background-color: darken(@background-color, 2%);
     border-left: 1px solid #111111;
@@ -93,15 +93,23 @@ section#editor{
                 display: inline;
             }
 
+            > :not(h3){
+                padding: 7px;
+                margin-top: 20px;
+                border-radius: 10px;
+            }
+
             select,
             input{
                 color: @color;
                 background-color: lighten(@background-color, 5%);
                 border-color: @background-color;
-                padding: 7px;
-                margin-top: 20px;
                 width: 90%;
-                border-radius: 10px;
+            }
+
+            #qrcode{
+                background-color: white;
+                display: inline-block;
             }
         }
     }

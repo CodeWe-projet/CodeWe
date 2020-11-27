@@ -67,7 +67,7 @@ export default class LinesManager{
         let element = this.select(uuid);
         if(element){
             element.innerText = htmlEncode(content);
-            new PrismCustom(element, 'python').apply();
+            new PrismCustom(element, language).apply();
         }else{
             Debug.warn(`Error when trying to update element with uuid '${uuid}': No div has this uuid.`)
         }

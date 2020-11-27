@@ -79,7 +79,7 @@ export default class Editable{
                     }
                     break;
                 default:
-                    if(!e.ctrlKey && !e.altKey) PrismCustom.onCurrent('python').ApplyWithCaret();
+                    if(!e.ctrlKey && !e.altKey) PrismCustom.onCurrent(language).ApplyWithCaret();
             }
             this.linesManager.change = true;
         });
@@ -223,7 +223,7 @@ export default class Editable{
             )
         );
         document.getSelection().collapseToEnd();
-        PrismCustom.onCurrent('python').ApplyWithCaret();
+        PrismCustom.onCurrent(language).ApplyWithCaret();
     }
 
     /**
@@ -234,7 +234,7 @@ export default class Editable{
         const currentElement = getNodeFromAttribute('uuid');
         currentElement.innerHTML = insertInText(currentElement.innerText, lines[0], Caret.getBeginPosition(currentElement));
 
-        PrismCustom.onCurrent('python').apply();
+        PrismCustom.onCurrent(language).apply();
 
         let currentUuid = currentElement.getAttribute('uuid');
         for(let i=1;i<lines.length;i++){
@@ -244,7 +244,7 @@ export default class Editable{
                 currentUuid,
                 lines[i]
             )
-            new PrismCustom(this.editable.querySelector('div[uuid="' + nextUuid + '"]'), 'python').apply();
+            new PrismCustom(this.editable.querySelector('div[uuid="' + nextUuid + '"]'), language).apply();
             currentUuid = nextUuid;
         }
     }
@@ -260,7 +260,7 @@ export default class Editable{
         }
         if(previousSibling !== null){
             const len = previousSibling.innerText.length;
-            previousSibling.innerHTML += line.innerHTML;
+            previousSibling.innerHTML += (previousSibling.innerHTML + line.innerHTML).replace('<br><br>', '<br>');
             line.remove();
             Caret.setPosition(previousSibling, len);
         }

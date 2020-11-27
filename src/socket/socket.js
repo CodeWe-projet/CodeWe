@@ -90,9 +90,9 @@ module.exports = function (wss) {
 				case 'language':
 					try {
 						let success = false;
-						if (languages.includes(data.language)) {
-							broadcastRoomExceptSender(data, 'language', data.language);
-							success = db.changeLanguage(data.room, data.language);
+						if (languages.includes(data.data.language)) {
+							broadcastRoomExceptSender(data, 'uuid', data.uuid);
+							success = db.changeLanguage(data.room, data.data.language);
 						}
 						if (!success) socket.send(JSON.stringify({event: 'language', success: false}));
 					} catch (err) {
