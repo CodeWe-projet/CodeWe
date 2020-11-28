@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        background-color: #222;
+        color: #ddd;
+    }
+
+    #qrcode{
+        background-color: white;
+        display: inline-block;
+    }
+
+    #qrcode canvas{
+        width: 512px;
+        height: 512px;
+        image-rendering: optimizeSpeed;
+        margin: 30px;
+        background-color: white;
+    }
+</style>
+<body>
+    <h3>QR CODE</h3>
+    <div id="qrcode"></div>
+</body>
+<script src="test.js"></script>
+</html>
