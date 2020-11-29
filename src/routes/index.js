@@ -16,6 +16,7 @@ const discordWebhook = require('webhook-discord');
  * @const
  */
 const express = require('express');
+const {nanoid} = require('nanoid');
  /**
  * MangoDB module
  * @const
@@ -41,6 +42,11 @@ const hook = config.DISCORD_WEBHOOK ? new discordWebhook.Webhook(config.DISCORD_
  * @inner
  */
 router.get('/', (req, res) => {
+    if (!req.session.userId) {
+        req.session.userId = nanoid(20);
+        req.session.ownDocuments = [];
+        req.session.editorOfDocuments = [];
+    } 
     res.render('index.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
 });
 
@@ -52,20 +58,32 @@ router.get('/', (req, res) => {
  * @inner
  */
 router.post('/create_document', async (req, res, next) => {
-    try {
-        //const language = req.body.language
-        // if (langages.includes(langage))
-        const language = 'python';
-        let documentId = await db.createDocument(language);
-        if (documentId) {
-            res.redirect(`/editor/${documentId}`);
+    if (req.session.userId) {
+        try {
+            //const language = req.body.language
+            // if (langages.includes(langage))
+            const language = 'python';
+            let documentId = await db.createDocument(req.session.userId, language);
+            if (documentId) {
+
+                req.session.ownDocuments.push(documentId);
+                res.redirect(`/editor/${documentId}`);
+            }
+            else {
+                res.status(500);
+            }
+        } catch (err) {
+            next(err);
         }
-        else {
-            res.status(500);
-        }
-    } catch (err) {
-        next(err);
     }
+    else res.redirect(307, 'login');
+});
+
+router.post('/login', (req, res, next) => {
+    req.session.userId = nanoid(20);
+    req.session.ownDocuments = [];
+    req.session.editorOfDocuments = [];
+    res.redirect(307, '/create_document')
 });
 
 router.post('/report-issue', async (req, res, next) => {

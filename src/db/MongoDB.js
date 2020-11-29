@@ -35,16 +35,19 @@ class MongoDB {
         }
     }
 
-    async createDocument (documentLanguage) {
+    async createDocument (userId, documentLanguage) {
+        // TODO add expiration date to join link
         let doc = {
             content: baseCode,
             creationDate: Date.now(),
             lastViewedDate: Date.now(),
             customDocumentName: '',
-            documentOwner: '',
+            documentOwner: userId,
+            public: true,
             editors: [],
             documentLink: '',
             linkView: '',
+            joinLink: '',
             language: documentLanguage,
             tab: 4
         };
@@ -189,6 +192,21 @@ class MongoDB {
         }
     }
 
+    async newJoinLink(documentLink, newJoinLink) {
+        return this.changeParam(documentLink, 'joinLink', newJoinLink);
+    }
+
+    async joinFromLink(joinLink, userId) {
+        await this.documentsCollection.updateOne({joinLink: joinLink}, {
+            $push: {
+                editors: userId
+            }
+        });
+        let doc = (await this.documentsCollection.findOne({joinLink: joinLink}));
+        if (!doc) return null;
+        return doc.documentLink;
+    }
+
     async updateLastViewedDate(documentLink) {
         return this.changeParam(documentLink, 'lastViewedDate', Date.now());
     }
@@ -196,6 +214,10 @@ class MongoDB {
     async deleteOldDocuments(days) {
         const oldTimestamp = Date.now() - 1000 * 60 * 60 * 24 * days;
         return this.documentsCollection.deleteMany({'lastViewedDate': {$lt : oldTimestamp} });
+    }
+
+    async changeVisibility(documentLink, newVisibility) {
+        return this.changeParam(documentLink, 'public', newVisibility);
     }
 
     async applyRequests (documentLink, requests) {

@@ -6,6 +6,8 @@
  */
 
 const express = require('express');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const nunjucks = require('nunjucks');
 const path = require('path');
 const minify = require('express-minify');
@@ -39,7 +41,7 @@ nunjucks.configure(path.join(__dirname, 'views'), {
 });
 
 // logger files
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
 
 // Adding middleware
 if (config.PRODUCTION) {
@@ -50,6 +52,26 @@ else {
     app.use(logger('dev'));
 }
 app.use(minify({ jsMatch: false }));
+
+const store = new MongoDBStore({
+    uri: config.DB_URL,
+    databaseName: 'codewe',
+    collection: 'sessions'
+});
+
+// Configure session
+const sessionParser = session({
+    secret: 'secret-key',
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+        secure: false
+    },
+    store: store,
+    resave: true,
+    saveUninitialized: false
+});
+
+app.use(sessionParser);
 
 
 //app.use(secure);
@@ -76,4 +98,7 @@ app.use((error, req, res, next) => {
     res.sendStatus(500);
 });
 
-module.exports = app;
+module.exports = {
+    app,
+    sessionParser
+}

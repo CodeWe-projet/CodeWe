@@ -15,6 +15,7 @@
  * @const
  */
 const express = require('express');
+const {nanoid} = require('nanoid');
 /**
  * DB module
  * @type {object}
@@ -30,6 +31,7 @@ const config = require('../config/config');
  */
 const router = express.Router();
 
+const utils = require('../utils');
 
 /**
  * Route serving editor with document id specified
@@ -38,18 +40,53 @@ const router = express.Router();
  * @memberof modules:routes/editor
  * @inner
  */
+
 router.get('/:docId', async (req, res, next) => {
+    if (req.session.userId) {
+        try {
+            let document = (await db.getDocument(req.params.docId));
+            if (document && (req.session.ownDocuments.includes(req.params.docId) || req.session.editorOfDocuments.includes(req.params.docId) || document.public == true || document.public == undefined)) {
+                document.document_id = req.params.docId;
+                res.render('editor.html', {document: document, production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
+            }
+            else if (!document) {
+                res.status(404).render('404.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE})
+            }
+            else {
+                res.send(401);
+            }
+        } catch (err) {
+            next(err);
+        }
+    }
+    else res.redirect(`login/${req.params.docId}`);
+});
+
+
+router.get('/login/:docId', (req, res, next) => {
+    req.session.userId = nanoid(20);
+    req.session.ownDocuments = [];
+    req.session.editorOfDocuments = [];
+    res.redirect(`/editor/${req.params.docId}`);
+});
+
+router.get('/join/:joinLink', async (req, res, next) => {
+    if (!req.session.userId) {
+        req.session.userId = nanoid(20);
+        req.session.ownDocuments = [];
+        req.session.editorOfDocuments = [];
+    }
     try {
-        let document = (await db.getDocument(req.params.docId));
-        if (document) { // && (document.public || (document.editors.includes(req.body.userId) && db.checkUserSecretToken(req.body.userId, secretkey)))
-            document.document_id = req.params.docId;
-            res.render('editor.html', {document: document, production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
+        const docId = await db.joinFromLink(req.params.joinLink, req.session.userId);
+        if(docId) {
+            req.session.editorOfDocuments.push(docId);
+            res.redirect(`/editor/${docId}`);
         }
-        // else if (!document.public)
-        else {
-            res.status(404).render('404.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE})
-        }
+        else res.status(404).render('404.html',  {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
     } catch (err) {
+        if (config.DEBUG) {
+            console.log(err);
+        }
         next(err);
     }
 });
