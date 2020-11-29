@@ -1,6 +1,7 @@
 const { MongoClient, ObjectID } = require("mongodb");
 var crypto = require('crypto');
 const { nanoid } = require('nanoid');
+const languages = require('../config/langages');
 const configs = require('../config/config');
 const utils = require('../utils');
 
@@ -11,7 +12,6 @@ const baseCode = [
     {uuid: utils.uuid(Math.random().toString(), 10), content: 'if __name__ == \'__main__\':'},
     {uuid: utils.uuid(Math.random().toString(), 10), content: '    main(\'Hello World !\')'}
 ];
-
 
 class MongoDB {
     constructor (url) {
@@ -35,7 +35,7 @@ class MongoDB {
         }
     }
 
-    async createDocument (language) {
+    async createDocument (documentLanguage) {
         let doc = {
             content: baseCode,
             creationDate: Date.now(),
@@ -45,7 +45,7 @@ class MongoDB {
             editors: [],
             documentLink: '',
             linkView: '',
-            language: language,
+            language: documentLanguage,
             tab: 4
         };
         try {
@@ -173,7 +173,7 @@ class MongoDB {
     }
 
     async changeLanguage(documentLink, newLanguage) {
-        if (["python"].includes(newLanguage)) {
+        if (languages.includes(newLanguage)) {
             return this.changeParam(documentLink, 'language', newLanguage);
         }
     }

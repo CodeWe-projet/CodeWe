@@ -22,6 +22,7 @@ const express = require('express');
  * @type {object}
  */
 const db = require('../db/MongoDB');
+const languages = require('../config/langages');
 const config = require('../config/config');
 /**
  * Express router.
@@ -53,7 +54,9 @@ router.get('/', (req, res) => {
 router.post('/create_document', async (req, res, next) => {
     try {
         //const language = req.body.language
-        let documentId = await db.createDocument('python');
+        // if (langages.includes(langage))
+        const language = 'python';
+        let documentId = await db.createDocument(language);
         if (documentId) {
             res.redirect(`/editor/${documentId}`);
         }

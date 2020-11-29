@@ -60,16 +60,6 @@ function keys(object) {
 }
 
 /**
- * Encodes < and > as html entities
- *
- * @param {string} code
- * @return {string}
- */
-function htmlEntities(code) {
-    return code.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&(?![\w\#]+;)/g, '&amp;');
-}
-
-/**
  * Determines if two different matches have complete overlap with each other
  *
  * @param {number} start1   start position of existing match
@@ -250,6 +240,7 @@ export class Prism {
 
             regex = _cloneRegex(regex);
             const match = regex.exec(code);
+
             if (!match) {
                 return false;
             }

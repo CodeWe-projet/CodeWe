@@ -8,6 +8,7 @@
  */
 const discordWebhook = require('webhook-discord');
 const debug = require('debug');
+const languages = require('../config/langages');
 const config = require('../config/config');
 
 const prom = require('./prom');
@@ -24,6 +25,8 @@ const utils = require('../utils');
 const rooms = {};
 
 const hook = config.DISCORD_WEBHOOK ? new discordWebhook.Webhook(config.DISCORD_WEBHOOK) : null;
+
+
 
 module.exports = function (wss) {
 	// Based on https://stackoverflow.com/a/62867363
@@ -86,8 +89,11 @@ module.exports = function (wss) {
 
 				case 'language':
 					try {
-						broadcastRoomExceptSender(data, 'language', data.language);
-						const success = db.changeLanguage(data.room, data.language);
+						let success = false;
+						if (languages.includes(data.data.language)) {
+							broadcastRoomExceptSender(data, 'uuid', data.uuid);
+							success = db.changeLanguage(data.room, data.data.language);
+						}
 						if (!success) socket.send(JSON.stringify({event: 'language', success: false}));
 					} catch (err) {
 						if (config.DEBUG) {
@@ -97,8 +103,12 @@ module.exports = function (wss) {
 					break;
 				case 'changeTabSize':
 					try {
-						broadcastRoomExceptSender(data, 'tabSize', data.tabSize);
-						const success = db.changeTabSize(data.room, data.tabSize);
+						let success = false;
+						data.data.size = parseInt(data.data.size);
+						if (Number.isInteger(data.data.size)) {
+							broadcastRoomExceptSender(data, 'uuid', data.uuid);
+							success = db.changeTabSize(data.room, data.data.size);
+						}
 						if (!success) socket.send(JSON.stringify({event: 'changeTabSize', success: false}));
 					} catch (err) {
 						if (config.DEBUG) {
