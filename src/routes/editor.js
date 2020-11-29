@@ -42,32 +42,26 @@ const utils = require('../utils');
  */
 
 router.get('/:docId', async (req, res, next) => {
-    if (req.session.userId) {
-        try {
-            let document = (await db.getDocument(req.params.docId));
-            if (document && (req.session.ownDocuments.includes(req.params.docId) || req.session.editorOfDocuments.includes(req.params.docId) || document.public == true || document.public == undefined)) {
-                document.document_id = req.params.docId;
-                res.render('editor.html', {document: document, production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
-            }
-            else if (!document) {
-                res.status(404).render('404.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE})
-            }
-            else {
-                res.send(401);
-            }
-        } catch (err) {
-            next(err);
-        }
+    if (!req.session.userId) {
+        req.session.userId = nanoid(20);
+        req.session.ownDocuments = [];
+        req.session.editorOfDocuments = [];
     }
-    else res.redirect(`login/${req.params.docId}`);
-});
-
-
-router.get('/login/:docId', (req, res, next) => {
-    req.session.userId = nanoid(20);
-    req.session.ownDocuments = [];
-    req.session.editorOfDocuments = [];
-    res.redirect(`/editor/${req.params.docId}`);
+    try {
+        let document = (await db.getDocument(req.params.docId));
+        if (document && (req.session.ownDocuments.includes(req.params.docId) || req.session.editorOfDocuments.includes(req.params.docId) || document.public == true || document.public == undefined)) {
+            document.document_id = req.params.docId;
+            res.render('editor.html', {document: document, production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE});
+        }
+        else if (!document) {
+            res.status(404).render('404.html', {production: config.PRODUCTION, client_versobe: config.CLIENT_VERBOSE})
+        }
+        else {
+            res.send(401);
+        }
+    } catch (err) {
+        next(err);
+    }
 });
 
 router.get('/join/:joinLink', async (req, res, next) => {

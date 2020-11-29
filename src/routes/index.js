@@ -58,32 +58,27 @@ router.get('/', (req, res) => {
  * @inner
  */
 router.post('/create_document', async (req, res, next) => {
-    if (req.session.userId) {
-        try {
-            //const language = req.body.language
-            // if (langages.includes(langage))
-            const language = 'python';
-            let documentId = await db.createDocument(req.session.userId, language);
-            if (documentId) {
-
-                req.session.ownDocuments.push(documentId);
-                res.redirect(`/editor/${documentId}`);
-            }
-            else {
-                res.status(500);
-            }
-        } catch (err) {
-            next(err);
-        }
+    if (!req.session.userId) {
+        req.session.userId = nanoid(20);
+        req.session.ownDocuments = [];
+        req.session.editorOfDocuments = [];
     }
-    else res.redirect(307, 'login');
-});
+    try {
+        //const language = req.body.language
+        // if (langages.includes(langage))
+        const language = 'python';
+        let documentId = await db.createDocument(req.session.userId, language);
+        if (documentId) {
 
-router.post('/login', (req, res, next) => {
-    req.session.userId = nanoid(20);
-    req.session.ownDocuments = [];
-    req.session.editorOfDocuments = [];
-    res.redirect(307, '/create_document')
+            req.session.ownDocuments.push(documentId);
+            res.redirect(`/editor/${documentId}`);
+        }
+        else {
+            res.status(500);
+        }
+    } catch (err) {
+        next(err);
+    }
 });
 
 router.post('/report-issue', async (req, res, next) => {

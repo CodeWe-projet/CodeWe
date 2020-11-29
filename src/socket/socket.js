@@ -152,12 +152,12 @@ module.exports = function (wss) {
 					try {
 						let document = await db.getDocument(data.room);
 						if (document.documentOwner == req.session.userId) {
-							if (!document.public) {
+							if (document.public === true || document.public === undefined) {
 								const newJoinLink = nanoid(7);
 								db.changeVisibility(data.room, false);
 								db.newJoinLink(data.room, newJoinLink);
 							}
-							else if (document.public == true) {
+							else if (document.public == false) {
 								db.changeVisibility(data.room, true);
 							}
 						}
