@@ -260,7 +260,7 @@ export default class Editable{
         }
         if(previousSibling !== null){
             const len = previousSibling.innerText.length;
-            previousSibling.innerHTML += (previousSibling.innerHTML + line.innerHTML).replace('<br><br>', '<br>');
+            previousSibling.innerHTML = (previousSibling.innerHTML + line.innerHTML).replace('<br><br>', '<br>');
             line.remove();
             Caret.setPosition(previousSibling, len);
         }
