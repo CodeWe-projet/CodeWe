@@ -33,6 +33,13 @@ const router = express.Router();
 
 const hook = config.DISCORD_WEBHOOK ? new discordWebhook.Webhook(config.DISCORD_WEBHOOK) : null;
 
+const client = require('prom-client');
+
+const qr_scans = new client.Counter({
+    name: 'total_qr_scans',
+    help: 'total_qr_scans',
+});
+
 /**
  * Route serving editorindex page
  * @name get/
@@ -76,6 +83,11 @@ router.post('/report-issue', async (req, res, next) => {
     } catch (err) {
         next(err);
     }
+});
+
+router.get('/e/:docId', async (req, res, next) => {
+    qr_scans.inc();
+    res.redirect(`/editor/${req.params.docId}`);
 });
 
 module.exports = router;
