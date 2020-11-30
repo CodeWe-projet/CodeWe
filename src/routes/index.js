@@ -32,6 +32,8 @@ const router = express.Router();
 
 const hook = config.DISCORD_WEBHOOK ? new discordWebhook.Webhook(config.DISCORD_WEBHOOK) : null;
 
+const prom = require('../socket/prom');
+
 /**
  * Route serving editorindex page
  * @name get/
@@ -55,6 +57,7 @@ router.post('/create_document', async (req, res, next) => {
         //const language = req.body.language
         let documentId = await db.createDocument('python');
         if (documentId) {
+            prom.total_new_documents.inc();
             res.redirect(`/editor/${documentId}`);
         }
         else {

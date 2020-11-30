@@ -55,7 +55,6 @@ module.exports = function (wss) {
 
 
 		socket.on('message', async data => {
-			prom.total_packets.inc();
 			data = JSON.parse(data);
 			if(!('uuid' in data)) data['uuid'] = 'None';
 			switch (data.event) {
@@ -129,6 +128,8 @@ module.exports = function (wss) {
 					}
 
 			}
+			prom.total_packets.inc();
+			prom.total_packets_size.inc(data.toString().length * 16);
 		});
 
 		socket.on('pong', () => {
@@ -161,6 +162,14 @@ module.exports = function (wss) {
 
 	setInterval(() => {
 		prom.connected.set(wss.clients.size);
+		const unique_list = [];
+		wss.clients.forEach(function(x){
+			if(!unique_list.includes(x._socket.address().address)){
+				unique_list.push(x._socket.address().address);
+			}
+		});
+		prom.unique_connected.set(unique_list.length);
+		prom.active_rooms.set(Object.keys(rooms).length);
 	}, 5000);
 
 	// delete old documents

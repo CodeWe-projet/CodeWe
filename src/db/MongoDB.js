@@ -3,6 +3,7 @@ var crypto = require('crypto');
 const { nanoid } = require('nanoid');
 const configs = require('../config/config');
 const utils = require('../utils');
+const prom = require('../socket/prom')
 
 const baseCode = [
     {uuid: utils.uuid(Math.random().toString(), 10), content: 'def main(text: str) -> None:'},
@@ -216,6 +217,7 @@ class MongoDB {
                     case 'new-line':
                         results = await this.newLine(documentLink, data.previous, data.id, data.content);
                         if (!results) success = false;
+                        prom.total_new_lines.inc();
                         break;
                     case 'delete-line':
                         results = await this.deleteLine(documentLink, data.id);
