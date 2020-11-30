@@ -33,6 +33,8 @@ const router = express.Router();
 
 const hook = config.DISCORD_WEBHOOK ? new discordWebhook.Webhook(config.DISCORD_WEBHOOK) : null;
 
+const prom = require('../socket/prom');
+
 const client = require('prom-client');
 
 const qr_scans = new client.Counter({
@@ -65,6 +67,7 @@ router.post('/create_document', async (req, res, next) => {
         const language = 'python';
         let documentId = await db.createDocument(language);
         if (documentId) {
+            prom.total_new_documents.inc();
             res.redirect(`/editor/${documentId}`);
         }
         else {
