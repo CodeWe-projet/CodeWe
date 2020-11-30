@@ -13,6 +13,7 @@ import {patterns} from "/js/dev/page/editor/prism/patterns.js";
 import PrismCustom from "/js/dev/page/editor/prism/prismCustom.js";
 import EditorSocket from "/js/dev/page/editor/socket.js";
 import _ from "/js/dev/utils/element.js";
+import qrCode from "/js/dev/utils/qrcode/qrcode-m-2.js";
 
 export const socket = new EditorSocket(doc_id);
 export const editor = new Editable(_.id('editor'));
@@ -27,3 +28,5 @@ for(const child of _.id('editor').children){
 }
 
 export const customize = new Customize(editor);
+
+qrCode('qrcode', document.documentURI.replace('/editor/', '/e/'));
