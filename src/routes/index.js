@@ -22,6 +22,7 @@ const express = require('express');
  * @type {object}
  */
 const db = require('../db/MongoDB');
+const languages = require('../config/langages');
 const config = require('../config/config');
 /**
  * Express router.
@@ -31,6 +32,15 @@ const config = require('../config/config');
 const router = express.Router();
 
 const hook = config.DISCORD_WEBHOOK ? new discordWebhook.Webhook(config.DISCORD_WEBHOOK) : null;
+
+const prom = require('../socket/prom');
+
+const client = require('prom-client');
+
+const qr_scans = new client.Counter({
+    name: 'total_qr_scans',
+    help: 'total_qr_scans',
+});
 
 /**
  * Route serving editorindex page
@@ -53,8 +63,11 @@ router.get('/', (req, res) => {
 router.post('/create_document', async (req, res, next) => {
     try {
         //const language = req.body.language
-        let documentId = await db.createDocument('python');
+        // if (langages.includes(langage))
+        const language = 'python';
+        let documentId = await db.createDocument(language);
         if (documentId) {
+            prom.total_new_documents.inc();
             res.redirect(`/editor/${documentId}`);
         }
         else {
@@ -73,6 +86,11 @@ router.post('/report-issue', async (req, res, next) => {
     } catch (err) {
         next(err);
     }
+});
+
+router.get('/e/:docId', async (req, res, next) => {
+    qr_scans.inc();
+    res.redirect(`/editor/${req.params.docId}`);
 });
 
 module.exports = router;

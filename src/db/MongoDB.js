@@ -1,7 +1,10 @@
 const { MongoClient, ObjectID } = require("mongodb");
 var crypto = require('crypto');
+const { nanoid } = require('nanoid');
+const languages = require('../config/langages');
 const configs = require('../config/config');
 const utils = require('../utils');
+const prom = require('../socket/prom')
 
 const baseCode = [
     {uuid: utils.uuid(Math.random().toString(), 10), content: 'def main(text: str) -> None:'},
@@ -10,7 +13,6 @@ const baseCode = [
     {uuid: utils.uuid(Math.random().toString(), 10), content: 'if __name__ == \'__main__\':'},
     {uuid: utils.uuid(Math.random().toString(), 10), content: '    main(\'Hello World !\')'}
 ];
-
 
 class MongoDB {
     constructor (url) {
@@ -34,7 +36,7 @@ class MongoDB {
         }
     }
 
-    async createDocument (language) {
+    async createDocument (documentLanguage) {
         let doc = {
             content: baseCode,
             creationDate: Date.now(),
@@ -44,13 +46,13 @@ class MongoDB {
             editors: [],
             documentLink: '',
             linkView: '',
-            language: language,
+            language: documentLanguage,
             tab: 4
         };
         try {
             let results = (await this.documentsCollection.insertOne(doc));
             const documentLink = utils.uuid(results.insertedId.toString());
-            const linkView = utils.uuid(documentLink);
+            const linkView = nanoid(5);
             this.documentsCollection.updateOne({_id: results.insertedId}, {$set: {documentLink: documentLink, linkView: linkView}});
             return documentLink;
         } catch (err) {
@@ -117,7 +119,7 @@ class MongoDB {
             let index = doc.content.findIndex(line => {
                 return line.uuid == previousUuid;
             });
-            if (index) {
+            if (index || index === 0) {
                 this.documentsCollection.updateOne({documentLink: documentLink}, {
                     $push: {
                         content: {
@@ -172,7 +174,7 @@ class MongoDB {
     }
 
     async changeLanguage(documentLink, newLanguage) {
-        if (["python"].includes(newLanguage)) {
+        if (languages.includes(newLanguage)) {
             return this.changeParam(documentLink, 'language', newLanguage);
         }
     }
@@ -215,6 +217,7 @@ class MongoDB {
                     case 'new-line':
                         results = await this.newLine(documentLink, data.previous, data.id, data.content);
                         if (!results) success = false;
+                        prom.total_new_lines.inc();
                         break;
                     case 'delete-line':
                         results = await this.deleteLine(documentLink, data.id);
