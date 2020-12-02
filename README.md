@@ -4,6 +4,8 @@
 
 ![codeWe](https://github.com/allEyezOnCode/CodeWe/blob/master/imgs/ex.gif?raw=True "codeWe - exemple")
 
+---
+
 ## Installation
 
 ### Classic installation
@@ -19,7 +21,7 @@ The first step is to clone this repository.
 Open a terminal and run:
 
 ```bash
-git clone https://github.com/allEyezOnCode/CodeWe.git
+git clone https://github.com/CodeWe-projet/CodeWe.git
 ```
 
 Next step is to install depedencies
@@ -47,17 +49,54 @@ To run the server, run a shell in the `CodeWe/src` folder and run:
 node ./src/server.js
 ```
 
-## Next features
-
-* Document with privileges (anon auth, and jwt usage)
-* New programming langages
-* More options
-* Server montioring with prometheus and grafana
+---
 
 ## Contribution
 
 Feel free to contribute, open an issue, then fork the repo and submit a PR.
 
+
 ## Licence
 
-This project is under MIT licence. The full licence can be read [here](https://github.com/allEyezOnCode/CodeWe).
+This project is under MIT licence. The full licence can be read [here](https://github.com/CodeWe-projet/CodeWe/blob/master/LICENCE.md).
+
+---
+
+## Next features
+
+* Document with privileges (anon auth, and jwt usage)
+
+
+## Changelog
+
+### Version [2.1.0](https://github.com/CodeWe-projet/CodeWe/pull/40)
+#### Back-end
+* Preparing the back-end for authentication.
+* New prometheus gauges and counter.
+
+#### Front-end
+* Adding support of 20+ languages.
+* Allow sharing URL by QR Code.
+* Customize tabulation size.
+* Remove line and others major bugfixes.
+
+### Version [2.0.1](https://github.com/CodeWe-projet/CodeWe/pull/26)
+#### Back-end
+* Ability to redirect an http port to the main https port.
+* Update configuration.
+* Minor bug fixes.
+
+#### Front-end
+* Update legal content.
+* Major bug fixes.
+
+### Version [2.0.0](https://github.com/CodeWe-projet/CodeWe/tree/ad25d132ab92c0b9de227c9aedf04bda3f19681b)
+#### Back-end
+* Rewriting of the back end in nodejs.
+
+#### Front-end
+* Report issue button.
+* Minor bug fixes.
+
+### 1.0.0
+* Initialisation of project using python and Flask for backend.
