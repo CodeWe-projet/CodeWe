@@ -79,7 +79,7 @@ export default class Editable{
                     }
                     break;
                 default:
-                    if(!e.ctrlKey && !e.altKey) PrismCustom.onCurrent(language).ApplyWithCaret();
+                    if(!e.ctrlKey && !e.altKey && getNodeFromAttribute('uuid')) PrismCustom.onCurrent(language).ApplyWithCaret();
             }
             this.linesManager.change = true;
         });
@@ -259,10 +259,15 @@ export default class Editable{
             previousSibling = previousSibling.previousSibling;
         }
         if(previousSibling !== null){
-            const len = previousSibling.innerText.length;
-            previousSibling.innerHTML = (previousSibling.innerHTML + line.innerHTML).replace('<br><br>', '<br>');
+            const len = previousSibling.innerText.length - previousSibling.getElementsByTagName('br').length;
+            previousSibling.innerHTML += line.innerHTML; //(previousSibling.innerHTML + ).replace('<br><br>', '<br>');
+            for(const br of previousSibling.getElementsByTagName('br')) br.remove();
+            if(previousSibling.firstChild.nodeName === 'BR'){
+                console.log(`"${previousSibling.innerText}"`);
+                Caret.setPosition(previousSibling.firstChild, 0);
+            }else Caret.setPosition(previousSibling, len);
             line.remove();
-            Caret.setPosition(previousSibling, len);
+            //new PrismCustom(previousSibling, language).ApplyWithCaret();
         }
     }
 
