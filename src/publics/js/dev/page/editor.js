@@ -30,3 +30,7 @@ for(const child of _.id('editor').children){
 export const customize = new Customize(editor);
 
 qrCode('qrcode', document.documentURI.replace('/editor/', '/e/'));
+
+const title = document.getElementById('header').getElementsByTagName('h1').item(0);
+title.innerHTML += ' - ' + doc_id;
+title.parentElement.style.width = '500px';
