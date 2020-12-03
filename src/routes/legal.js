@@ -59,7 +59,7 @@ router.get([
   '/termsofservice/archive/:date',
   '/terms-of-service/archive/:date'
 ], (req, res) => {
-  res.render(`legal/archive/tos-${req.params.date}.html`, {
+  res.render(`legal/archive/tos-${req.params.date}.htm`, {
     production: config.PRODUCTION,
     client_versobe: config.CLIENT_VERBOSE
   });
@@ -98,7 +98,7 @@ router.get(['/privacy-pdf', '/privacy-policy-pdf', '/privacypolicy-pdf'], (req, 
  * @inner
  */
 router.get(['/privacy/archive/:date', '/privacy-policy/archive/:date', '/privacypolicy/archive/:date'], (req, res) => {
-  res.render(`legal/archive/privacy-${req.params.date}.html`, {
+  res.render(`legal/archive/privacy-${req.params.date}.htm`, {
     production: config.PRODUCTION,
     client_versobe: config.CLIENT_VERBOSE
   });
