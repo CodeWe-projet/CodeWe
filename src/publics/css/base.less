@@ -64,6 +64,9 @@ header{
     z-index: 200;
     background-image: url("/img/SVG/Header.svg");
     box-shadow: 0 3px 3px #477A14;
+    font-style: normal;
+    letter-spacing: 2px;
+    font-family: 'Lato', sans-serif;
 
     .anti-shadow{
         overflow: hidden;
@@ -72,13 +75,25 @@ header{
         width: 400px;
     }
 
+    .anti-shadow#header-message-shadow{
+        float: right;
+        text-align: right;
+        width: 650px;
+    }
+
+    #header-message{
+        text-shadow: 2px 2px 5px #222;
+        font-weight: 400;
+        background-color: fade(@background-color, 40%);
+        box-shadow: 30px 0 100px 100px fade(@background-color, 40%);
+        display: inline-block;
+        padding: 20px 15px 0 0;
+    }
+
     h1{
+        font-weight: 350;
         float: left;
         text-shadow: 2px 2px 5px #222;
-        font-weight: 350;
-        font-style: normal;
-        letter-spacing: 2px;
-        font-family: 'Lato', sans-serif;
         background-color: fade(@background-color, 40%);
         box-shadow: -20px 0 100px 100px fade(@background-color, 40%);
         padding: 5px 10px;
