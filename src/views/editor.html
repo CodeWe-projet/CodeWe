@@ -7,12 +7,6 @@
     <link rel="stylesheet" type="text/css" href="/css/rainbow.less">
 {% endblock %}
 
-{% block header %}
-    <div id="actions">
-        <a id="download" target="iframe" download="{{ document['document_id'] }}.py" href="#">Download</a>
-    </div>
-{% endblock %}
-
 {% block corps %}
     <section id="editor" contenteditable="true" spellcheck="false">
         {% for line in document['content'] %}
@@ -34,6 +28,10 @@
                 <h3>QR Code</h3>
                 <br />
                 <div id="qrcode"></div>
+            </li>
+            <li>
+                <h3>Download</h3>
+                <a id="download" target="iframe" download="{{ document['document_id'] }}.txt" href="#">Source code</a>
             </li>
         </ul>
     </nav>
