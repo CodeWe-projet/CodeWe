@@ -58,17 +58,45 @@ header{
     top: 0;
     left: 0;
     background-color: #477A14;
-    padding: 5px 10px;
     height: 60px;
     width: 100vw;
     box-sizing: border-box;
     z-index: 200;
     background-image: url("/img/SVG/Header.svg");
-    box-shadow: 0 3px 3px #477A14; //mix(@background-color, #477A14, 50%);
-    //border-bottom: 2px solid mix(@background-color, #477A14, 50%);
+    box-shadow: 0 3px 3px #477A14;
+    font-style: normal;
+    letter-spacing: 2px;
+    font-family: 'Lato', sans-serif;
+
+    .anti-shadow{
+        overflow: hidden;
+        display: inline-block;
+        height: 104%;
+        width: 400px;
+    }
+
+    .anti-shadow#header-message-shadow{
+        float: right;
+        text-align: right;
+        width: 650px;
+    }
+
+    #header-message{
+        text-shadow: 2px 2px 5px #222;
+        font-weight: 400;
+        background-color: fade(@background-color, 40%);
+        box-shadow: 30px 0 100px 100px fade(@background-color, 40%);
+        display: inline-block;
+        padding: 20px 15px 0 0;
+    }
 
     h1{
+        font-weight: 350;
         float: left;
+        text-shadow: 2px 2px 5px #222;
+        background-color: fade(@background-color, 40%);
+        box-shadow: -20px 0 100px 100px fade(@background-color, 40%);
+        padding: 5px 10px;
     }
 
     .title-1{

@@ -1,0 +1,1619 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 1920 1080"
+   version="1.1"
+   id="svg391"
+   sodipodi:docname="index_background.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <metadata
+     id="metadata395">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1856"
+     inkscape:window-height="1016"
+     id="namedview393"
+     showgrid="false"
+     inkscape:zoom="1.0223585"
+     inkscape:cx="617.60043"
+     inkscape:cy="447.33755"
+     inkscape:window-x="64"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Computer_Screens" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1{fill:#616160;}.cls-2{fill:#76b72a;opacity:0.85;}.cls-3{font-size:23.72px;font-family:MSReferenceSansSerif, MS Reference Sans Serif;}.cls-3,.cls-5{fill:#f5f5f5;}.cls-4{font-size:17.79px;}.cls-5{font-size:7.91px;font-family:CourierNewPSMT, Courier New;}.cls-6{fill:none;}.cls-6,.cls-7{stroke:#1d1d1b;stroke-miterlimit:10;}.cls-7{fill:#3c3c3b;}</style>
+  </defs>
+  <g
+     id="Computer_Screens"
+     data-name="Computer Screens">
+    <rect
+       class="cls-1"
+       x="288.3"
+       y="491.09"
+       width="150"
+       height="96.29"
+       id="rect6" />
+    <rect
+       class="cls-2"
+       x="288.3"
+       y="491.09"
+       width="150"
+       height="24.71"
+       id="rect8" />
+    <text
+       class="cls-3"
+       transform="translate(290.52 513.84) scale(1.01 1)"
+       id="text16">C<tspan
+   class="cls-4"
+   x="16.56"
+   y="0"
+   id="tspan10">ODE</tspan>
+<tspan
+   x="55.53"
+   y="0"
+   id="tspan12">W</tspan>
+<tspan
+   class="cls-4"
+   x="78.98"
+   y="0"
+   id="tspan14">E</tspan>
+</text>
+    <text
+       class="cls-5"
+       transform="translate(290.08 527.5) scale(1.01 1)"
+       id="text30">1<tspan
+   x="0"
+   y="9.49"
+   id="tspan18">2</tspan>
+<tspan
+   x="0"
+   y="18.98"
+   id="tspan20">3</tspan>
+<tspan
+   x="0"
+   y="28.47"
+   id="tspan22">4</tspan>
+<tspan
+   x="0"
+   y="37.96"
+   id="tspan24">5</tspan>
+<tspan
+   x="0"
+   y="47.44"
+   id="tspan26">6</tspan>
+<tspan
+   x="0"
+   y="56.93"
+   id="tspan28">7</tspan>
+</text>
+    <rect
+       class="cls-6"
+       x="288.3"
+       y="491.09"
+       width="150"
+       height="96.02"
+       id="rect32" />
+    <path
+       class="cls-7"
+       d="M371.77,587.1v17c0,2.94-3.79,5.32-8.47,5.32s-8.5-2.38-8.5-5.32v-17Z"
+       id="path34" />
+    <path
+       class="cls-7"
+       d="M388.76,600.53l-4.17,19.83H342l-4.16-19.83h17v3.55c0,2.94,3.81,5.32,8.5,5.32s8.47-2.38,8.47-5.32v-3.55Z"
+       id="path36" />
+    <rect
+       class="cls-1"
+       x="885.10999"
+       y="833.89001"
+       width="150"
+       height="96.290001"
+       id="rect38"
+       style="fill:#616160" />
+    <rect
+       class="cls-2"
+       x="885.10999"
+       y="833.89001"
+       width="150"
+       height="24.709999"
+       id="rect40"
+       style="opacity:0.85;fill:#76b72a" />
+    <text
+       class="cls-3"
+       transform="scale(1.0049876,0.99503716)"
+       id="text48"
+       x="882.93628"
+       y="860.91394"
+       style="font-size:23.83830452px;font-family:MSReferenceSansSerif, 'MS Reference Sans Serif';fill:#f5f5f5;stroke-width:1.0049876">C<tspan
+   class="cls-4"
+   x="899.57892"
+   y="860.91394"
+   id="tspan42"
+   style="font-size:17.87872887px;stroke-width:1.0049876">ODE</tspan>
+<tspan
+   x="938.74329"
+   y="860.91394"
+   id="tspan44"
+   style="stroke-width:1.0049876">W</tspan>
+<tspan
+   class="cls-4"
+   x="962.31024"
+   y="860.91394"
+   id="tspan46"
+   style="font-size:17.87872887px;stroke-width:1.0049876">E</tspan>
+</text>
+    <text
+       class="cls-5"
+       transform="scale(1.0049876,0.99503716)"
+       id="text62"
+       x="882.48853"
+       y="874.63208"
+       style="font-size:7.94945145px;font-family:CourierNewPSMT, 'Courier New';fill:#f5f5f5;stroke-width:1.0049876">1<tspan
+   x="882.48853"
+   y="884.16937"
+   id="tspan50"
+   style="stroke-width:1.0049876">2</tspan>
+<tspan
+   x="882.48853"
+   y="893.70679"
+   id="tspan52"
+   style="stroke-width:1.0049876">3</tspan>
+<tspan
+   x="882.48853"
+   y="903.24384"
+   id="tspan54"
+   style="stroke-width:1.0049876">4</tspan>
+<tspan
+   x="882.48853"
+   y="912.78143"
+   id="tspan56"
+   style="stroke-width:1.0049876">5</tspan>
+<tspan
+   x="882.48853"
+   y="922.30847"
+   id="tspan58"
+   style="stroke-width:1.0049876">6</tspan>
+<tspan
+   x="882.48853"
+   y="931.84552"
+   id="tspan60"
+   style="stroke-width:1.0049876">7</tspan>
+</text>
+    <rect
+       class="cls-6"
+       x="885.10999"
+       y="833.89001"
+       width="150"
+       height="96.019997"
+       id="rect64"
+       style="fill:none;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 968.59,929.9 v 17 c 0,2.93 -3.79,5.31 -8.48,5.31 -4.69,0 -8.49,-2.38 -8.49,-5.31 v -17 z"
+       id="path66"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 985.57,943.32 -4.17,19.84 h -42.58 l -4.17,-19.84 h 17 v 3.56 c 0,2.93 3.8,5.31 8.49,5.31 4.69,0 8.48,-2.38 8.48,-5.31 v -3.56 z"
+       id="path68"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <rect
+       class="cls-1"
+       x="1190.23"
+       y="227.63"
+       width="150"
+       height="96.290001"
+       id="rect70"
+       style="fill:#616160" />
+    <rect
+       class="cls-2"
+       x="1190.23"
+       y="227.63"
+       width="150"
+       height="24.709999"
+       id="rect72"
+       style="opacity:0.85;fill:#76b72a" />
+    <text
+       class="cls-3"
+       transform="scale(1.0049876,0.99503716)"
+       id="text80"
+       x="1186.5321"
+       y="251.629"
+       style="font-size:23.83830452px;font-family:MSReferenceSansSerif, 'MS Reference Sans Serif';fill:#f5f5f5;stroke-width:1.0049876">C<tspan
+   class="cls-4"
+   x="1203.1747"
+   y="251.629"
+   id="tspan74"
+   style="font-size:17.87872887px;stroke-width:1.0049876">ODE</tspan>
+<tspan
+   x="1242.3391"
+   y="251.629"
+   id="tspan76"
+   style="stroke-width:1.0049876">W</tspan>
+<tspan
+   class="cls-4"
+   x="1265.906"
+   y="251.629"
+   id="tspan78"
+   style="font-size:17.87872887px;stroke-width:1.0049876">E</tspan>
+</text>
+    <text
+       class="cls-5"
+       transform="scale(1.0049876,0.99503716)"
+       id="text94"
+       x="1186.0942"
+       y="265.34708"
+       style="font-size:7.94945145px;font-family:CourierNewPSMT, 'Courier New';fill:#f5f5f5;stroke-width:1.0049876">1<tspan
+   x="1186.0942"
+   y="274.8844"
+   id="tspan82"
+   style="stroke-width:1.0049876">2</tspan>
+<tspan
+   x="1186.0942"
+   y="284.42175"
+   id="tspan84"
+   style="stroke-width:1.0049876">3</tspan>
+<tspan
+   x="1186.0942"
+   y="293.95908"
+   id="tspan86"
+   style="stroke-width:1.0049876">4</tspan>
+<tspan
+   x="1186.0942"
+   y="303.4964"
+   id="tspan88"
+   style="stroke-width:1.0049876">5</tspan>
+<tspan
+   x="1186.0942"
+   y="313.02368"
+   id="tspan90"
+   style="stroke-width:1.0049876">6</tspan>
+<tspan
+   x="1186.0942"
+   y="322.56104"
+   id="tspan92"
+   style="stroke-width:1.0049876">7</tspan>
+</text>
+    <rect
+       class="cls-6"
+       x="1190.23"
+       y="227.63"
+       width="150"
+       height="96.019997"
+       id="rect96"
+       style="fill:none;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 1273.7,323.63 v 17 c 0,2.93 -3.78,5.31 -8.47,5.31 -4.69,0 -8.49,-2.38 -8.49,-5.31 v -17 z"
+       id="path98"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 1290.69,337.06 -4.17,19.84 h -42.59 l -4.16,-19.84 h 17 v 3.56 c 0,2.93 3.8,5.31 8.49,5.31 4.69,0 8.47,-2.38 8.47,-5.31 v -3.56 z"
+       id="path100"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <rect
+       class="cls-1"
+       x="1403.8199"
+       y="310.66"
+       width="150"
+       height="96.290001"
+       id="rect102"
+       style="fill:#616160" />
+    <rect
+       class="cls-2"
+       x="1403.8199"
+       y="310.66"
+       width="150"
+       height="24.709999"
+       id="rect104"
+       style="opacity:0.85;fill:#76b72a" />
+    <text
+       class="cls-3"
+       transform="scale(1.0049876,0.99503716)"
+       id="text112"
+       x="1399.0621"
+       y="335.07303"
+       style="font-size:23.83830452px;font-family:MSReferenceSansSerif, 'MS Reference Sans Serif';fill:#f5f5f5;stroke-width:1.0049876">C<tspan
+   class="cls-4"
+   x="1415.7047"
+   y="335.07303"
+   id="tspan106"
+   style="font-size:17.87872887px;stroke-width:1.0049876">ODE</tspan>
+<tspan
+   x="1454.869"
+   y="335.07303"
+   id="tspan108"
+   style="stroke-width:1.0049876">W</tspan>
+<tspan
+   class="cls-4"
+   x="1478.436"
+   y="335.07303"
+   id="tspan110"
+   style="font-size:17.87872887px;stroke-width:1.0049876">E</tspan>
+</text>
+    <text
+       class="cls-5"
+       transform="scale(1.0049876,0.99503716)"
+       id="text126"
+       x="1398.6144"
+       y="348.79111"
+       style="font-size:7.94945145px;font-family:CourierNewPSMT, 'Courier New';fill:#f5f5f5;stroke-width:1.0049876">1<tspan
+   x="1398.6144"
+   y="358.32843"
+   id="tspan114"
+   style="stroke-width:1.0049876">2</tspan>
+<tspan
+   x="1398.6144"
+   y="367.86575"
+   id="tspan116"
+   style="stroke-width:1.0049876">3</tspan>
+<tspan
+   x="1398.6144"
+   y="377.40311"
+   id="tspan118"
+   style="stroke-width:1.0049876">4</tspan>
+<tspan
+   x="1398.6144"
+   y="386.94043"
+   id="tspan120"
+   style="stroke-width:1.0049876">5</tspan>
+<tspan
+   x="1398.6144"
+   y="396.46771"
+   id="tspan122"
+   style="stroke-width:1.0049876">6</tspan>
+<tspan
+   x="1398.6144"
+   y="406.00504"
+   id="tspan124"
+   style="stroke-width:1.0049876">7</tspan>
+</text>
+    <rect
+       class="cls-6"
+       x="1403.8101"
+       y="310.66"
+       width="150"
+       height="96.019997"
+       id="rect128"
+       style="fill:none;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 1487.29,406.67 v 17 c 0,2.93 -3.79,5.31 -8.48,5.31 -4.69,0 -8.49,-2.38 -8.49,-5.31 v -17 z"
+       id="path130"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 1504.27,420.09 -4.17,19.84 h -42.58 l -4.17,-19.84 h 17 v 3.56 c 0,2.93 3.8,5.31 8.49,5.31 4.69,0 8.48,-2.38 8.48,-5.31 v -3.56 z"
+       id="path132"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <rect
+       class="cls-1"
+       x="1480.71"
+       y="491.09"
+       width="150"
+       height="96.29"
+       id="rect134" />
+    <rect
+       class="cls-2"
+       x="1480.71"
+       y="491.09"
+       width="150"
+       height="24.71"
+       id="rect136" />
+    <text
+       class="cls-3"
+       transform="translate(1482.93 513.84) scale(1.01 1)"
+       id="text144">C<tspan
+   class="cls-4"
+   x="16.56"
+   y="0"
+   id="tspan138">ODE</tspan>
+<tspan
+   x="55.53"
+   y="0"
+   id="tspan140">W</tspan>
+<tspan
+   class="cls-4"
+   x="78.98"
+   y="0"
+   id="tspan142">E</tspan>
+</text>
+    <text
+       class="cls-5"
+       transform="translate(1482.48 527.5) scale(1.01 1)"
+       id="text158">1<tspan
+   x="0"
+   y="9.49"
+   id="tspan146">2</tspan>
+<tspan
+   x="0"
+   y="18.98"
+   id="tspan148">3</tspan>
+<tspan
+   x="0"
+   y="28.47"
+   id="tspan150">4</tspan>
+<tspan
+   x="0"
+   y="37.96"
+   id="tspan152">5</tspan>
+<tspan
+   x="0"
+   y="47.45"
+   id="tspan154">6</tspan>
+<tspan
+   x="0"
+   y="56.93"
+   id="tspan156">7</tspan>
+</text>
+    <rect
+       class="cls-6"
+       x="1480.7"
+       y="491.09"
+       width="150"
+       height="96.02"
+       id="rect160" />
+    <path
+       class="cls-7"
+       d="M1564.18,587.1v17c0,2.94-3.79,5.32-8.48,5.32s-8.49-2.38-8.49-5.32v-17Z"
+       id="path162" />
+    <path
+       class="cls-7"
+       d="M1581.16,600.53,1577,620.36h-42.58l-4.17-19.83h17v3.55c0,2.94,3.8,5.32,8.49,5.32s8.48-2.38,8.48-5.32v-3.55Z"
+       id="path164" />
+    <rect
+       class="cls-1"
+       x="1403.8199"
+       y="671.53003"
+       width="150"
+       height="96.290001"
+       id="rect166"
+       style="fill:#616160" />
+    <rect
+       class="cls-2"
+       x="1403.8199"
+       y="671.53003"
+       width="150"
+       height="24.709999"
+       id="rect168"
+       style="opacity:0.85;fill:#76b72a" />
+    <text
+       class="cls-3"
+       transform="scale(1.0049876,0.99503716)"
+       id="text176"
+       x="1399.0621"
+       y="697.74353"
+       style="font-size:23.83830452px;font-family:MSReferenceSansSerif, 'MS Reference Sans Serif';fill:#f5f5f5;stroke-width:1.0049876">C<tspan
+   class="cls-4"
+   x="1415.7047"
+   y="697.74353"
+   id="tspan170"
+   style="font-size:17.87872887px;stroke-width:1.0049876">ODE</tspan>
+<tspan
+   x="1454.869"
+   y="697.74353"
+   id="tspan172"
+   style="stroke-width:1.0049876">W</tspan>
+<tspan
+   class="cls-4"
+   x="1478.436"
+   y="697.74353"
+   id="tspan174"
+   style="font-size:17.87872887px;stroke-width:1.0049876">E</tspan>
+</text>
+    <text
+       class="cls-5"
+       transform="scale(1.0049876,0.99503716)"
+       id="text190"
+       x="1398.6144"
+       y="711.46161"
+       style="font-size:7.94945145px;font-family:CourierNewPSMT, 'Courier New';fill:#f5f5f5;stroke-width:1.0049876">1<tspan
+   x="1398.6144"
+   y="720.99896"
+   id="tspan178"
+   style="stroke-width:1.0049876">2</tspan>
+<tspan
+   x="1398.6144"
+   y="730.53625"
+   id="tspan180"
+   style="stroke-width:1.0049876">3</tspan>
+<tspan
+   x="1398.6144"
+   y="740.07361"
+   id="tspan182"
+   style="stroke-width:1.0049876">4</tspan>
+<tspan
+   x="1398.6144"
+   y="749.61096"
+   id="tspan184"
+   style="stroke-width:1.0049876">5</tspan>
+<tspan
+   x="1398.6144"
+   y="759.13824"
+   id="tspan186"
+   style="stroke-width:1.0049876">6</tspan>
+<tspan
+   x="1398.6144"
+   y="768.67554"
+   id="tspan188"
+   style="stroke-width:1.0049876">7</tspan>
+</text>
+    <rect
+       class="cls-6"
+       x="1403.8101"
+       y="671.53003"
+       width="150"
+       height="96.019997"
+       id="rect192"
+       style="fill:none;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 1487.29,767.53 v 17 c 0,2.94 -3.79,5.32 -8.48,5.32 -4.69,0 -8.49,-2.38 -8.49,-5.32 v -17 z"
+       id="path194"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 1504.27,781 -4.17,19.84 h -42.58 L 1453.35,781 h 17 v 3.55 c 0,2.94 3.8,5.32 8.49,5.32 4.69,0 8.48,-2.38 8.48,-5.32 V 781 Z"
+       id="path196"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <rect
+       class="cls-1"
+       x="1190.23"
+       y="785.07001"
+       width="150"
+       height="96.290001"
+       id="rect198"
+       style="fill:#616160" />
+    <rect
+       class="cls-2"
+       x="1190.23"
+       y="785.07001"
+       width="150"
+       height="24.709999"
+       id="rect200"
+       style="opacity:0.85;fill:#76b72a" />
+    <text
+       class="cls-3"
+       transform="scale(1.0049876,0.99503716)"
+       id="text208"
+       x="1186.5321"
+       y="811.85046"
+       style="font-size:23.83830452px;font-family:MSReferenceSansSerif, 'MS Reference Sans Serif';fill:#f5f5f5;stroke-width:1.0049876">C<tspan
+   class="cls-4"
+   x="1203.1747"
+   y="811.85046"
+   id="tspan202"
+   style="font-size:17.87872887px;stroke-width:1.0049876">ODE</tspan>
+<tspan
+   x="1242.3391"
+   y="811.85046"
+   id="tspan204"
+   style="stroke-width:1.0049876">W</tspan>
+<tspan
+   class="cls-4"
+   x="1265.906"
+   y="811.85046"
+   id="tspan206"
+   style="font-size:17.87872887px;stroke-width:1.0049876">E</tspan>
+</text>
+    <text
+       class="cls-5"
+       transform="scale(1.0049876,0.99503716)"
+       id="text222"
+       x="1186.0942"
+       y="825.56854"
+       style="font-size:7.94945145px;font-family:CourierNewPSMT, 'Courier New';fill:#f5f5f5;stroke-width:1.0049876">1<tspan
+   x="1186.0942"
+   y="835.1059"
+   id="tspan210"
+   style="stroke-width:1.0049876">2</tspan>
+<tspan
+   x="1186.0942"
+   y="844.64325"
+   id="tspan212"
+   style="stroke-width:1.0049876">3</tspan>
+<tspan
+   x="1186.0942"
+   y="854.18054"
+   id="tspan214"
+   style="stroke-width:1.0049876">4</tspan>
+<tspan
+   x="1186.0942"
+   y="863.7179"
+   id="tspan216"
+   style="stroke-width:1.0049876">5</tspan>
+<tspan
+   x="1186.0942"
+   y="873.24518"
+   id="tspan218"
+   style="stroke-width:1.0049876">6</tspan>
+<tspan
+   x="1186.0942"
+   y="882.78247"
+   id="tspan220"
+   style="stroke-width:1.0049876">7</tspan>
+</text>
+    <rect
+       class="cls-6"
+       x="1190.23"
+       y="785.07001"
+       width="150"
+       height="96.019997"
+       id="rect224"
+       style="fill:none;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 1273.7,881.08 v 17 c 0,2.93 -3.78,5.31 -8.47,5.31 -4.69,0 -8.49,-2.38 -8.49,-5.31 v -17 z"
+       id="path226"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 1290.69,894.51 -4.17,19.83 h -42.59 l -4.16,-19.83 h 17 v 3.55 c 0,2.93 3.8,5.31 8.49,5.31 4.69,0 8.47,-2.38 8.47,-5.31 v -3.55 z"
+       id="path228"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <rect
+       class="cls-1"
+       x="579.98999"
+       y="786.28998"
+       width="150"
+       height="96.290001"
+       id="rect230"
+       style="fill:#616160" />
+    <rect
+       class="cls-2"
+       x="579.98999"
+       y="786.28998"
+       width="150"
+       height="24.709999"
+       id="rect232"
+       style="opacity:0.85;fill:#76b72a" />
+    <text
+       class="cls-3"
+       transform="scale(1.0049876,0.99503716)"
+       id="text240"
+       x="579.33057"
+       y="813.07654"
+       style="font-size:23.83830452px;font-family:MSReferenceSansSerif, 'MS Reference Sans Serif';fill:#f5f5f5;stroke-width:1.0049876">C<tspan
+   class="cls-4"
+   x="595.97314"
+   y="813.07654"
+   id="tspan234"
+   style="font-size:17.87872887px;stroke-width:1.0049876">ODE</tspan>
+<tspan
+   x="635.13751"
+   y="813.07654"
+   id="tspan236"
+   style="stroke-width:1.0049876">W</tspan>
+<tspan
+   class="cls-4"
+   x="658.70447"
+   y="813.07654"
+   id="tspan238"
+   style="font-size:17.87872887px;stroke-width:1.0049876">E</tspan>
+</text>
+    <text
+       class="cls-5"
+       transform="scale(1.0049876,0.99503716)"
+       id="text254"
+       x="578.88281"
+       y="826.80469"
+       style="font-size:7.94945145px;font-family:CourierNewPSMT, 'Courier New';fill:#f5f5f5;stroke-width:1.0049876">1<tspan
+   x="578.88281"
+   y="836.34204"
+   id="tspan242"
+   style="stroke-width:1.0049876">2</tspan>
+<tspan
+   x="578.88281"
+   y="845.87933"
+   id="tspan244"
+   style="stroke-width:1.0049876">3</tspan>
+<tspan
+   x="578.88281"
+   y="855.41669"
+   id="tspan246"
+   style="stroke-width:1.0049876">4</tspan>
+<tspan
+   x="578.88281"
+   y="864.95404"
+   id="tspan248"
+   style="stroke-width:1.0049876">5</tspan>
+<tspan
+   x="578.88281"
+   y="874.48132"
+   id="tspan250"
+   style="stroke-width:1.0049876">6</tspan>
+<tspan
+   x="578.88281"
+   y="884.01862"
+   id="tspan252"
+   style="stroke-width:1.0049876">7</tspan>
+</text>
+    <rect
+       class="cls-6"
+       x="579.98999"
+       y="786.28998"
+       width="150"
+       height="96.019997"
+       id="rect256"
+       style="fill:none;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 663.47,882.3 v 17 c 0,2.94 -3.79,5.32 -8.48,5.32 -4.69,0 -8.49,-2.38 -8.49,-5.32 v -17 z"
+       id="path258"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 680.45,895.73 -4.17,19.83 H 633.7 l -4.17,-19.83 h 17 v 3.55 c 0,2.94 3.8,5.32 8.49,5.32 4.69,0 8.48,-2.38 8.48,-5.32 v -3.55 z"
+       id="path260"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <rect
+       class="cls-1"
+       x="365.19"
+       y="671.53003"
+       width="150"
+       height="96.290001"
+       id="rect262"
+       style="fill:#616160" />
+    <rect
+       class="cls-2"
+       x="365.19"
+       y="671.53003"
+       width="150"
+       height="24.709999"
+       id="rect264"
+       style="opacity:0.85;fill:#76b72a" />
+    <text
+       class="cls-3"
+       transform="scale(1.0049876,0.99503716)"
+       id="text272"
+       x="365.58661"
+       y="697.74353"
+       style="font-size:23.83830452px;font-family:MSReferenceSansSerif, 'MS Reference Sans Serif';fill:#f5f5f5;stroke-width:1.0049876">C<tspan
+   class="cls-4"
+   x="382.22922"
+   y="697.74353"
+   id="tspan266"
+   style="font-size:17.87872887px;stroke-width:1.0049876">ODE</tspan>
+<tspan
+   x="421.39359"
+   y="697.74353"
+   id="tspan268"
+   style="stroke-width:1.0049876">W</tspan>
+<tspan
+   class="cls-4"
+   x="444.96054"
+   y="697.74353"
+   id="tspan270"
+   style="font-size:17.87872887px;stroke-width:1.0049876">E</tspan>
+</text>
+    <text
+       class="cls-5"
+       transform="scale(1.0049876,0.99503716)"
+       id="text286"
+       x="365.1488"
+       y="711.46161"
+       style="font-size:7.94945145px;font-family:CourierNewPSMT, 'Courier New';fill:#f5f5f5;stroke-width:1.0049876">1<tspan
+   x="365.1488"
+   y="720.99896"
+   id="tspan274"
+   style="stroke-width:1.0049876">2</tspan>
+<tspan
+   x="365.1488"
+   y="730.53625"
+   id="tspan276"
+   style="stroke-width:1.0049876">3</tspan>
+<tspan
+   x="365.1488"
+   y="740.07361"
+   id="tspan278"
+   style="stroke-width:1.0049876">4</tspan>
+<tspan
+   x="365.1488"
+   y="749.61096"
+   id="tspan280"
+   style="stroke-width:1.0049876">5</tspan>
+<tspan
+   x="365.1488"
+   y="759.13824"
+   id="tspan282"
+   style="stroke-width:1.0049876">6</tspan>
+<tspan
+   x="365.1488"
+   y="768.67554"
+   id="tspan284"
+   style="stroke-width:1.0049876">7</tspan>
+</text>
+    <rect
+       class="cls-6"
+       x="365.19"
+       y="671.53003"
+       width="150"
+       height="96.019997"
+       id="rect288"
+       style="fill:none;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 448.66,767.53 v 17 c 0,2.94 -3.79,5.32 -8.48,5.32 -4.69,0 -8.49,-2.38 -8.49,-5.32 v -17 z"
+       id="path290"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 465.64,781 -4.16,19.84 H 418.89 L 414.73,781 h 17 v 3.55 c 0,2.94 3.81,5.32 8.49,5.32 4.68,0 8.48,-2.38 8.48,-5.32 V 781 Z"
+       id="path292"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <rect
+       class="cls-1"
+       x="365.60001"
+       y="311.27002"
+       width="150"
+       height="96.290001"
+       id="rect294"
+       style="fill:#616160" />
+    <rect
+       class="cls-2"
+       x="365.60001"
+       y="311.27002"
+       width="150"
+       height="24.709999"
+       id="rect296"
+       style="opacity:0.85;fill:#76b72a" />
+    <text
+       class="cls-3"
+       transform="scale(1.0049876,0.99503716)"
+       id="text304"
+       x="365.99457"
+       y="335.68607"
+       style="font-size:23.83830452px;font-family:MSReferenceSansSerif, 'MS Reference Sans Serif';fill:#f5f5f5;stroke-width:1.0049876">C<tspan
+   class="cls-4"
+   x="382.63718"
+   y="335.68607"
+   id="tspan298"
+   style="font-size:17.87872887px;stroke-width:1.0049876">ODE</tspan>
+<tspan
+   x="421.80154"
+   y="335.68607"
+   id="tspan300"
+   style="stroke-width:1.0049876">W</tspan>
+<tspan
+   class="cls-4"
+   x="445.3685"
+   y="335.68607"
+   id="tspan302"
+   style="font-size:17.87872887px;stroke-width:1.0049876">E</tspan>
+</text>
+    <text
+       class="cls-5"
+       transform="scale(1.0049876,0.99503716)"
+       id="text318"
+       x="365.55676"
+       y="349.40414"
+       style="font-size:7.94945145px;font-family:CourierNewPSMT, 'Courier New';fill:#f5f5f5;stroke-width:1.0049876">1<tspan
+   x="365.55676"
+   y="358.94147"
+   id="tspan306"
+   style="stroke-width:1.0049876">2</tspan>
+<tspan
+   x="365.55676"
+   y="368.47882"
+   id="tspan308"
+   style="stroke-width:1.0049876">3</tspan>
+<tspan
+   x="365.55676"
+   y="378.01614"
+   id="tspan310"
+   style="stroke-width:1.0049876">4</tspan>
+<tspan
+   x="365.55676"
+   y="387.55347"
+   id="tspan312"
+   style="stroke-width:1.0049876">5</tspan>
+<tspan
+   x="365.55676"
+   y="397.08075"
+   id="tspan314"
+   style="stroke-width:1.0049876">6</tspan>
+<tspan
+   x="365.55676"
+   y="406.61807"
+   id="tspan316"
+   style="stroke-width:1.0049876">7</tspan>
+</text>
+    <rect
+       class="cls-6"
+       x="365.59"
+       y="311.27002"
+       width="150"
+       height="96.019997"
+       id="rect320"
+       style="fill:none;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 449.07,407.28 v 17 c 0,2.93 -3.79,5.31 -8.48,5.31 -4.69,0 -8.49,-2.38 -8.49,-5.31 v -17 z"
+       id="path322"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 466.05,420.7 -4.17,19.84 H 419.3 l -4.17,-19.84 h 17 v 3.56 c 0,2.93 3.8,5.31 8.49,5.31 4.69,0 8.48,-2.38 8.48,-5.31 v -3.56 z"
+       id="path324"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <rect
+       class="cls-1"
+       x="580.40002"
+       y="227.01999"
+       width="150"
+       height="96.290001"
+       id="rect326"
+       style="fill:#616160" />
+    <rect
+       class="cls-2"
+       x="580.40002"
+       y="227.01999"
+       width="150"
+       height="24.709999"
+       id="rect328"
+       style="opacity:0.85;fill:#76b72a" />
+    <text
+       class="cls-3"
+       transform="scale(1.0049876,0.99503716)"
+       id="text336"
+       x="579.72858"
+       y="251.01596"
+       style="font-size:23.83830452px;font-family:MSReferenceSansSerif, 'MS Reference Sans Serif';fill:#f5f5f5;stroke-width:1.0049876">C<tspan
+   class="cls-4"
+   x="596.37115"
+   y="251.01596"
+   id="tspan330"
+   style="font-size:17.87872887px;stroke-width:1.0049876">ODE</tspan>
+<tspan
+   x="635.53552"
+   y="251.01596"
+   id="tspan332"
+   style="stroke-width:1.0049876">W</tspan>
+<tspan
+   class="cls-4"
+   x="659.10248"
+   y="251.01596"
+   id="tspan334"
+   style="font-size:17.87872887px;stroke-width:1.0049876">E</tspan>
+</text>
+    <text
+       class="cls-5"
+       transform="scale(1.0049876,0.99503716)"
+       id="text350"
+       x="579.29077"
+       y="264.73404"
+       style="font-size:7.94945145px;font-family:CourierNewPSMT, 'Courier New';fill:#f5f5f5;stroke-width:1.0049876">1<tspan
+   x="579.29077"
+   y="274.27136"
+   id="tspan338"
+   style="stroke-width:1.0049876">2</tspan>
+<tspan
+   x="579.29077"
+   y="283.80872"
+   id="tspan340"
+   style="stroke-width:1.0049876">3</tspan>
+<tspan
+   x="579.29077"
+   y="293.34604"
+   id="tspan342"
+   style="stroke-width:1.0049876">4</tspan>
+<tspan
+   x="579.29077"
+   y="302.88336"
+   id="tspan344"
+   style="stroke-width:1.0049876">5</tspan>
+<tspan
+   x="579.29077"
+   y="312.41064"
+   id="tspan346"
+   style="stroke-width:1.0049876">6</tspan>
+<tspan
+   x="579.29077"
+   y="321.94797"
+   id="tspan348"
+   style="stroke-width:1.0049876">7</tspan>
+</text>
+    <rect
+       class="cls-6"
+       x="580.40002"
+       y="227.01999"
+       width="150"
+       height="96.019997"
+       id="rect352"
+       style="fill:none;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 663.87,323 v 17 c 0,2.94 -3.79,5.32 -8.47,5.32 -4.68,0 -8.5,-2.38 -8.5,-5.32 v -17 z"
+       id="path354"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 680.86,336.45 -4.17,19.84 H 634.1 l -4.16,-19.84 h 17 V 340 c 0,2.94 3.81,5.32 8.5,5.32 4.69,0 8.47,-2.38 8.47,-5.32 v -3.55 z"
+       id="path356"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <rect
+       class="cls-1"
+       x="885.25"
+       y="173.48001"
+       width="150"
+       height="96.290001"
+       id="rect358"
+       style="fill:#616160" />
+    <rect
+       class="cls-2"
+       x="885.25"
+       y="173.48001"
+       width="150"
+       height="24.709999"
+       id="rect360"
+       style="opacity:0.85;fill:#76b72a" />
+    <text
+       class="cls-3"
+       transform="scale(1.0049876,0.99503716)"
+       id="text368"
+       x="883.06567"
+       y="197.20872"
+       style="font-size:23.83830452px;font-family:MSReferenceSansSerif, 'MS Reference Sans Serif';fill:#f5f5f5;stroke-width:1.0049876">C<tspan
+   class="cls-4"
+   x="899.70825"
+   y="197.20872"
+   id="tspan362"
+   style="font-size:17.87872887px;stroke-width:1.0049876">ODE</tspan>
+<tspan
+   x="938.87262"
+   y="197.20872"
+   id="tspan364"
+   style="stroke-width:1.0049876">W</tspan>
+<tspan
+   class="cls-4"
+   x="962.43958"
+   y="197.20872"
+   id="tspan366"
+   style="font-size:17.87872887px;stroke-width:1.0049876">E</tspan>
+</text>
+    <text
+       class="cls-5"
+       transform="scale(1.0049876,0.99503716)"
+       id="text382"
+       x="882.62787"
+       y="210.93694"
+       style="font-size:7.94945145px;font-family:CourierNewPSMT, 'Courier New';fill:#f5f5f5;stroke-width:1.0049876">1<tspan
+   x="882.62787"
+   y="220.47427"
+   id="tspan370"
+   style="stroke-width:1.0049876">2</tspan>
+<tspan
+   x="882.62787"
+   y="230.01166"
+   id="tspan372"
+   style="stroke-width:1.0049876">3</tspan>
+<tspan
+   x="882.62787"
+   y="239.54901"
+   id="tspan374"
+   style="stroke-width:1.0049876">4</tspan>
+<tspan
+   x="882.62787"
+   y="249.0864"
+   id="tspan376"
+   style="stroke-width:1.0049876">5</tspan>
+<tspan
+   x="882.62787"
+   y="258.61371"
+   id="tspan378"
+   style="stroke-width:1.0049876">6</tspan>
+<tspan
+   x="882.62787"
+   y="268.15106"
+   id="tspan380"
+   style="stroke-width:1.0049876">7</tspan>
+</text>
+    <rect
+       class="cls-6"
+       x="885.25"
+       y="173.48001"
+       width="150"
+       height="96.019997"
+       id="rect384"
+       style="fill:none;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 968.72,269.49 v 17 c 0,2.94 -3.79,5.32 -8.48,5.32 -4.69,0 -8.49,-2.38 -8.49,-5.32 v -17 z"
+       id="path386"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <path
+       class="cls-7"
+       d="m 985.7,282.92 -4.17,19.83 H 939 l -4.17,-19.83 h 17 v 3.55 c 0,2.94 3.8,5.32 8.49,5.32 4.69,0 8.48,-2.38 8.48,-5.32 v -3.55 z"
+       id="path388"
+       inkscape:connector-curvature="0"
+       style="fill:#3c3c3b;stroke:#1d1d1b;stroke-miterlimit:10" />
+    <circle
+       style="opacity:0.25;fill:#ff0000;fill-opacity:1"
+       id="path462"
+       cx="969.13055"
+       cy="741.93475"
+       r="16.628218" />
+    <rect
+       style="opacity:0.25;fill:#ff0000;fill-opacity:1;stroke-width:0.73646134"
+       id="rect464"
+       width="9.0477362"
+       height="75.73082"
+       x="964.56842"
+       y="757.37506" />
+    <rect
+       style="opacity:0.25;fill:#ff0000;fill-opacity:1;stroke-width:0.8905918"
+       id="rect464-3"
+       width="9.0477362"
+       height="110.74657"
+       x="737.52893"
+       y="985.26239"
+       transform="matrix(0,1,1,0,0,0)" />
+    <ellipse
+       style="opacity:0.25;fill:#ff0000;fill-opacity:1;stroke-width:0.953605"
+       id="path462-6"
+       cx="1112.5665"
+       cy="742.1767"
+       rx="16.628218"
+       ry="15.121077"
+       inkscape:transform-center-x="-6.9164266"
+       inkscape:transform-center-y="-2.074928" />
+    <rect
+       style="opacity:0.25;fill:#ff0000;fill-opacity:1;stroke-width:1.09932411"
+       id="rect464-3-7"
+       width="9.0477362"
+       height="168.74243"
+       x="-1118.4844"
+       y="-727.37073"
+       transform="scale(-1)" />
+    <circle
+       style="opacity:0.25;fill:#00ffff;fill-opacity:1"
+       id="path462-6-5"
+       cx="634.23633"
+       cy="740.4035"
+       r="16.628218" />
+    <circle
+       style="opacity:0.25;fill:#00ffff;fill-opacity:1"
+       id="path462-3"
+       cx="787.08942"
+       cy="739.71179"
+       r="16.628218" />
+    <rect
+       style="opacity:0.25;fill:#00ffff;fill-opacity:1;stroke-width:1.12131572"
+       id="rect464-3-7-5"
+       width="9.0477362"
+       height="175.56122"
+       x="-790.92157"
+       y="-724.10797"
+       transform="scale(-1)" />
+    <rect
+       style="opacity:0.25;fill:#00ffff;fill-opacity:1;stroke-width:0.93072897"
+       id="rect464-3-7-5-6"
+       width="9.0477362"
+       height="120.95374"
+       x="-744.92737"
+       y="649.1485"
+       transform="rotate(-90)" />
+    <rect
+       style="opacity:0.25;fill:#00ffff;fill-opacity:1;stroke-width:0.4714936"
+       id="rect464-3-7-5-6-2"
+       width="9.0477362"
+       height="31.040194"
+       x="629.02081"
+       y="756.00726" />
+    <circle
+       style="opacity:0.25;fill:#ffff00;fill-opacity:1"
+       id="path462-6-5-3"
+       cx="580.03131"
+       cy="686.79156"
+       r="16.628218" />
+    <circle
+       style="opacity:0.25;fill:#ffff00;fill-opacity:1"
+       id="path462-6-5-3-6"
+       cx="579.32953"
+       cy="577.58685"
+       r="16.628218" />
+    <rect
+       style="opacity:0.25;fill:#ffff00;fill-opacity:1;stroke-width:0.59398741"
+       id="rect464-3-7-5-6-7"
+       width="9.0477362"
+       height="49.263733"
+       x="-691.31543"
+       y="515.06897"
+       transform="rotate(-90)" />
+    <rect
+       style="opacity:0.25;fill:#ffff00;fill-opacity:1;stroke-width:0.74393296"
+       id="rect464-3-7-5-6-7-5"
+       width="9.0477362"
+       height="77.275261"
+       x="575.41852"
+       y="594.04254" />
+    <rect
+       style="opacity:0.25;fill:#ffff00;fill-opacity:1;stroke-width:1.02674675"
+       id="rect464-3-7-5-6-7-3"
+       width="9.0477362"
+       height="147.19719"
+       x="-582.73712"
+       y="595.77161"
+       transform="rotate(-90)" />
+    <circle
+       style="opacity:0.25;fill:#ff6600;fill-opacity:1"
+       id="path462-6-5-3-5"
+       cx="725.53314"
+       cy="646.68585"
+       r="16.628218" />
+    <circle
+       style="opacity:0.25;fill:#ff6600;fill-opacity:1"
+       id="path462-6-5-3-5-6"
+       cx="493.83286"
+       cy="646.68591"
+       r="16.628218" />
+    <circle
+       style="opacity:0.25;fill:#ff6600;fill-opacity:1"
+       id="path462-6-5-3-5-6-2"
+       cx="493.14114"
+       cy="514.92792"
+       r="16.628218" />
+    <rect
+       style="opacity:0.25;fill:#ff6600;fill-opacity:1;stroke-width:1.19487345"
+       id="rect464-3-7-5-6-7-9"
+       width="9.0477362"
+       height="199.35019"
+       x="-651.55554"
+       y="510.0079"
+       transform="rotate(-90)" />
+    <rect
+       style="opacity:0.25;fill:#ff6600;fill-opacity:1;stroke-width:0.84082913"
+       id="rect464-3-7-5-6-7-5-1"
+       width="9.0477362"
+       height="98.716187"
+       x="488.9632"
+       y="531.62177" />
+    <rect
+       style="opacity:0.25;fill:#ff6600;fill-opacity:1;stroke-width:0.52303499"
+       id="rect464-3-7-5-6-7-9-2"
+       width="9.0477362"
+       height="38.197449"
+       x="-519.45184"
+       y="438.42288"
+       transform="rotate(-90)" />
+    <rect
+       style="opacity:0.25;fill:#ff6600;fill-opacity:1;stroke-width:0.76995635"
+       id="rect464-3-7-5-6-7-5-1-7"
+       width="9.0477362"
+       height="82.776123"
+       x="721.00928"
+       y="547.90759" />
+    <circle
+       style="opacity:0.25;fill:#800000;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3"
+       cx="566.45532"
+       cy="384.89911"
+       r="16.628218" />
+    <circle
+       style="opacity:0.25;fill:#800000;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3-6"
+       cx="566.45532"
+       cy="503.51584"
+       r="16.628218" />
+    <rect
+       style="opacity:0.25;fill:#800000;fill-opacity:1;stroke-width:0.49630791"
+       id="rect464-3-7-5-6-7-9-2-0"
+       width="9.0477362"
+       height="34.393414"
+       x="-389.07718"
+       y="515.54108"
+       transform="rotate(-90)" />
+    <rect
+       style="opacity:0.25;fill:#800000;fill-opacity:1;stroke-width:0.78444541"
+       id="rect464-3-7-5-6-7-5-1-6"
+       width="9.0477362"
+       height="85.920799"
+       x="561.93146"
+       y="401.2471" />
+    <rect
+       style="opacity:0.25;fill:#800000;fill-opacity:1;stroke-width:1.11124456"
+       id="rect464-3-7-5-6-7-9-2-2"
+       width="9.0477362"
+       height="172.42178"
+       x="-508.73132"
+       y="582.28461"
+       transform="rotate(-90)" />
+    <circle
+       style="opacity:0.25;fill:#008000;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3-61"
+       cx="751.81561"
+       cy="348.24207"
+       r="16.628218" />
+    <rect
+       style="opacity:0.25;fill:#008000;fill-opacity:1;stroke-width:0.64207679"
+       id="rect464-3-7-5-6-7-9-2-0-8"
+       width="9.0477362"
+       height="57.563446"
+       x="-351.72845"
+       y="678.25"
+       transform="rotate(-90)" />
+    <rect
+       style="opacity:0.25;fill:#008000;fill-opacity:1;stroke-width:1.13227117"
+       id="rect464-3-7-5-6-7-5-1-6-7"
+       width="9.0477362"
+       height="179.00854"
+       x="747.63751"
+       y="364.07132" />
+    <circle
+       style="opacity:0.25;fill:#008080;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3-61-9"
+       cx="958.56787"
+       cy="398.24307"
+       r="16.628218" />
+    <circle
+       style="opacity:0.25;fill:#008080;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3-61-9-2"
+       cx="841.19214"
+       cy="396.28683"
+       r="16.628218" />
+    <rect
+       style="opacity:0.25;fill:#008080;fill-opacity:1;stroke-width:0.75722086"
+       id="rect464-3-7-5-6-7-9-2-0-8-0"
+       width="9.0477362"
+       height="80.060448"
+       x="954.04395"
+       y="302.94849" />
+    <rect
+       style="opacity:0.25;fill:#008080;fill-opacity:1;stroke-width:0.78448391"
+       id="rect464-3-7-5-6-7-9-2-0-8-0-2"
+       width="9.0477362"
+       height="85.92923"
+       x="392.74106"
+       y="-941.86652"
+       transform="rotate(90)" />
+    <rect
+       style="opacity:0.25;fill:#008080;fill-opacity:1;stroke-width:0.97732788"
+       id="rect464-3-7-5-6-7-9-2-0-8-0-3"
+       width="9.0477362"
+       height="133.36856"
+       x="834.71204"
+       y="411.03189" />
+    <circle
+       style="opacity:0.25;fill:#ff00ff;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3-61-9-7"
+       cx="1264.7228"
+       cy="408.02441"
+       r="16.628218" />
+    <rect
+       style="opacity:0.25;fill:#ff00ff;fill-opacity:1;stroke-width:0.98446953"
+       id="rect464-3-7-5-6-7-9-2-0-8-0-5"
+       width="9.0477362"
+       height="135.32483"
+       x="1065.5509"
+       y="422.76944" />
+    <rect
+       style="opacity:0.25;fill:#ff00ff;fill-opacity:1;stroke-width:0.51492941"
+       id="rect464-3-7-5-6-7-9-2-0-8-0-2-9"
+       width="9.0477362"
+       height="37.022709"
+       x="-1269.2466"
+       y="-393.27933"
+       transform="scale(-1)" />
+    <circle
+       style="opacity:0.25;fill:#ff00ff;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3-61-9-7-2"
+       cx="1071.0529"
+       cy="408.02438"
+       r="16.628218" />
+    <rect
+       style="opacity:0.25;fill:#ff00ff;fill-opacity:1;stroke-width:1.07787979"
+       id="rect464-3-7-5-6-7-9-2-0-8-0-5-2"
+       width="9.0477362"
+       height="162.22342"
+       x="402.5224"
+       y="-1248.9995"
+       transform="rotate(90)" />
+    <circle
+       style="opacity:0.25;fill:#ac9d93;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3-61-9-2-8"
+       cx="1356.667"
+       cy="369.87729"
+       r="16.628218" />
+    <circle
+       style="opacity:0.25;fill:#ac9d93;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3-61-9-2-9"
+       cx="1356.667"
+       cy="582.13159"
+       r="16.628218" />
+    <rect
+       style="opacity:0.25;fill:#ac9d93;fill-opacity:1;stroke-width:1.13794756"
+       id="rect464-3-7-5-6-7-9-2-0-8-0-7"
+       width="9.0477362"
+       height="180.80788"
+       x="1352.1431"
+       y="385.60049" />
+    <rect
+       style="opacity:0.25;fill:#ac9d93;fill-opacity:1;stroke-width:1.11619353"
+       id="rect464-3-7-5-6-7-9-2-0-8-0-2-3"
+       width="9.0477362"
+       height="173.96097"
+       x="577.60773"
+       y="-1339.9656"
+       transform="rotate(90)" />
+    <rect
+       style="opacity:0.25;fill:#ac9d93;fill-opacity:1;stroke-width:0.47235659"
+       id="rect464-3-7-5-6-7-9-2-0-8-0-2-3-6"
+       width="9.0477362"
+       height="31.153925"
+       x="365.35342"
+       y="-1402.5659"
+       transform="rotate(90)" />
+    <rect
+       style="opacity:0.25;fill:#aa8800;fill-opacity:1;stroke-width:0.59094441"
+       id="rect464-3-7-5-6-7-9-2-0-8-0-2-3-1"
+       width="9.0477362"
+       height="48.760273"
+       x="533.1618"
+       y="-1480.71"
+       transform="rotate(90)" />
+    <circle
+       style="opacity:0.25;fill:#aa8800;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3-61-9-2-9-2"
+       cx="1415.3547"
+       cy="537.13763"
+       r="16.628218" />
+    <circle
+       style="opacity:0.25;fill:#aa8800;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3-61-9-2-9-2-9"
+       cx="1414.3766"
+       cy="455.95276"
+       r="16.628218" />
+    <circle
+       style="opacity:0.25;fill:#aa8800;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3-61-9-2-9-2-9-3"
+       cx="1184.516"
+       cy="453.99655"
+       r="16.628218" />
+    <rect
+       style="opacity:0.25;fill:#aa8800;fill-opacity:1;stroke-width:0.59094441"
+       id="rect464-3-7-5-6-7-9-2-0-8-0-2-3-1-1"
+       width="9.0477362"
+       height="48.760273"
+       x="-1418.9005"
+       y="-520.43628"
+       transform="scale(-1)" />
+    <rect
+       style="opacity:0.25;fill:#aa8800;fill-opacity:1;stroke-width:1.192065"
+       id="rect464-3-7-5-6-7-9-2-0-8-0-2-3-1-9"
+       width="9.0477362"
+       height="198.41423"
+       x="450.45078"
+       y="-1398.6534"
+       transform="rotate(90)" />
+    <rect
+       style="opacity:0.25;fill:#aa8800;fill-opacity:1;stroke-width:0.77550268"
+       id="rect464-3-7-5-6-7-9-2-0-8-0-2-3-1-1-4"
+       width="9.0477362"
+       height="83.972969"
+       x="-1188.0616"
+       y="-554.67084"
+       transform="scale(-1)" />
+    <ellipse
+       style="opacity:0.25;fill:#00ff00;fill-opacity:1;stroke-width:0.953605"
+       id="path462-6-7"
+       cx="1299.9353"
+       cy="686.79156"
+       rx="16.628218"
+       ry="15.121077"
+       inkscape:transform-center-x="-6.9164266"
+       inkscape:transform-center-y="-2.074928" />
+    <ellipse
+       style="opacity:0.25;fill:#00ff00;fill-opacity:1;stroke-width:0.953605"
+       id="path462-6-7-8"
+       cx="1297.9791"
+       cy="527.35626"
+       rx="16.628218"
+       ry="15.121077"
+       inkscape:transform-center-x="-6.9164266"
+       inkscape:transform-center-y="-2.074928" />
+    <rect
+       style="opacity:0.25;fill:#00ff00;fill-opacity:1;stroke-width:0.79629302"
+       id="rect464-3-7-4"
+       width="9.0477362"
+       height="88.535744"
+       x="-690.33728"
+       y="1314.8445"
+       transform="rotate(-90)" />
+    <rect
+       style="opacity:0.25;fill:#00ff00;fill-opacity:1;stroke-width:0.97072852"
+       id="rect464-3-7-4-5"
+       width="9.0477362"
+       height="131.57349"
+       x="1293.4553"
+       y="540.79816" />
+    <rect
+       style="opacity:0.25;fill:#00ff00;fill-opacity:1;stroke-width:0.92641824"
+       id="rect464-3-7-4-5-0"
+       width="9.0477362"
+       height="119.83592"
+       x="522.8324"
+       y="-1281.603"
+       transform="rotate(90)" />
+    <circle
+       style="opacity:0.25;fill:#800080;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3-61-9-7-2-3"
+       cx="1252.007"
+       cy="715.15735"
+       r="16.628218" />
+    <circle
+       style="opacity:0.25;fill:#800080;fill-opacity:1"
+       id="path462-6-5-3-5-6-2-3-61-9-7-2-3-6"
+       cx="1170.8221"
+       cy="714.1792"
+       r="16.628218" />
+    <rect
+       style="opacity:0.25;fill:#800080;fill-opacity:1;stroke-width:0.62757814"
+       id="rect464-3-1"
+       width="9.0477362"
+       height="54.993134"
+       x="-1256.0417"
+       y="729.7204"
+       transform="scale(-1,1)" />
+    <rect
+       style="opacity:0.25;fill:#800080;fill-opacity:1;stroke-width:0.59314644"
+       id="rect464-3-1-6"
+       width="9.0477362"
+       height="49.124348"
+       x="-718.95038"
+       y="-1235.6458"
+       transform="matrix(0,-1,-1,0,0,0)" />
+    <rect
+       style="opacity:0.25;fill:#800080;fill-opacity:1;stroke-width:1.01554537"
+       id="rect464-3-1-2"
+       width="9.0477362"
+       height="144.00301"
+       x="-1175.3459"
+       y="554.146"
+       transform="scale(-1,1)" />
+  </g>
+</svg>

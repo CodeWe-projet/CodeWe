@@ -29,6 +29,7 @@ header{
 section#editor{
     counter-reset: thecodenumbering;
     line-height: 22px;
+    outline: 0 none;
 
     div{
         font-family: "Courier New", monospace;
@@ -124,6 +125,13 @@ section#editor{
                     image-rendering: optimize-contrast;         /* CSS3 Proposed       */
                     -ms-interpolation-mode: nearest-neighbor;   /* IE8+                */
                 }
+            }
+
+            a{
+                color: inherit;
+                text-decoration: inherit;
+                font-style: italic;
+                display: block;
             }
         }
     }

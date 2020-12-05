@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="/css/base.less">
     <link rel="icon" type="image/svg+xml" href="/img/SVG/Small.svg">
     <link rel="alternate icon" type="image/png" href="/img/PNG/small.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CodeWe is an open-source live code-sharing website">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="codewe.org">
     <meta property="og:url" content="https://codewe.org">
@@ -18,7 +20,10 @@
 <body>
     <div id="main">
         <header id="header">
-            {% block header %}{% include 'component/header.html' %}{% endblock %}
+            <div class="anti-shadow">
+                <h1><a href="/"><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span></a></h1>
+            </div>
+            {% block header %}<div class="anti-shadow" id="header-message-shadow"><p id="header-message">Our Terms have been updated - <a href="/tos">Please review them</a></p></div>{% endblock %}
         </header>
 
         <div id="body">
