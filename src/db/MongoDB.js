@@ -120,7 +120,7 @@ class MongoDB {
                 return line.uuid == previousUuid;
             });
             if (index || index === 0) {
-                this.documentsCollection.updateOne({documentLink: documentLink}, {
+                await this.documentsCollection.updateOne({documentLink: documentLink}, {
                     $push: {
                         content: {
                             $each : [{uuid: uuid, content: content.slice(0, 5000)}],
@@ -200,6 +200,7 @@ class MongoDB {
     }
 
     async applyRequests (documentLink, requests) {
+        console.log('update');
         // TODO look to use bulk write
         let success = true;
         try {
