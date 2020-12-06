@@ -200,10 +200,10 @@ class MongoDB {
     }
 
     async applyRequests (documentLink, requests) {
-        console.log('update');
         // TODO look to use bulk write
         let success = true;
         try {
+            
             // Avoid too many requests
             requests = requests.slice(0, 50);
             for (let request of requests) {
