@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+  <head>
     <meta charset="UTF-8">
     <title>{% block title %}CodeWe{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="/css/base.less">
@@ -16,31 +17,33 @@
     <meta property="og:image" content="https://codewe.org/img/PNG/Medium.png">
     <meta name="og:image" itemprop="image" content="https://codewe.org/img/PNG/Medium.png">
     {% block head %}{% endblock %}
-</head>
-<body>
+  </head>
+
+  <body>
     <div id="main">
-        <header id="header">
-            <div class="anti-shadow">
-                <h1><a href="/"><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span></a></h1>
-            </div>
-            {% block header %}<div class="anti-shadow" id="header-message-shadow"><p id="header-message">Our Terms have been updated - <a href="/tos">Please review them</a></p></div>{% endblock %}
-        </header>
-
-        <div id="body">
-            {% include 'component/welcome.html' %}
-            {% include 'component/report-issue.html' %}
-            {% block corps %}{% endblock %}
+      <header id="header">
+        <div class="anti-shadow">
+          <h1><a href="/"><span class="title-1">C</span><span class="title-2">ODE</span><span class="title-1">W</span><span class="title-2">E</span></a></h1>
         </div>
+        <!-- {% block header %}<div class="anti-shadow" id="header-message-shadow"><p id="header-message">Our Terms have been updated - <a href="/tos">Please review them</a></p></div>{% endblock %} -->
+      </header>
 
-        <footer id="footer">
-            {% block footer %}{% include 'component/footer.html' %}{% endblock %}
-        </footer>
+      <div id="body">
+        {% include 'component/welcome.html' %}
+        {% include 'component/report-issue.html' %}
+        {% block corps %}{% endblock %}
+      </div>
+
+      <footer id="footer">
+        {% block footer %}{% include 'component/footer.html' %}{% endblock %}
+      </footer>
     </div>
-</body>
-    {% if production %}
-        <script type="application/javascript" src="/js/dist/base.min.js"></script>
-    {% else %}
-        <script type="module" src="/js/dev/page/base.js"></script>
-    {% endif %}
-    {% block scripts %}{% endblock %}
+  </body>
+  {% if production %}
+  <script type="application/javascript" src="/js/dist/base.min.js"></script>
+  {% else %}
+  <script type="module" src="/js/dev/page/base.js"></script>
+  {% endif %}
+  {% block scripts %}{% endblock %}
+
 </html>
